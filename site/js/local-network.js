@@ -46,7 +46,11 @@ class LocalNetwork {
       .style("overflow-y", "scroll")
       .style("display", 'block');
 
+    vis.svg.append("g")
+      .attr("class", "links");
 
+    vis.svg.append("g")
+        .attr("class", "nodes");
 
     vis.tip = d3.select(".g-tip");
     vis.wrangleData();
@@ -59,10 +63,11 @@ class LocalNetwork {
     d3.select("#local-graph-name")
       .text(data.userMap[params.user].name);
 
-    vis.link = vis.svg.append("g")
-      .attr("class", "links")
+    vis.link = vis.svg.select(".links")
       .selectAll("line")
-      .data(vis.graph.links);
+      .data(vis.graph.links, d => d.Id);
+
+    vis.link.exit().remove();
 
     vis.link = vis.link
       .enter()
@@ -73,12 +78,11 @@ class LocalNetwork {
       .on("mouseover", edgemouseover)
       .on("mouseout", edgemouseout);
 
-    vis.link.exit().remove();
-
-    vis.node = vis.svg.append("g")
-        .attr("class", "nodes")
+    vis.node = vis.svg.select(".nodes")
       .selectAll("circle")
-      .data(vis.graph.nodes);
+      .data(vis.graph.nodes, d => d.Id);
+
+    vis.node.exit().remove();
 
     vis.node = vis.node
       .enter()
@@ -88,13 +92,11 @@ class LocalNetwork {
       .attr("id", d => d.id)
       .on("mouseover", mouseover)
       .on("mouseout", mouseout)
-      .on("click", click)
+      .on("click", clickNew)
       .call(d3.drag()
         .on("start", dragstarted)
         .on("drag", dragged)
         .on("end", dragended));
-
-    vis.node.exit().remove();
 
     vis.simulation
       .nodes(vis.graph.nodes)
@@ -108,6 +110,7 @@ class LocalNetwork {
     /* simulation.force("radial", d3.forceRadial(200, width/2, height/2)
         .strength(function(d) { return (d.group == 2) ? 0.5 : 0})); */
 
+    vis.simulation.restart();
 
     function ticked() {
       vis.link
@@ -153,6 +156,24 @@ class LocalNetwork {
         }
       });
 
+    }
+
+    function clickNew(d) {
+      vis.params.user = d.Id;
+      vis.wrangleData();
+
+      vis.simulation.restart().alpha(1);
+
+      /*var t1 = d3.timer(function(e) {
+          simulation.alphaTarget(1);
+          t1.stop()},
+        500); */
+
+
+      /* var t2 = d3.timer(function(e) {
+          simulation.alphaTarget(0);
+          t2.stop()}, 
+        1000); */
     }
 
     function click(d) {
@@ -307,7 +328,7 @@ class LocalNetwork {
       var fmt = d3.timeFormat("%b %d, %Y")
       rows
           .append("td")
-          .text(d => fmt(d.created_time));
+          .text(d => fmt(new Date(d.created_time)));
 
       rows.append("td")
           .text(function (d) {return d.message });

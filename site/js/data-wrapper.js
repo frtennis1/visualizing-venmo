@@ -75,7 +75,7 @@ class DataWrapper {
 
     return this.edges.filter(e => 
       userSet.has(e.source) && userSet.has(e.target)
-    );
+    ).map(e => JSON.parse(JSON.stringify(e)));
   }
 
 
