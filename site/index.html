@@ -23,43 +23,52 @@
   </div>
 
   <div class="section">
+    <div class="container-fluid py-2">
+      <div class="row">
+        <div class="col-md-9">
+          <h3 class="text-center">
+            Venmo graph for <span id="local-graph-name"></span>
+          </h3>
 
-    <h3> Venmo graph </h3>
+          <div id="local-graph"></div>
 
-    <div id="local-graph"></div>
-
-    <div class="g-tip" style="width:150px;height:80px;display:none;z-index=2">
-      <div class="g-tip-shadow"></div>
-      <svg class="g-tip-box" width="150" height="87">
-        <path transform="translate(75,91)" d="M0.5,-6.5l5,-5H74.5v-79H-74.5v79H-5Z"/>
-      </svg>
-      <div class="g-tip-content">
-        <div class="g-tip-title">John Doe</div>
-        <div class="g-tip-subtitle">jdoe</div>
-        <div class="g-tip-metric" data-name="created-at">
-            <span class="g-tip-metric-name">User since</span>
-            <span class="g-tip-metric-value">Jan '00</span>
+          <div class="g-tip" style="width:150px;height:80px;display:none;z-index=2">
+            <div class="g-tip-shadow"></div>
+            <svg class="g-tip-box" width="150" height="87">
+              <path transform="translate(75,91)" d="M0.5,-6.5l5,-5H74.5v-79H-74.5v79H-5Z"/>
+            </svg>
+            <div class="g-tip-content">
+              <div class="g-tip-title">John Doe</div>
+              <div class="g-tip-subtitle">jdoe</div>
+              <div class="g-tip-metric" data-name="created-at">
+                  <span class="g-tip-metric-name">User since</span>
+                  <span class="g-tip-metric-value">Jan '00</span>
+              </div>
+              <div class="g-tip-metric" data-name="num-transactions">
+                  <span class="g-tip-metric-name">Transactions</span>
+                  <span class="g-tip-metric-value">100</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="g-tip-metric" data-name="num-transactions">
-            <span class="g-tip-metric-name">Transactions</span>
-            <span class="g-tip-metric-value">100</span>
+
+        <div class="col-md-3" id="transactions">
+          <h4> Transactions </h4>
+          <h4></h4>
+
+          <table class="table" id="transactions-table">
+            <thead>
+              <tr>
+                <th> Date </th>
+                <th> Caption </th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-
-
-    <h4> Transactions </h4>
-
-    <table class="table">
-      <thead>
-        <tr>
-          <th> Date </th>
-          <th> Caption </th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
   </div>
 
   <div class="section">
@@ -79,6 +88,7 @@
 <script src="js/fullpage.min.js"></script>
 <script src="js/d3.v4.min.js"></script>
 <script src="js/data-wrapper.js"></script>
+<script src="js/local-network.js"></script>
 <script src="js/main.js"></script>
 
 </body>

@@ -6,7 +6,7 @@ var parseTime = d3.timeParse("%Y-%m-%d %H:%M:%S");
 $(document).ready(() => {
   new fullpage('#fullpage', {
     auoscrolling: true,
-    licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE'
+    licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
   });
 });
 
@@ -39,12 +39,14 @@ d3.queue()
 
     data = new DataWrapper(_transactions, _users);
 
-    /* localNetwork = new LocalNetwork(transactions, users, {
+    localNetwork = new LocalNetwork(data, {
       margin: {top: 40, bottom: 40, left: 40, right: 40},
       width: 760,
       height: 500,
-      divName = "local-graph"
-    }); */
+      divName: "local-graph",
+      user: 8443572,
+      radius: 2
+    });
 
     loading.text("Ready!");
 
