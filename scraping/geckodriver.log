@@ -1,0 +1,35 @@
+1541621954459	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "-marionette" "-foreground" "-no-remote" "-profile" "/var/folders/nk/y93jd8fx2mq331h0f386pmj80000gn/T/rust_mozprofile.Lvw8YsjxjlPa"
+2018-11-07 15:19:17.641 plugin-container[5562:803466] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x703f, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+2018-11-07 15:19:18.045 plugin-container[5563:803508] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x7b3f, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+1541621958428	Marionette	INFO	Listening on port 59517
+1541621958503	Marionette	WARN	TLS certificate errors will be ignored for this session
+1541621958696	Marionette	DEBUG	[4294967297] Frame script loaded
+1541621958735	Marionette	DEBUG	[4294967297] Frame script registered
+2018-11-07 15:19:19.128 plugin-container[5564:803619] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x883f, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+1541621985953	Marionette	DEBUG	[4294967297] Received DOM event beforeunload for about:blank
+1541621986251	Marionette	DEBUG	[4294967297] Received DOM event pagehide for about:blank
+1541621986808	Marionette	DEBUG	[4294967297] Received DOM event DOMContentLoaded for https://venmo.com/
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-15492939-15, line 83: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-15492939-15, line 143: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-15492939-15, line 143: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-15492939-15, line 143: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-15492939-15, line 83: unreachable code after return statement
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=UA-15492939-15, line 143: unreachable code after return statement
+1541621991124	Marionette	DEBUG	[4294967297] Received DOM event pageshow for https://venmo.com/
+1541621991241	Marionette	DEBUG	[4294967297] Received DOM event beforeunload for https://venmo.com/
+1541621991341	Marionette	DEBUG	[4294967297] Received DOM event pagehide for https://venmo.com/
+1541621991342	Marionette	DEBUG	[4294967297] Received DOM event unload for https://venmo.com/
+1541621991503	Marionette	DEBUG	[4294967297] Received observer notification outer-window-destroyed for 4294967301
+1541621991814	Marionette	DEBUG	[4294967297] Received DOM event DOMContentLoaded for https://venmo.com/account/sign-in
+1541621991941	Marionette	DEBUG	[4294967297] Received DOM event pageshow for https://venmo.com/account/sign-in
+2018-11-07 16:53:39.631 plugin-container[5777:878300] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x8d43, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+JavaScript error: https://static.licdn.com/sc/h/19dd5wwuyhbk7uttxpuelttdg, line 50: Error: Could not find DOM node with id analyticsNoauthUrl
+JavaScript error: https://static.licdn.com/sc/h/19dd5wwuyhbk7uttxpuelttdg, line 50: Error: Could not find DOM node with id analyticsNoauthUrl
+JavaScript error: https://static.licdn.com/sc/h/19dd5wwuyhbk7uttxpuelttdg, line 50: Error: Could not find DOM node with id analyticsNoauthUrl
+2018-11-07 17:03:16.925 plugin-container[5822:895333] *** CFMessagePort: bootstrap_register(): failed 1100 (0x44c) 'Permission denied', port = 0x8d03, name = 'com.apple.tsm.portname'
+See /usr/include/servers/bootstrap_defs.h for the error codes.
+1541645447164	Marionette	INFO	Stopped listening on port 59517

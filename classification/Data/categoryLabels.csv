@@ -322,6 +322,8 @@ beers,Drinks
 wings,Food
 foodz,Food
 dominos,Food
+8->,Sex
+8=>,Sex
 beer,Drinks
 daddy,Sex
 bubble tea,Food
@@ -330,6 +332,7 @@ phood,Food
 taco,Food
 donuts,Food
 donut,Food
+😏,Sex
 krispy kreme,Food
 pleasure,Sex
 noodles,Food
@@ -344,7 +347,30 @@ pie,Food
 🌾,Drugs
 🥀,Drugs
 🌼,Drugs
+Boarder,Food
 🌻,Drugs
+cava,Food
+turnip,Food
+fireball,Drinks
 💊,Drugs
 💉,Drugs
 🥢,Food
+rent,Home
+bill,Home
+house,Home
+moving,Home
+home,Home
+🏠,Home
+⚡,Home
+🔌,Home
+💡,Home
+couch,Home
+water,Home
+dues,Dues
+tix,Events
+🎟️,Events
+🎫,Events
+ticket,Events
+party bus,Events
+partay bus,Events
+ARIANA,Events

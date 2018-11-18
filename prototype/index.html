@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+
+<title> Visualizing Venmo</title>
+
+<link rel="stylesheet" href="css/materialize.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="row">
+  <div class="col l8">
+
+    <div class="container" id="description">
+      <h3 class="light"> Venmo graph </h3>
+
+      <div class="separator"></div>
+    </div>
+
+    <svg width="720" height="800" style="z-index:1"></svg>
+
+
+    <div class="g-tip" style="width:150px;height:80px;display:none;z-index=2">
+      <div class="g-tip-shadow"></div>
+      <svg class="g-tip-box" width="150" height="87">
+        <path transform="translate(75,91)" d="M0.5,-6.5l5,-5H74.5v-79H-74.5v79H-5Z"/>
+      </svg>
+      <div class="g-tip-content">
+          <div class="g-tip-title">John Doe</div>
+          <div class="g-tip-subtitle">jdoe</div>
+          <div class="g-tip-metric" data-name="created-at">
+              <span class="g-tip-metric-name">User since</span>
+              <span class="g-tip-metric-value">Jan '00</span>
+          </div>
+          <div class="g-tip-metric" data-name="num-transactions">
+              <span class="g-tip-metric-name">Transactions</span>
+              <span class="g-tip-metric-value">100</span>
+          </div>
+          <!-- <div class="g-tip-metric" data-name="earnings">
+              <span class="g-tip-metric-name">Earnings</span>
+              <span class="g-tip-metric-value">$16.2B</span>
+          </div> -->
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col l4" id="transactions">
+    <h4 class="light" style="margin-bottom:0px"> Transactions </h4>
+    <h4 class="light" style="margin-top:0px"> </h4>
+
+    <table class="striped" style="overflow-y:scroll;height:800px;display:block">
+      <col width="100">
+      <thead>
+        <tr>
+          <th> Date </th>
+          <th> Caption </th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="input-field col s12">
+    <input type="text" id="autocomplete-input" class="autocomplete">
+    <label for="autocomplete-input">Autocomplete</label>
+  </div>
+</div>
+
+<div class="row">
+    <div id="transactionBreakdown"></div>
+</div>
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/queue.v1.min.js"></script>
+<script src="js/materialize.min.js"></script>
+<script src="js/d3.v4.min.js"></script>
+<script src="js/piechart.js"></script>
+<script src="js/main.js"></script>
+
+</body>
