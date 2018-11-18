@@ -2,246 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f65cc91-cd40-4e0e-92fd-e39d17af4162" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/../.idea/deployment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/visualizing-venmo.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/webServers.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../classification/.ipynb_checkpoints/TransactionClassifier-checkpoint.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../classification/Data/labeledTransactions.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../classification/Data/transactionBreakdown.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../classification/Data/transactions.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../classification/Data/users.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../classification/Old Data/dataLabeler.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../classification/Old Data/transactions.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../classification/Old Data/transactions_classified.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../classification/Old Data/transactions_labeled.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../classification/Old Data/transactions_labeled2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../classification/Old Data/users.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../prototype/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../prototype/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../prototype/.idea/site.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../prototype/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../prototype/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../prototype/data/transactionBreakdown.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../prototype/data/transactions.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../prototype/data/users.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../prototype/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../prototype/js/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../prototype/js/piechart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../scraping/geckodriver.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/.idea/deployment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/.idea/webServers.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/css/animate.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/css/line-icons.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/css/magnific-popup.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/css/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/css/nivo-lightbox.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/css/owl.carousel.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/css/owl.theme.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/css/responsive.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/data/transactionBreakdown.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/fonts/LineIcons.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/fonts/LineIcons.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/fonts/LineIcons.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/fonts/LineIcons.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/about/img1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/about/img2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/about/img3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/bg/bg-counter.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/blog/author.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/blog/img1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/blog/img2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/blog/img3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/clients/img1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/clients/img2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/clients/img3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/clients/img4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/clients/img5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/features/app.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/features/img1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/features/img1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/features/img2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/features/img2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/intro-mobile.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/intro.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/logo.psd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/mac.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/macbook.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/portfolio/img1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/portfolio/img2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/portfolio/img3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/portfolio/img4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/portfolio/img5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/portfolio/img6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/screens/img-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/screens/img-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/screens/img-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/screenshot/img-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/screenshot/img-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/screenshot/img-3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/screenshot/img-4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/screenshot/img-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/screenshot/img-6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/slider/bg-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/slider/bg-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/slider/bg-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/slider/img-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/slider/img-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/slider/img-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/team/team1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/team/team2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/team/team3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/team/team4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/testimonial/img1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/testimonial/img2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/testimonial/img3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/testimonial/img4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/img/testimonial/img5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/js/contact-form-script.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/js/d3.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/js/form-validator.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/js/jquery-min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/js/jquery.counterup.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/js/jquery.easing.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/js/jquery.magnific-popup.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/js/jquery.mixitup.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/js/jquery.nav.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/js/jquery.vide.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/js/nivo-lightbox.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/js/owl.carousel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/js/piechart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/js/popper.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/js/queue.v1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/js/scrolling-nav.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/js/template-main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/js/waypoints.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/js/wow.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../site/license.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/d3_project_template.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/animate.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/line-icons.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/magnific-popup.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/main2.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/nivo-lightbox.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/owl.carousel.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/owl.theme.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/responsive.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/transactionBreakdown.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/LineIcons.eot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/LineIcons.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/LineIcons.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fonts/LineIcons.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/about/img1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/about/img2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/about/img3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/bg/bg-counter.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/blog/author.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/blog/img1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/blog/img2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/blog/img3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/clients/img1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/clients/img2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/clients/img3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/clients/img4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/clients/img5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/features/app.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/features/img1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/features/img1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/features/img2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/features/img2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/intro-mobile.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/intro.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/logo.psd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/mac.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/macbook.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/portfolio/img1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/portfolio/img2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/portfolio/img3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/portfolio/img4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/portfolio/img5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/portfolio/img6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/screens/img-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/screens/img-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/screens/img-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/screenshot/img-1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/screenshot/img-2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/screenshot/img-3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/screenshot/img-4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/screenshot/img-5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/screenshot/img-6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/slider/bg-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/slider/bg-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/slider/bg-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/slider/img-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/slider/img-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/slider/img-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/team/team1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/team/team2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/team/team3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/team/team4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/testimonial/img1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/testimonial/img2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/testimonial/img3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/testimonial/img4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/img/testimonial/img5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/contact-form-script.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/d3.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/form-validator.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/jquery-min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/jquery.counterup.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/jquery.easing.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/jquery.magnific-popup.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/jquery.mixitup.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/jquery.nav.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/jquery.vide.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/nivo-lightbox.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/owl.carousel.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/piechart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/popper.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/queue.v1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/scrolling-nav.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/template-main.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/waypoints.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/js/wow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Database Creator.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../scraping/Database Creator.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Graph Generation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../scraping/Graph Generation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Harvard Scraper.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../scraping/Harvard Scraper.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../scraping/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Venmo Scraper.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../scraping/Venmo Scraper.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classification/Data/categoryLabels.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../classification/Data/categoryLabels.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../classification/TransactionClassifier.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../classification/TransactionClassifier.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../site/.ipynb_checkpoints/graph-checkpoint.json" beforeDir="false" afterPath="$PROJECT_DIR$/../prototype/.ipynb_checkpoints/graph-checkpoint.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../site/.ipynb_checkpoints/index-checkpoint.html" beforeDir="false" afterPath="$PROJECT_DIR$/../prototype/.ipynb_checkpoints/index-checkpoint.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../site/8443572.json" beforeDir="false" afterPath="$PROJECT_DIR$/../prototype/8443572.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../site/8789592.json" beforeDir="false" afterPath="$PROJECT_DIR$/../prototype/8789592.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../site/css/materialize.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/../prototype/css/materialize.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../site/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../prototype/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../site/graph.json" beforeDir="false" afterPath="$PROJECT_DIR$/../prototype/graph.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../site/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../site/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../site/js/d3.v4.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../prototype/js/d3.v4.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../site/js/jquery-3.3.1.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../prototype/js/jquery-3.3.1.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../site/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../site/js/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../site/js/materialize.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/../prototype/js/materialize.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/piechart.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/piechart.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -292,68 +54,60 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="-1075867143">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.12" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="js" value="2996" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JavaScript" value="2996" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="csv" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="PLAIN_TEXT" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="87" column="27" lean-forward="true" selection-start-line="87" selection-start-column="27" selection-end-line="87" selection-end-column="27" />
+            <state relative-caret-position="405">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/main2.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/main.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="115" column="2" selection-start-line="115" selection-start-column="2" selection-end-line="118" selection-end-column="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/owl.theme.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/css/responsive.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="27" column="23" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/piechart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="33" column="23" lean-forward="true" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
+            <state relative-caret-position="242">
+              <caret line="24" column="60" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/transactionBreakdown.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="23" lean-forward="true" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+        <entry file="file://$PROJECT_DIR$/data/labeledTransactions.csv">
+          <provider selected="true" editor-type-id="LargeFileEditor">
+            <state>
+              <caret column="48" selection-start-column="38" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -361,8 +115,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+            <state relative-caret-position="30">
+              <caret line="2" column="55" lean-forward="true" selection-start-line="2" selection-start-column="55" selection-end-line="2" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -389,11 +143,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/js/main.js" />
         <option value="$PROJECT_DIR$/data/transactionBreakdown.csv" />
-        <option value="$PROJECT_DIR$/js/piechart.js" />
         <option value="$PROJECT_DIR$/css/main2.css" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/js/main.js" />
+        <option value="$PROJECT_DIR$/js/piechart.js" />
       </list>
     </option>
   </component>
@@ -404,8 +158,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="142" />
-    <option name="y" value="34" />
+    <option name="x" value="-232" />
+    <option name="y" value="23" />
     <option name="width" value="1250" />
     <option name="height" value="777" />
   </component>
@@ -415,18 +169,33 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="site2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="site2" type="462c0819:PsiDirectoryNode" />
+              <item name="site" type="b2602c69:ProjectViewProjectNode" />
+              <item name="site" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="site" type="b2602c69:ProjectViewProjectNode" />
+              <item name="site" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="site" type="b2602c69:ProjectViewProjectNode" />
+              <item name="site" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="site" type="b2602c69:ProjectViewProjectNode" />
+              <item name="site" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -472,20 +241,20 @@
       <updated>1527801429569</updated>
       <workItem from="1527801431154" duration="501000" />
       <workItem from="1542559708099" duration="5177000" />
+      <workItem from="1542571432570" duration="6789000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5678000" />
+    <option name="totallyTimeSpent" value="12467000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="142" y="34" width="1250" height="777" extended-state="0" />
+    <frame x="-232" y="23" width="1250" height="777" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" id="Project" order="0" visible="true" weight="0.2496" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -496,6 +265,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -508,59 +278,66 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/transactionBreakdown.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="23" lean-forward="true" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/piechart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="33" column="23" lean-forward="true" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/owl.theme.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
+        <state relative-caret-position="435">
           <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/responsive.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
+        <state relative-caret-position="405">
           <caret line="27" column="23" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/main.css">
+    <entry file="file://$PROJECT_DIR$/data/transactionBreakdown.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
-          <caret line="115" column="2" selection-start-line="115" selection-start-column="2" selection-end-line="118" selection-end-column="21" />
+          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/main2.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+          <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="131" column="48" lean-forward="true" selection-start-line="131" selection-start-column="48" selection-end-line="131" selection-end-column="48" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="87" column="27" lean-forward="true" selection-start-line="87" selection-start-column="27" selection-end-line="87" selection-end-column="27" />
+        <state relative-caret-position="405">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/labeledTransactions.csv">
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state>
+          <caret column="48" selection-start-column="38" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="55" lean-forward="true" selection-start-line="2" selection-start-column="55" selection-end-line="2" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/piechart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="24" column="60" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
         </state>
       </provider>
     </entry>
