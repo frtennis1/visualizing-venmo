@@ -6,6 +6,7 @@
 .nodes circle {
   stroke: #fff;
   stroke-width: 1.5px;
+  r: 5px;
 }
 
 .g-tip {
