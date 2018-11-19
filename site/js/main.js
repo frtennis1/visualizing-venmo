@@ -1,6 +1,8 @@
 
 disableScrolling();
 
+var localTransactionBreakdown;
+
 var data, localNetwork;
 
 var parseTime = d3.timeParse("%Y-%m-%d %H:%M:%S");
@@ -14,8 +16,13 @@ queue()
 
 function dataLoaded(error, _users, _transactions, _labeledTransactions, _wordCount) {
 
-    // Create transaction breakdown pie chart
-    var bdown = new PieChart("transaction-breakdown", _labeledTransactions);
+    // Create global transaction breakdown pie chart
+    var globalTransactionBreakdown = new PieChart("transaction-breakdown", _labeledTransactions);
+
+    // Create local transaction breakdown pie chart
+    localTransactionBreakdown = new PieChart("transaction-breakdown-local", _labeledTransactions);
+
+    localTransactionBreakdown.filterForUser(183704);
 
     // Create word cloud
     var wordcloud = new WordCloud("word-cloud", _wordCount);
@@ -37,7 +44,7 @@ function dataLoaded(error, _users, _transactions, _labeledTransactions, _wordCou
       d.is_crawled = Boolean(d.is_crawled);
     });
 
-    data = new DataWrapper(_transactions, _users);
+    /*data = new DataWrapper(_transactions, _users);
 
     localNetwork = new LocalNetwork(data, {
       margin: {top: 40, bottom: 40, left: 40, right: 40},
@@ -46,10 +53,21 @@ function dataLoaded(error, _users, _transactions, _labeledTransactions, _wordCou
       divName: "local-graph",
       user: 8443572,
       radius: 1
-    });
+    });*/
 
     $('#preloader').fadeOut();
     enableScrolling();
 
 }
 
+// Function called when the user inputs a new user's ID to filter by
+function userFilter() {
+
+    var chosenUserId = +d3.select("#userIdInput").node().value;
+
+    // Update html text to reflect new user
+    // Update charts to filter for this user
+
+    localTransactionBreakdown.filterForUser(chosenUserId);
+
+}
