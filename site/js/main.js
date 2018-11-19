@@ -1,13 +1,16 @@
+
+disableScrolling();
+
 var data, localNetwork;
 
 var parseTime = d3.timeParse("%Y-%m-%d %H:%M:%S");
 
 queue()
-  .defer(d3.csv, "data/users.csv")
-  .defer(d3.csv, "data/transactions.csv")
-  .defer(d3.csv, "data/labeledTransactions_small.csv")
+    .defer(d3.csv, "data/users.csv")
+    .defer(d3.csv, "data/transactions.csv")
+    .defer(d3.csv, "data/labeledTransactions_small.csv")
     .defer(d3.csv, "data/word_count.csv")
-  .await(dataLoaded);
+    .await(dataLoaded);
 
 function dataLoaded(error, _users, _transactions, _labeledTransactions, _wordCount) {
 
@@ -45,4 +48,8 @@ function dataLoaded(error, _users, _transactions, _labeledTransactions, _wordCou
       radius: 1
     });
 
+    $('#preloader').fadeOut();
+    enableScrolling();
+
 }
+
