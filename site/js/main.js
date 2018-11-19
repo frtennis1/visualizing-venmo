@@ -6,12 +6,16 @@ queue()
   .defer(d3.csv, "data/users.csv")
   .defer(d3.csv, "data/transactions.csv")
   .defer(d3.csv, "data/labeledTransactions_small.csv")
+    .defer(d3.csv, "data/word_count.csv")
   .await(dataLoaded);
 
-function dataLoaded(error, _users, _transactions, _labeledTransactions) {
+function dataLoaded(error, _users, _transactions, _labeledTransactions, _wordCount) {
 
     // Create transaction breakdown pie chart
     var bdown = new PieChart("transaction-breakdown", _labeledTransactions);
+
+    // Create word cloud
+    var wordcloud = new WordCloud("word-cloud", _wordCount);
 
     _transactions.forEach(d => {
       d.from = +d.from;

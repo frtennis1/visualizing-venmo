@@ -5,6 +5,9 @@
       <webServer id="4eb99f63-2058-4234-81cd-4f817058ebea" name="local_server" url="http://localhost:63342">
         <fileTransfer port="0" accessType="LOCAL" />
       </webServer>
+      <webServer id="cd901765-2726-44c3-b65d-34d9e3348952" name="local" url="http://localhost">
+        <fileTransfer port="0" accessType="LOCAL" />
+      </webServer>
     </option>
   </component>
 </project>
