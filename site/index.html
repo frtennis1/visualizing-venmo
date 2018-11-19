@@ -172,16 +172,15 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-12 col-sm-12">
-                <div class="img-thumb wow fadeInLeft" data-wow-delay="0.3s">
-                    <img class="img-fluid" src="img/features/img2.png" alt="">
+                <div id="local-graph" class="img-thumb wow fadeInLeft" data-wow-delay="0.3s">
                     local venmo network force directed graph
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="text-wrapper wow fadeInRight" data-wow-delay="0.6s">
                     <div>
-                        <h3>[User ID]'s Venmo Network</h3>
-                        <p>Explain what features we can see in the visualization</p>
+                        <h3><span id="local-graph-name">[User ID]</span>'s Venmo Network</h3>
+                        <p>Click on a node to see their local Venmo graph!</p>
                     </div>
                 </div>
             </div>
@@ -461,7 +460,10 @@
 <script src="js/d3.min.js"></script>
 
 <!-- Visualization objects -->
+<script src="js/data-wrapper.js"></script>
 <script src="js/piechart.js"></script>
+<script src="js/local-network.js"></script>
+
 
 <!-- Load data, create visualizations -->
 <script src="js/main.js"></script>
