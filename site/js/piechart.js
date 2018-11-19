@@ -22,7 +22,7 @@ PieChart = function(_parentElement, _data){
 PieChart.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { top: 20, right: 20, bottom: 20, left: 150 };
+    vis.margin = { top: 20, right: 20, bottom: 20, left: 130 };
 
     //vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
     //    vis.height = 500 - vis.margin.top - vis.margin.bottom;
@@ -30,7 +30,7 @@ PieChart.prototype.initVis = function(){
     vis.width = 500;
     vis.height = 500;
 
-    var radius = 220;
+    var radius = 200;
     var thickness = 100;
 
     // Nest the data
@@ -120,6 +120,7 @@ PieChart.prototype.initVis = function(){
     vis.legendLabels.enter().append("text")
         .style("text-anchor", "end")
         .style("alignment-baseline", "middle")
+        .style("font-size", 13)
         .attr("y", function(d, i) { return i * (boxSize + boxPadding) + (boxSize/2) - (boxSize + boxPadding) * vis.nested_data.length / 2 })
         .attr("x", -boxPadding)
         .text(function(d, i) { return d.key });
@@ -130,15 +131,13 @@ PieChart.prototype.initVis = function(){
 
     vis.tooltips.append("text")
         .attr("class", "title")
-        .attr("transform", "translate("+vis.width/2+","+(vis.height/2-20)+")")
-        .text("title")
+        .attr("transform", "translate("+vis.width/2+","+(vis.height/2-25)+")")
         .style("text-anchor", "middle")
         .style("font-size", 15);
 
     vis.tooltips.append("text")
         .attr("class", "subtitle")
-        .attr("transform", "translate("+vis.width/2+","+(vis.height/2-10)+")")
-        .text("subtitle")
+        .attr("transform", "translate("+vis.width/2+","+(vis.height/2-15)+")")
         .attr("textLength", 100)
         .attr("lengthAdjust", "spacingAndGlyphs")
         .style("font-size", 60)

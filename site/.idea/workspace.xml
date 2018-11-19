@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8f65cc91-cd40-4e0e-92fd-e39d17af4162" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/piechart.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/piechart.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -63,12 +64,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="2996" />
+          <entry key="html" value="18" />
+          <entry key="js" value="3040" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JavaScript" value="2996" />
+          <entry key="HTML" value="18" />
+          <entry key="JavaScript" value="3040" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -88,8 +91,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
+            <state relative-caret-position="342">
+              <caret line="133" column="18" lean-forward="true" selection-start-line="133" selection-start-column="18" selection-end-line="133" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -97,8 +100,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/piechart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="24" column="60" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
+            <state relative-caret-position="243">
+              <caret line="133" column="72" selection-start-line="133" selection-start-column="72" selection-end-line="133" selection-end-column="72" />
             </state>
           </provider>
         </entry>
@@ -145,8 +148,8 @@
       <list>
         <option value="$PROJECT_DIR$/data/transactionBreakdown.csv" />
         <option value="$PROJECT_DIR$/css/main2.css" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/main.js" />
+        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/piechart.js" />
       </list>
     </option>
@@ -241,12 +244,12 @@
       <updated>1527801429569</updated>
       <workItem from="1527801431154" duration="501000" />
       <workItem from="1542559708099" duration="5177000" />
-      <workItem from="1542571432570" duration="6789000" />
+      <workItem from="1542571432570" duration="7589000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12467000" />
+    <option name="totallyTimeSpent" value="13267000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-232" y="23" width="1250" height="777" extended-state="0" />
@@ -313,13 +316,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/labeledTransactions.csv">
       <provider selected="true" editor-type-id="LargeFileEditor">
         <state>
@@ -334,10 +330,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="133" column="18" lean-forward="true" selection-start-line="133" selection-start-column="18" selection-end-line="133" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/piechart.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="24" column="60" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
+        <state relative-caret-position="243">
+          <caret line="133" column="72" selection-start-line="133" selection-start-column="72" selection-end-line="133" selection-end-column="72" />
         </state>
       </provider>
     </entry>
