@@ -377,6 +377,14 @@ button:focus {
   background: #28a745;
 }
 
+.email a {
+  color: #DD4D42;
+}
+
+.email a:hover {
+  background: #DD4D42;
+}
+
 .twitter a {
   color: #1DA1F2;
 }
