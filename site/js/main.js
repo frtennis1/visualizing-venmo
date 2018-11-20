@@ -5,22 +5,26 @@ var localTransactionBreakdown;
 
 var data, localNetwork;
 
-var parseTime = d3.timeParse("%Y-%m-%d %H:%M:%S");
+//var parseTime = d3.timeParse("%Y-%m-%d %H:%M:%S");
+var parseTime = d3.timeParse("%m/%d/%y %H:%M");
 
 queue()
     .defer(d3.csv, "data/users.csv")
     .defer(d3.csv, "data/transactions.csv")
     .defer(d3.csv, "data/labeledTransactions_small.csv")
     .defer(d3.csv, "data/word_count.csv")
+    .defer(d3.csv, "data/stackedTransactions.csv")
     .await(dataLoaded);
 
-function dataLoaded(error, _users, _transactions, _labeledTransactions, _wordCount) {
+function dataLoaded(error, _users, _transactions, _labeledTransactions, _wordCount, _stackedTransactions) {
 
     // Create global transaction breakdown pie chart
     var globalTransactionBreakdown = new PieChart("transaction-breakdown", _labeledTransactions);
 
     // Create local transaction breakdown pie chart
     localTransactionBreakdown = new PieChart("transaction-breakdown-local", _labeledTransactions);
+
+    var transactionsOverTime = new StackedAreaChart("transactionsOverTime", _stackedTransactions);
 
     // Create word cloud
     var wordcloud = new WordCloud("word-cloud", _wordCount);
