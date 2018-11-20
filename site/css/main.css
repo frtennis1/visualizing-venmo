@@ -369,6 +369,14 @@ button:focus {
   background: #4867AA;
 }
 
+.github a {
+  color: #28a745;
+}
+
+.github a:hover {
+  background: #28a745;
+}
+
 .twitter a {
   color: #1DA1F2;
 }

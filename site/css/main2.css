@@ -14,15 +14,54 @@
     position: relative;
 }
 
+/*
+  Local
+ */
+
 #userIdInput {
   background-color:rgba(0, 0, 0, 0);
   border: none;
   outline: none;
+  width: 150px;
 }
 
 #userIdInput,
 #userIdInput::placeholder {
   color: white;
+}
+
+/*
+  How To
+ */
+
+#howToImage {
+  height: 500px;
+  margin: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#howToButtons {
+  margin: auto;
+}
+
+#howToNext, #howToPrev {
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.disabled {
+  background-image: -webkit-linear-gradient(0deg, #555555 0%, #aaaaaa 100%)
+}
+
+.highlight {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: -webkit-linear-gradient(bottom right, #3c96ff, #2dfbff);
+}
+
+#howToText h3 {
+  margin-top: 40px;
 }
 
 /*
