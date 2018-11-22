@@ -24,7 +24,8 @@ function dataLoaded(error, _users, _transactions, _labeledTransactions, _wordCou
     // Create local transaction breakdown pie chart
     localTransactionBreakdown = new PieChart("transaction-breakdown-local", _labeledTransactions);
 
-    var transactionsOverTime = new StackedAreaChart("transactionsOverTime", _stackedTransactions);
+    //var transactionsOverTime = new StackedAreaChart("transactionsOverTime", _stackedTransactions);
+    var transactionsOverTime = new StackedAreaChart("transactionsOverTime", _labeledTransactions);
 
     // Create word cloud
     var wordcloud = new WordCloud("word-cloud", _wordCount);
@@ -80,7 +81,7 @@ function userFilter() {
 
 var currentHowTo = 0;
 var slides = [
-    "<h3>When you open Venmo, it should look a little like this. This is your home screen. Press the <span class='highlight'>menu</span> button in the top left to open the menu.</h3>",
+    "<h3>When you open Venmo, it should look a little like this. This is your home screen. Press the <span class='highlight'>Menu</span> button in the top left to open the menu.</h3>",
     "<h3>A sidebar will open up on top of your home page. Click the <span class='highlight'>Settings</span> button.</h3>",
     "<h3>Click on the <span class='highlight'>Privacy</span> button to open up your privacy settings.</h3>",
     "<h3>Click on the <span class='highlight'>Private</span> button to make all future Venmo transactions private by default. Don't forget to change your past transactions too thought!</h3>",

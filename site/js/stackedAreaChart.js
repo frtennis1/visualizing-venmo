@@ -14,7 +14,6 @@ StackedAreaChart = function(_parentElement, _data){
     this.initVis();
 }
 
-// var parseDate = d3.timeParse("%Y-%m-%d");
 
 /*
  * Initialize visualization (static content, e.g. SVG area or axes)
@@ -59,7 +58,7 @@ StackedAreaChart.prototype.initVis = function(){
 
     vis.y = d3.scaleLinear()
         .range([vis.height, 0])
-        .domain([0,10000]);
+        .domain([0,400]);
 
     vis.xAxis = d3.axisBottom()
         .scale(vis.x);
@@ -76,7 +75,7 @@ StackedAreaChart.prototype.initVis = function(){
 
     vis.area = d3.area()
             .curve(d3.curveCardinal)
-            .x(d => vis.x(d.data.created_week))
+            .x(d => vis.x(d.data.week))
             .y0(d => vis.y(d[0]))
             .y1(d => vis.y(d[1]));
 
@@ -97,12 +96,48 @@ StackedAreaChart.prototype.initVis = function(){
 StackedAreaChart.prototype.wrangleData = function(){
 	var vis = this;
 
-    // Stacks transactions by category
-    vis.displayData = d3.stack()
-        .keys(['Sex','Drugs','Drinks','Sex','Other','Food','Events'])
-        (vis.data);
+	// Constants
+    var parseDate = d3.timeParse("%m/%d/%y %H:%M");
+    var formatWeek = d3.timeFormat("%V");
+    var categories = ["Food", "Drinks", "Drugs", "Transportation", "Sex", "Other", "Events"];
 
-    console.log(vis.displayData);
+    // Filter the data
+    /*
+    vis.filteredData = vis.data.filter()
+     */
+    vis.filteredData = vis.data;
+
+    // Nest the data by week and category
+	vis.nestedData = d3.nest()
+	    .key(function(d) {
+            return +formatWeek(parseDate(d.created_time));
+        })
+        .sortKeys(d3.ascending)
+	    .key(d => d.category)
+	    .rollup(d => d.length)
+	    .entries(vis.filteredData);
+
+	// Flatten the data
+    vis.flatData = new Array(52);
+    vis.nestedData.forEach(function (d) {
+        var row = {};
+        row.week = +d.key;
+        for (var i = 0; i < d.values.length; i++) {
+            row[d.values[i].key] = d.values[i].value;
+        }
+        // Fill out 0 categories
+        for (var i = 0; i < categories.length; i++) {
+            if (!(categories[i] in row)) {
+                row[categories[i]] = 0;
+            }
+        }
+        vis.flatData[d.key-1] = row;
+    });
+
+    // Stack the data
+    vis.displayData = d3.stack()
+        .keys(categories)
+        (vis.flatData);
 
     vis.updateVis();
 }
