@@ -9,6 +9,7 @@
 StackedAreaChart = function(_parentElement, _data){
 	this.parentElement = _parentElement;
     this.data = _data;
+    this.filteredData = this.data;
     this.displayData = []; // see data wrangling
 
     this.initVis();
@@ -57,11 +58,12 @@ StackedAreaChart.prototype.initVis = function(){
         .range(["#809bce", "#c2a8d4", "#febd7e", "#f2f68f", "#3367b2", "#ff0079", "#cb4f00"]);
 
     vis.y = d3.scaleLinear()
-        .range([vis.height, 0])
-        .domain([0,400]);
+        .range([vis.height, 0]);
 
     vis.xAxis = d3.axisBottom()
-        .scale(vis.x);
+        .scale(vis.x)
+        .tickFormat(d => d3.timeFormat("%b")(d3.timeParse("%V")(d)))
+        .ticks(4);
 
     vis.yAxis = d3.axisLeft()
         .scale(vis.y);
@@ -71,18 +73,23 @@ StackedAreaChart.prototype.initVis = function(){
         .attr("transform", "translate(0," + vis.height + ")");
 
     vis.svg.append("g")
-        .attr("class", "y-axis axis");
+        .attr("class", "y-axis axis")
+        .append("text")
+        .text("Number of Transactions")
+        .attr("transform", "rotate(90,0,0) translate(108,-3)")
+        .attr("fill", "black");
 
     vis.area = d3.area()
-            .curve(d3.curveCardinal)
-            .x(d => vis.x(d.data.week))
-            .y0(d => vis.y(d[0]))
-            .y1(d => vis.y(d[1]));
+        .curve(d3.curveMonotoneX)
+        .x(d => vis.x(d.data.week))
+        .y0(d => vis.y(d[0]))
+        .y1(d => vis.y(d[1]));
 
-    /*vis.svg.append("text")
-        .attr("x", 10)
+    vis.svg.append("text")
+        .attr("x", vis.width)
         .attr("y", 15)
-        .attr("class", "tool-tip");*/
+        .attr("text-anchor", "end")
+        .attr("class", "tool-tip");
 
     vis.wrangleData();
 }
@@ -100,12 +107,6 @@ StackedAreaChart.prototype.wrangleData = function(){
     var parseDate = d3.timeParse("%m/%d/%y %H:%M");
     var formatWeek = d3.timeFormat("%V");
     var categories = ["Food", "Drinks", "Drugs", "Transportation", "Sex", "Other", "Events"];
-
-    // Filter the data
-    /*
-    vis.filteredData = vis.data.filter()
-     */
-    vis.filteredData = vis.data;
 
     // Nest the data by week and category
 	vis.nestedData = d3.nest()
@@ -134,6 +135,18 @@ StackedAreaChart.prototype.wrangleData = function(){
         vis.flatData[d.key-1] = row;
     });
 
+    // Fill all gaps of the data
+    for (var i = 0; i < 52; i++) {
+        if (typeof vis.flatData[i] != 'undefined') {
+            continue;
+        }
+        var entry = { week: 1+i };
+        for (var j = 0; j < categories.length; j++) {
+            entry[categories[j]] = 0;
+        }
+        vis.flatData[i] = entry;
+    }
+
     // Stack the data
     vis.displayData = d3.stack()
         .keys(categories)
@@ -152,13 +165,20 @@ StackedAreaChart.prototype.wrangleData = function(){
 StackedAreaChart.prototype.updateVis = function(){
 	var vis = this;
 
+	// Update the y axis
+    var maxY = d3.max(vis.displayData, d => d3.max(d, f => f[1]));
+    vis.y.domain([0, maxY]);
+
     // Draw the layers
     var categories = vis.svg.selectAll(".area")
         .data(vis.displayData);
 
     categories.enter().append("path")
         .attr("class", "area")
+        .on("mouseover", mouseOver)
+        .on("mouseout", mouseOut)
         .merge(categories)
+        .transition().duration(800)
         .style("fill", function(d,i) {
             return vis.color(i);
         })
@@ -166,17 +186,31 @@ StackedAreaChart.prototype.updateVis = function(){
             return vis.area(d);
         })
         .attr("data-key", function(d) { return d.key; });
-        //.on("mouseover", hoverArea);
 
-    /*function hoverArea() {
-        d3.select(".tool-tip")
+    function mouseOver() {
+        vis.svg.select(".tool-tip")
             .text(this.getAttribute("data-key"));
-    }*/
+        vis.svg.selectAll(".area").attr("opacity", 0.5);
+        d3.select(this).attr("opacity", 1);
+    }
+    function mouseOut() {
+        vis.svg.selectAll(".area").attr("opacity", 1);
+    }
 
 	categories.exit().remove();
 
-
-	// Call axis functions with the new domain 
+	// Call axis functions with the new domain
 	vis.svg.select(".x-axis").call(vis.xAxis);
-    vis.svg.select(".y-axis").call(vis.yAxis);
+    vis.svg.select(".y-axis").transition().duration(800).call(vis.yAxis);
+}
+
+StackedAreaChart.prototype.filterForKeyword = function(keyword) {
+    var vis = this;
+    // Don't filter if there's no keyword (don't waste computation time)
+    if (keyword == "") {
+        vis.filteredData = vis.data;
+    } else {
+        vis.filteredData = vis.data.filter(d => d.message.toLowerCase().includes(keyword.toLowerCase()));
+    }
+    vis.wrangleData();
 }

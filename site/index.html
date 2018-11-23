@@ -138,14 +138,14 @@
                 <div class="text-wrapper wow fadeInRight" data-wow-delay="0.9s">
                     <div>
                         <h3>What do people spend on and when?</h3>
-                        <p>Play with the filters to see what categories are prevalent when</p>
+                        Analysis of transactions over time
+                        <p>Interested in tracking certain keywords over time? Enter a keyword into the box below to visualize the graph and filter for Venmo transactions that contain that keyword.</p>
+                        <input id="keywordInput" onchange="keywordFilter()">
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="img-thumb wow fadeInLeft" data-wow-delay="1.2s">
-                    <img class="img-fluid" src="img/features/img2.png" alt="">
-                    stacked area chart with filters
                     <div id="transactionsOverTime"></div>
                 </div>
             </div>
@@ -416,8 +416,8 @@
                     <div class="widget">
                         <h3 class="block-title">Sources</h3>
                         <ul class="menu">
-                            <li><a href="#">Images</a></li>
-                            <li><a href="#">Libraries</a></li>
+                            <li><a onclick="imagesPopper()" href="javascript:void(0);">Images</a></li>
+                            <li><a onclick="librariesPopper()" href="javascript:void(0);">Libraries</a></li>
                             <!--<li><a href="#">Privacy Policy</a></li>
                             <li><a href="#">Help</a></li>-->
                         </ul>

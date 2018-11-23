@@ -192,8 +192,8 @@ PieChart.prototype.filterForUser = function(userId) {
 
     vis.filteredData = vis.data.filter(d => d.from == userId || d.to == userId);
 
-    d3.selectAll(".tool-tip .title").text("");
-    d3.selectAll(".tool-tip .subtitle").text("");
+    vis.svg.selectAll(".tool-tip .title").text("");
+    vis.svg.selectAll(".tool-tip .subtitle").text("");
 
     vis.wrangleData();
 }

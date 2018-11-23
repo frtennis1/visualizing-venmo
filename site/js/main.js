@@ -2,6 +2,7 @@
 disableScrolling();
 
 var localTransactionBreakdown;
+var transactionsOverTime;
 
 var data, localNetwork;
 
@@ -25,7 +26,7 @@ function dataLoaded(error, _users, _transactions, _labeledTransactions, _wordCou
     localTransactionBreakdown = new PieChart("transaction-breakdown-local", _labeledTransactions);
 
     //var transactionsOverTime = new StackedAreaChart("transactionsOverTime", _stackedTransactions);
-    var transactionsOverTime = new StackedAreaChart("transactionsOverTime", _labeledTransactions);
+    transactionsOverTime = new StackedAreaChart("transactionsOverTime", _labeledTransactions);
 
     // Create word cloud
     var wordcloud = new WordCloud("word-cloud", _wordCount);
@@ -63,7 +64,13 @@ function dataLoaded(error, _users, _transactions, _labeledTransactions, _wordCou
 
 }
 
-// Function called when the user inputs a new user's ID to filter by
+// Function for filtering the transactions over time by a keyword
+function keywordFilter() {
+    var keyword = d3.select("#keywordInput").node().value;
+    transactionsOverTime.filterForKeyword(keyword);
+}
+
+// Function called when the user inputs a new user's ID to filter the local section by
 function userFilter() {
 
     var chosenUserId = +d3.select("#userIdInput").node().value;
@@ -108,3 +115,22 @@ function howToButtonPress() {
     d3.select("#howToText").html(slides[currentHowTo]);
 }
 howToButtonPress();
+
+/*
+    Footer Poppers
+ */
+
+function imagesPopper() {
+    var popover = new Popper(ref, popper, options);
+}
+
+function librariesPopper() {
+
+}
+
+
+
+
+
+
+
