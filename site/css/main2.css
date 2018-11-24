@@ -87,9 +87,16 @@
   r: 5px;
 }
 
+.beeswarm-circle {
+  r: 5;
+  color: #777;
+}
+
 .g-tip {
   position: absolute;
-  pointer-events: none;
+  pointer-events: none !important;
+  width: 150px;
+  height: 80px;
 }
 
 .g-tip-shadow {
@@ -126,9 +133,13 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+  color: #000;
 }
 
 .g-tip-subtitle {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
   margin-bottom: 4px;
 }
 

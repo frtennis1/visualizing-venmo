@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 disableScrolling();
 
@@ -5,11 +6,17 @@ var localTransactionBreakdown;
 var transactionsOverTime;
 
 var data, localNetwork;
+=======
+var data, localNetwork, timeline;
+>>>>>>> Add transactions beeswarm plot first pass
 
 //var parseTime = d3.timeParse("%Y-%m-%d %H:%M:%S");
 var parseTime = d3.timeParse("%m/%d/%y %H:%M");
 
+const data_dir = 'data'
+
 queue()
+<<<<<<< HEAD
     .defer(d3.csv, "data/users.csv")
     .defer(d3.csv, "data/transactions.csv")
     .defer(d3.csv, "data/labeledTransactions_small.csv")
@@ -21,6 +28,12 @@ function dataLoaded(error, _users, _transactions, _labeledTransactions, _wordCou
 
     // Create global transaction breakdown pie chart
     var globalTransactionBreakdown = new PieChart("transaction-breakdown", _labeledTransactions);
+=======
+  .defer(d3.csv, `${data_dir}/users.csv`)
+  .defer(d3.csv, `${data_dir}/transactions.csv`)
+  .defer(d3.csv, `${data_dir}/labeledTransactions_small.csv`)
+  .await(dataLoaded);
+>>>>>>> Add transactions beeswarm plot first pass
 
     // Create local transaction breakdown pie chart
     localTransactionBreakdown = new PieChart("transaction-breakdown-local", _labeledTransactions);
@@ -86,6 +99,7 @@ function userFilter() {
     Handling for How To Section
  */
 
+<<<<<<< HEAD
 var currentHowTo = 0;
 var slides = [
     "<h3>When you open Venmo, it should look a little like this. This is your home screen. Press the <span class='highlight'>Menu</span> button in the top left to open the menu.</h3>",
@@ -103,6 +117,15 @@ function howToButtonNext() {
 function howToButtonPrev() {
     currentHowTo -= 1;
     howToButtonPress();
+=======
+    timeline = new BeeSwarm(data, data.transactions.slice(0,20), {
+      margin: {top: 40, bottom: 40, left: 40, right: 40},
+      width: 800,
+      height: 100,
+      parentDiv: "transaction-timeline"
+    });
+
+>>>>>>> Add transactions beeswarm plot first pass
 }
 function howToButtonPress() {
     d3.select("#howToImage").style("opacity", 0).attr("src", "img/howto/howto"+currentHowTo+".PNG");

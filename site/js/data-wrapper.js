@@ -32,7 +32,12 @@ class DataWrapper {
           this.adj.set(key, val);
       });
 
-    this.users.forEach(d => {d.num_transactions = data.adj.get(d.Id).length});
+    this.users.forEach(d => {
+      if (data.adj.has(d.Id))
+        d.num_transactions = data.adj.get(d.Id).length;
+      else
+        d.num_transactions = 0;
+      });
 
     this.userMap = d3.nest()
       .key(d => d.Id)
@@ -73,9 +78,18 @@ class DataWrapper {
   getRelevantEdges(users) {
     var userSet = d3.set(users, u => u.Id);
 
-    return this.edges.filter(e => 
+    var edges = this.edges.filter(e => 
       userSet.has(e.source) && userSet.has(e.target)
     ).map(e => JSON.parse(JSON.stringify(e)));
+
+    edges.forEach(e => {
+      e.transactions.forEach(t => {
+        t.created_time = Date(t.created_time);
+        t.updated_time = Date(t.created_time);
+      });
+    });
+
+    return edges;
   }
 
 
