@@ -1,14 +1,10 @@
-<<<<<<< HEAD
 
 disableScrolling();
 
 var localTransactionBreakdown;
 var transactionsOverTime;
 
-var data, localNetwork;
-=======
 var data, localNetwork, timeline;
->>>>>>> Add transactions beeswarm plot first pass
 
 //var parseTime = d3.timeParse("%Y-%m-%d %H:%M:%S");
 var parseTime = d3.timeParse("%m/%d/%y %H:%M");
@@ -16,24 +12,17 @@ var parseTime = d3.timeParse("%m/%d/%y %H:%M");
 const data_dir = 'data'
 
 queue()
-<<<<<<< HEAD
-    .defer(d3.csv, "data/users.csv")
-    .defer(d3.csv, "data/transactions.csv")
-    .defer(d3.csv, "data/labeledTransactions_small.csv")
-    .defer(d3.csv, "data/word_count.csv")
-    .defer(d3.csv, "data/stackedTransactions.csv")
+    .defer(d3.csv, `${data_dir}/users.csv`)
+    .defer(d3.csv, `${data_dir}/transactions.csv`)
+    .defer(d3.csv, `${data_dir}/labeledTransactions_small.csv`)
+    .defer(d3.csv, `${data_dir}/word_count.csv`)
+    .defer(d3.csv, `${data_dir}/stackedTransactions.csv`)
     .await(dataLoaded);
 
 function dataLoaded(error, _users, _transactions, _labeledTransactions, _wordCount, _stackedTransactions) {
 
     // Create global transaction breakdown pie chart
     var globalTransactionBreakdown = new PieChart("transaction-breakdown", _labeledTransactions);
-=======
-  .defer(d3.csv, `${data_dir}/users.csv`)
-  .defer(d3.csv, `${data_dir}/transactions.csv`)
-  .defer(d3.csv, `${data_dir}/labeledTransactions_small.csv`)
-  .await(dataLoaded);
->>>>>>> Add transactions beeswarm plot first pass
 
     // Create local transaction breakdown pie chart
     localTransactionBreakdown = new PieChart("transaction-breakdown-local", _labeledTransactions);
@@ -72,6 +61,13 @@ function dataLoaded(error, _users, _transactions, _labeledTransactions, _wordCou
       radius: 1
     });*/
 
+    timeline = new BeeSwarm(data, data.transactions.slice(0,20), {
+      margin: {top: 40, bottom: 40, left: 40, right: 40},
+      width: 800,
+      height: 100,
+      parentDiv: "transaction-timeline"
+    });
+
     $('#preloader').fadeOut();
     enableScrolling();
 
@@ -99,7 +95,6 @@ function userFilter() {
     Handling for How To Section
  */
 
-<<<<<<< HEAD
 var currentHowTo = 0;
 var slides = [
     "<h3>When you open Venmo, it should look a little like this. This is your home screen. Press the <span class='highlight'>Menu</span> button in the top left to open the menu.</h3>",
@@ -109,24 +104,18 @@ var slides = [
     "<h3>Click the <span class='highlight'>Past Transactions</span> button to retroactively change the privacy settings of past transactions.</h3>",
     "<h3>Click the <span class='highlight'>Change All to Private</span> button to instantly protect your entire Venmo history. That's it! Venmo will no longer serve your transactions through their public API.</h3>"
 ];
+
 // Function called when the user clicks on the next button in the how to section
 function howToButtonNext() {
     currentHowTo += 1;
     howToButtonPress();
 }
+
 function howToButtonPrev() {
     currentHowTo -= 1;
     howToButtonPress();
-=======
-    timeline = new BeeSwarm(data, data.transactions.slice(0,20), {
-      margin: {top: 40, bottom: 40, left: 40, right: 40},
-      width: 800,
-      height: 100,
-      parentDiv: "transaction-timeline"
-    });
-
->>>>>>> Add transactions beeswarm plot first pass
 }
+
 function howToButtonPress() {
     d3.select("#howToImage").style("opacity", 0).attr("src", "img/howto/howto"+currentHowTo+".PNG");
     d3.select("#howToImage").transition().duration(700).ease(d3.easeLinear).style("opacity", 1);
