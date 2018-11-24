@@ -22,13 +22,24 @@ class BeeSwarm {
     vis.x = d3.scaleTime()
       .range([0, params.width]);
 
+    vis.y = d3.scalePoint()
+      .padding(1)
+      .range([0, params.height]);
+
     vis.xAxis = d3.axisBottom()
       .scale(vis.x);
+
+    vis.yAxis = d3.axisLeft()
+      .scale(vis.y);
     
     vis.svg.append("g")
       .attr("transform", `translate(0,${params.height})`)
       .attr("class", "axis x-axis")
       .call(vis.xAxis);
+
+    vis.svg.append("g")
+      .attr("class", "axis y-axis")
+      .call(vis.yAxis);
 
     vis.tip = d3.tip()
       .attr("class", "g-tip")
@@ -72,8 +83,35 @@ class BeeSwarm {
   }
 
   updateData(userId) {
-    this.userId = userId;
-    this.transactions = this.data.getUserTransactions(userId);;
+    var vis = this;
+
+    vis.userId = userId;
+    vis.transactions = vis.data.getUserTransactions(userId);;
+    vis.transactions.forEach(d => {
+      if (d.from == userId)
+        d.other_person = d.to;
+      else
+        d.other_person = d.from;
+    });
+
+    var top5 = d3.nest()
+      .key(d => d.other_person)
+      .rollup(d => d.length)
+      .entries(vis.transactions)
+      .sort((a,b) => b.value - a.value)
+      .slice(0,5)
+      .map(d => +d.key);
+
+    vis.yDomain = top5.map(d => vis.data.userMap.get(d).name);
+    vis.yDomain.push("Other");
+
+    this.transactions.forEach(d => {
+      if (top5.includes(d.other_person))
+        d.other_person_safe = vis.data.userMap.get(d.other_person).name;
+      else
+        d.other_person_safe = "Other";
+    });
+
     this.updateVis();
   }
 
@@ -83,9 +121,11 @@ class BeeSwarm {
 
     vis.x.domain(d3.extent(vis.transactions, d => d.created_time));
 
+    vis.y.domain(vis.yDomain);
+
     vis.sim = d3.forceSimulation(vis.transactions)
       .force("x", d3.forceX(d => vis.x(d.created_time)).strength(1))
-      .force("y", d3.forceY(params.height / 2))
+      .force("y", d3.forceY(d => vis.y(d.other_person_safe)))
       .force("collide", d3.forceCollide(6))
       .stop();
 
@@ -100,12 +140,14 @@ class BeeSwarm {
       .merge(vis.points)
       .attr("cx", d => d.x)
       .attr("cy", d => d.y)
+      .attr("fill", d => categoriesColorScale(d.category))
       .on('mouseover', vis.tip.show)
       .on('mouseout', vis.tip.hide);
 
     vis.points.exit().remove();
 
     vis.svg.select(".x-axis").call(vis.xAxis);
+    vis.svg.select(".y-axis").call(vis.yAxis);
 
   }
 }

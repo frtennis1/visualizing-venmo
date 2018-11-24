@@ -1,17 +1,20 @@
 
 disableScrolling();
 
-var localTransactionBreakdown;
-var transactionsOverTime;
-
-var data, localNetwork, timeline;
+// global objects
+var data, localNetwork, timeline, localTransactionBreakdown, transactionsOverTime;
 
 // for `labeledTransactions_small.csv`
 var parseTime = d3.timeParse("%m/%d/%y %H:%M");
-// for `transactions.csv`
+
+// for `transactions.csv` and `labeledTransactions.csv`
 var parseTime2 = d3.timeParse("%Y-%m-%d %H:%M:%S");
 
 const data_dir = 'data';
+
+const categoriesColorScale = d3.scaleOrdinal()
+  .domain(["Other", "Food", "Sex", "Events", "Transportation", "Drinks", "Drugs"])
+  .range(["#809bce", "#c2a8d4", "#febd7e", "#f2f68f", "#3367b2", "#ff0079", "#cb4f00"]);
 
 // user to initialize charts with: Francisco
 var initialUser = 8443572;
@@ -70,9 +73,9 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount) {
     });
 
     timeline = new BeeSwarm(data, initialUser, {
-      margin: {top: 40, bottom: 40, left: 40, right: 40},
+      margin: {top: 40, bottom: 40, left: 100, right: 40},
       width: 800,
-      height: 150,
+      height: 500,
       parentDiv: "transaction-timeline"
     });
 
