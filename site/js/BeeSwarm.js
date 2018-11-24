@@ -104,5 +104,7 @@ class BeeSwarm {
 
     vis.points.exit().remove();
 
+    vis.svg.select(".x-axis").call(vis.xAxis);
+
   }
 }

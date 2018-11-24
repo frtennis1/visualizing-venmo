@@ -92,6 +92,8 @@ class DataWrapper {
     return edges;
   }
 
-
-
+  getUserTransactions(userId) {
+    return this.transactions.filter(d => (
+      d.to == userId || d.from == userId));
+  }
 }

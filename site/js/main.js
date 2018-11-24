@@ -6,8 +6,10 @@ var transactionsOverTime;
 
 var data, localNetwork, timeline;
 
-//var parseTime = d3.timeParse("%Y-%m-%d %H:%M:%S");
+// for `labeledTransactions_small.csv`
 var parseTime = d3.timeParse("%m/%d/%y %H:%M");
+// for `transactions.csv`
+var parseTime2 = d3.timeParse("%Y-%m-%d %H:%M:%S");
 
 const data_dir = 'data'
 
@@ -16,10 +18,32 @@ queue()
     .defer(d3.csv, `${data_dir}/transactions.csv`)
     .defer(d3.csv, `${data_dir}/labeledTransactions_small.csv`)
     .defer(d3.csv, `${data_dir}/word_count.csv`)
-    .defer(d3.csv, `${data_dir}/stackedTransactions.csv`)
     .await(dataLoaded);
 
 function dataLoaded(error, _users, _transactions, _labeledTransactions, _wordCount, _stackedTransactions) {
+
+    // parse the data and create the global data object
+    
+    _transactions.forEach(d => {
+      d.from = +d.from;
+      d.to = +d.to;
+      d.payment_id = +d.payment_id;
+      d.created_time = parseTime2(d.created_time);
+      d.updated_time = parseTime2(d.updated_time);
+    });
+
+    _users.forEach(d => {
+      d.Id = +d.Id;
+      d.date_created = parseTime2(d.date_created);
+      d.external_id = +d.external_id;
+      d.cancelled = Boolean(d.cancelled);
+      d.is_business = Boolean(d.is_business);
+      d.is_crawled = Boolean(d.is_crawled);
+    });
+
+    data = new DataWrapper(_transactions, _users);
+
+    // Create the charts
 
     // Create global transaction breakdown pie chart
     var globalTransactionBreakdown = new PieChart("transaction-breakdown", _labeledTransactions);
@@ -33,25 +57,6 @@ function dataLoaded(error, _users, _transactions, _labeledTransactions, _wordCou
     // Create word cloud
     var wordcloud = new WordCloud("word-cloud", _wordCount);
 
-    _transactions.forEach(d => {
-      d.from = +d.from;
-      d.to = +d.to;
-      d.payment_id = +d.payment_id;
-      d.created_time = parseTime(d.created_time);
-      d.updated_time = parseTime(d.updated_time);
-    });
-
-    _users.forEach(d => {
-      d.Id = +d.Id;
-      d.date_created = parseTime(d.date_created);
-      d.external_id = +d.external_id;
-      d.cancelled = Boolean(d.cancelled);
-      d.is_business = Boolean(d.is_business);
-      d.is_crawled = Boolean(d.is_crawled);
-    });
-
-    /*data = new DataWrapper(_transactions, _users);
-
     localNetwork = new LocalNetwork(data, {
       margin: {top: 40, bottom: 40, left: 40, right: 40},
       width: 400,
@@ -59,7 +64,7 @@ function dataLoaded(error, _users, _transactions, _labeledTransactions, _wordCou
       divName: "local-graph",
       user: 8443572,
       radius: 1
-    });*/
+    });
 
     timeline = new BeeSwarm(data, data.transactions.slice(0,20), {
       margin: {top: 40, bottom: 40, left: 40, right: 40},
@@ -84,8 +89,15 @@ function userFilter() {
 
     var chosenUserId = +d3.select("#userIdInput").node().value;
 
+    var chosenUser = data.userMap[chosenUserId];
+
     // Update html text to reflect new user
+    d3.selectAll(".user-filter-name")
+      .text(chosenUser.name);
+
     // Update charts to filter for this user
+    
+    timeline.updateData(data.getUserTransactions(chosenUserId));
 
     localTransactionBreakdown.filterForUser(chosenUserId);
 
