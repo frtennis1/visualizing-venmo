@@ -1,7 +1,7 @@
 class BeeSwarm {
-  constructor(_data, _transactions, _params) {
+  constructor(_data, _userId, _params) {
     this.data = _data;
-    this.transactions = _transactions;
+    this.userId = _userId;
     this.params = _params;
 
     this.initVis();
@@ -37,13 +37,13 @@ class BeeSwarm {
 
     vis.svg.call(vis.tip);
 
-    vis.updateVis();
+    vis.updateData(vis.userId);
 
   }
 
   transactionContent(d) {
-    var fromUser = this.data.userMap[d.from];
-    var toUser = this.data.userMap[d.to];
+    var fromUser = this.data.userMap.get(d.from);
+    var toUser = this.data.userMap.get(d.to);
     var transactionVerb;
 
     if (d.type == "charge") 
@@ -58,8 +58,8 @@ class BeeSwarm {
          <path transform="translate(75,91)" d="M0.5,-6.5l5,-5H74.5v-79H-74.5v79H-5Z"/>
        </svg>
        <div class="g-tip-content">
-         <div class="g-tip-title"> ${dateFmt(d.created_time)}</div>
-         <div class="g-tip-subtitle">${d.message}</div>
+         <div class="g-tip-title">${d.message}</div>
+         <div class="g-tip-subtitle"> ${dateFmt(d.created_time)}</div>
          <div class="g-tip-metric" data-name="created-at">
              <span class="g-tip-metric-name">From</span>
              <span class="g-tip-metric-value">${fromUser.name}</span>
@@ -71,8 +71,9 @@ class BeeSwarm {
        </div>`;
   }
 
-  updateData(newTransactions) {
-    this.transactions = newTransactions;
+  updateData(userId) {
+    this.userId = userId;
+    this.transactions = this.data.getUserTransactions(userId);;
     this.updateVis();
   }
 

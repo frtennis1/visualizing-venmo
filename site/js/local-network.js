@@ -52,7 +52,6 @@ class LocalNetwork {
     vis.svg.append("g")
         .attr("class", "nodes");
 
-    vis.tip = d3.select(".g-tip");
     vis.wrangleData();
   }
 
@@ -61,7 +60,7 @@ class LocalNetwork {
     var params = this.params;
 
     d3.select("#local-graph-name")
-      .text(data.userMap[params.user].name);
+      .text(data.userMap.get(params.user).name);
 
     vis.link = vis.svg.select(".links")
       .selectAll("line")
@@ -92,7 +91,7 @@ class LocalNetwork {
       .attr("id", d => d.id)
       .on("mouseover", mouseover)
       .on("mouseout", mouseout)
-      .on("click", clickNew)
+      .on("click", click)
       .call(d3.drag()
         .on("start", dragstarted)
         .on("drag", dragged)
@@ -128,13 +127,8 @@ class LocalNetwork {
       d3.select(this).style("stroke", "#000000")
           .style("stroke-opacity", .3);
 
-      var tip = d3.select(".g-tip")
-          .style("display", null)
-          .style("left", (d.x - 65 ) + "px")
-          .style("top", (d.y - d.size + 5) + "px")
-          .classed("persisted", false);
 
-      tip.select(".g-tip-title")
+      /*tip.select(".g-tip-title")
           .text(d.name)
 
       tip.select(".g-tip-subtitle")
@@ -154,154 +148,17 @@ class LocalNetwork {
           case "num-transactions":
             return d.num_transactions;
         }
-      });
-
-    }
-
-    function clickNew(d) {
-      vis.params.user = d.Id;
-      vis.wrangleData();
-
-      vis.simulation.restart().alpha(1);
-
-      /*var t1 = d3.timer(function(e) {
-          simulation.alphaTarget(1);
-          t1.stop()},
-        500); */
-
-
-      /* var t2 = d3.timer(function(e) {
-          simulation.alphaTarget(0);
-          t2.stop()}, 
-        1000); */
+      }); */
     }
 
     function click(d) {
-      d3.select(this).style("stroke-opacity", 1);
-      d3.select(".g-tip").classed("persisted", true);
-
-      // TODO: need to call the json file that reads in the new data
-      d3.json(d.id + ".json", function(error, graph) {
-        if (error) throw error;
-
-        simulation
-          .force("center", null);
-
-        /* d3.forceCenter(width / 2, height / 2) */
-
-        var prevLinkData = d3.local();
-        var prevNodeData = d3.local();
-
-        d3.select(".links")
-          .selectAll("line")
-          .each(function(d) {prevLinkData.set(this, d) });
-
-        d3.select(".nodes")
-          .selectAll("circle")
-          .each(function (d) {prevNodeData.set(this, d) });
-
-        var link = d3.select(".links")
-          .selectAll("line")
-          .data(graph.links, function(d) {return d.id} );
-
-        link.each(function(d) {
-          var prevData = prevLinkData.get(this);
-          d.source.x = prevData.source.x;
-          d.source.y = prevData.source.y;
-          d.target.x = prevData.target.x;
-          d.target.y = prevData.target.x; });
-
-        link.exit().remove();
-
-        link = link
-          .enter().append("line")
-            .attr("stroke-width", function(d) { return Math.sqrt(d.value); })
-            .on("click", edgeclick)
-            .on("mouseover", edgemouseover)
-            .on("mouseout", edgemouseout)
-          .merge(link);
-
-
-        var node = d3.select(".nodes")
-          .selectAll("circle")
-          .data(graph.nodes, function(d) { return d.id });
-
-        node.each(function(d) {
-          var prevData = prevNodeData.get(this);
-          d.x = prevData.x;
-          d.y = prevData.y; });
-
-        node
-          .exit()
-          .transition()
-          .delay(function(d,i) { return 10*i })
-          .remove();
-
-        node = node
-          .enter()
-          .append("circle")
-            .call(d3.drag()
-                .on("start", dragstarted)
-                .on("drag", dragged)
-                .on("end", dragended))
-          .merge(node)
-            .attr("r", function(d) { return d.size; })
-            .attr("fill", function(d) { return color(d.group); })
-            .attr("id", function(d) { return d.id});
-
-        node
-            .on("mouseover", mouseover)
-            .on("mouseout", mouseout)
-            .on("click", click);
-
-        simulation
-            .nodes(graph.nodes)
-            .on("tick", ticked);
-
-        simulation.force("link")
-            .links(graph.links)
-            .strength(function (d) {return Math.max(0.01 *  (1 + d.value), .1) }); 
-
-        var t1 = d3.timer(function(e) {
-            simulation.alphaTarget(1);
-            simulation.force("center",
-              d3.forceCenter(width / 2, height / 2));
-            t1.stop()},
-          500);
-
-
-        var t2 = d3.timer(function(e) {
-            simulation.alphaTarget(0);
-            t2.stop()}, 
-          1000);
-
-        function ticked() {
-          link
-              .attr("x1", function(d) { return d.source.x; })
-              .attr("y1", function(d) { return d.source.y; })
-              .attr("x2", function(d) { return d.target.x; })
-              .attr("y2", function(d) { return d.target.y; });
-
-          node
-              .attr("cx", function(d) { return d.x; })
-              .attr("cy", function(d) { return d.y; });
-        }
-      });
-
-
-
+      vis.params.changeUserCallback(d.Id);
     }
 
     function mouseout(d) {
       d3.select(this)
         .style("stroke", "#FFF")
         .style("stroke-opacity", 1);
-
-     
-      var tip = d3.select(".g-tip");
-      
-      if (!tip.classed("persisted"))
-        tip.style("display", "none");
     }
 
     function edgemouseover(d) {
@@ -357,6 +214,15 @@ class LocalNetwork {
       d.fx = null;
       d.fy = null;
     }
+  }
+
+  updateUser(userId) {
+    var vis = this;
+
+    vis.params.user = userId;
+    vis.wrangleData();
+
+    vis.simulation.restart().alpha(1);
   }
 }
 

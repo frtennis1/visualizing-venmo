@@ -11,20 +11,22 @@ var parseTime = d3.timeParse("%m/%d/%y %H:%M");
 // for `transactions.csv`
 var parseTime2 = d3.timeParse("%Y-%m-%d %H:%M:%S");
 
-const data_dir = 'data'
+const data_dir = 'data';
+
+// user to initialize charts with: Francisco
+var initialUser = 8443572;
 
 queue()
     .defer(d3.csv, `${data_dir}/users.csv`)
-    .defer(d3.csv, `${data_dir}/transactions.csv`)
-    .defer(d3.csv, `${data_dir}/labeledTransactions_small.csv`)
+    .defer(d3.csv, `${data_dir}/labeledTransactions.csv`)
     .defer(d3.csv, `${data_dir}/word_count.csv`)
     .await(dataLoaded);
 
-function dataLoaded(error, _users, _transactions, _labeledTransactions, _wordCount, _stackedTransactions) {
+function dataLoaded(error, _users, _labeledTransactions, _wordCount) {
 
     // parse the data and create the global data object
     
-    _transactions.forEach(d => {
+    _labeledTransactions.forEach(d => {
       d.from = +d.from;
       d.to = +d.to;
       d.payment_id = +d.payment_id;
@@ -36,12 +38,12 @@ function dataLoaded(error, _users, _transactions, _labeledTransactions, _wordCou
       d.Id = +d.Id;
       d.date_created = parseTime2(d.date_created);
       d.external_id = +d.external_id;
-      d.cancelled = Boolean(d.cancelled);
-      d.is_business = Boolean(d.is_business);
-      d.is_crawled = Boolean(d.is_crawled);
+      d.cancelled = d.cancelled == 'True';
+      d.is_business = d.is_business == 'True';
+      d.is_crawled = d.is_crawled == 'True';
     });
 
-    data = new DataWrapper(_transactions, _users);
+    data = new DataWrapper(_labeledTransactions, _users);
 
     // Create the charts
 
@@ -62,14 +64,15 @@ function dataLoaded(error, _users, _transactions, _labeledTransactions, _wordCou
       width: 400,
       height: 400,
       divName: "local-graph",
-      user: 8443572,
-      radius: 1
+      user: initialUser,
+      radius: 1,
+      changeUserCallback: userFilter
     });
 
-    timeline = new BeeSwarm(data, data.transactions.slice(0,20), {
+    timeline = new BeeSwarm(data, initialUser, {
       margin: {top: 40, bottom: 40, left: 40, right: 40},
       width: 800,
-      height: 100,
+      height: 150,
       parentDiv: "transaction-timeline"
     });
 
@@ -84,20 +87,26 @@ function keywordFilter() {
     transactionsOverTime.filterForKeyword(keyword);
 }
 
-// Function called when the user inputs a new user's ID to filter the local section by
-function userFilter() {
-
+function userFilterFromInput() {
     var chosenUserId = +d3.select("#userIdInput").node().value;
+    userFilter(chosenUserId);
+}
 
-    var chosenUser = data.userMap[chosenUserId];
+// Function called when the user inputs a new user's ID to filter the local section by
+function userFilter(chosenUserId) {
+    var chosenUser = data.userMap.get(chosenUserId);
 
     // Update html text to reflect new user
     d3.selectAll(".user-filter-name")
       .text(chosenUser.name);
 
+    $('#userIdInput').val(chosenUserId);
+
     // Update charts to filter for this user
     
-    timeline.updateData(data.getUserTransactions(chosenUserId));
+    localNetwork.updateUser(chosenUserId);
+
+    timeline.updateData(chosenUserId);
 
     localTransactionBreakdown.filterForUser(chosenUserId);
 

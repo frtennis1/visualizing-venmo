@@ -104,15 +104,13 @@ StackedAreaChart.prototype.wrangleData = function(){
 	var vis = this;
 
 	// Constants
-    var parseDate = d3.timeParse("%m/%d/%y %H:%M");
+    var parseDate = d3.timeParse("%Y-%m-%d %H:%M:%S");
     var formatWeek = d3.timeFormat("%V");
     var categories = ["Food", "Drinks", "Drugs", "Transportation", "Sex", "Other", "Events"];
 
     // Nest the data by week and category
 	vis.nestedData = d3.nest()
-	    .key(function(d) {
-            return +formatWeek(parseDate(d.created_time));
-        })
+	    .key(d => +formatWeek(d.created_time))
         .sortKeys(d3.ascending)
 	    .key(d => d.category)
 	    .rollup(d => d.length)

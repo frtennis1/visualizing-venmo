@@ -42,7 +42,7 @@ class DataWrapper {
     this.userMap = d3.nest()
       .key(d => d.Id)
       .rollup(arr => arr[0])
-      .object(this.users);
+      .map(this.users);
 
     this.edges = d3.nest()
       .key(d => d3.min([d.to, d.from]) + "," + d3.max([d.to, d.from]))
@@ -71,7 +71,9 @@ class DataWrapper {
           this.adj.get(n).forEach(nn => nodes.add(nn))
       });
     }
-    return nodes.values().map(d => data.userMap[d]);
+    return nodes.values()
+      .filter(d => data.userMap.get(d).is_crawled)
+      .map(d => data.userMap.get(d));
   }
 
   // return any edges between an iterable of users
