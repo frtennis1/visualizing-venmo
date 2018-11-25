@@ -31,7 +31,7 @@
     <div class="overlay"></div>
     <nav class="navbar navbar-expand-md bg-inverse fixed-top scrolling-navbar">
         <div class="container">
-            <a href="index.html" class="navbar-brand"><img src="img/logo.png" alt=""></a>
+            <a href="index.html" class="navbar-brand"><!--<img src="img/logo.png" alt="">--></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="lni-menu"></i>
             </button>
@@ -75,7 +75,7 @@
             </div>
             <div class="col-lg-5 col-md-12 col-xs-12">
                 <div class="intro-img">
-                    <img src="img/intro-mobile.png" alt="">
+                    <img src="img/header.jpeg" alt="https://www.pexels.com/photo/adolescent-adult-beautiful-blur-618544/">
                 </div>
             </div>
         </div>
@@ -100,15 +100,15 @@
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="img-thumb wow fadeInLeft" data-wow-delay="1.2s">
-                    <img class="img-fluid" src="img/venmo.jpg" alt="">
+                    <img class="img-fluid" src="img/venmo.jpg" alt="https://pixabay.com/en/texting-mobile-phones-hands-two-1490691/">
                 </div>
             </div>
         </div>
 
         <div class="row">
             <h3>Explore the Venmo Network</h3>
-            <img class="img-fluid" src="img/features/img2.png" alt="">
-            <p>force directed network graph</p>
+            <div id="large-graph"></div>
+            <p>Force directed network graph</p>
         </div>
     </div>
 </div>
@@ -150,9 +150,10 @@
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="img-thumb wow fadeInLeft" data-wow-delay="1.2s">
                     <div id="transactionsOverTime"></div>
-                    <div id="timeButtons">
-                        <a id="weeklyButton" href="javascript:void(0);" onclick="transactionsOverTime.display('weekly')" class="btn btn-common btn-effect">Weekly<br></a>
-                        <a id="yearlyButton" href="javascript:void(0);" onclick="transactionsOverTime.display('yearly')" class="btn btn-common btn-effect">Yearly<br></a>
+                    <div class="timeButtons">
+                        <a href="javascript:void(0);" onclick="transactionsOverTime.display('weekly')" class="timeButton btn btn-common btn-effect">Weekly<br></a>
+                        <a href="javascript:void(0);" onclick="transactionsOverTime.display('monthly')" class="timeButton btn btn-common btn-effect">Monthly<br></a>
+                        <a href="javascript:void(0);" onclick="transactionsOverTime.display('yearly')" class="timeButton btn btn-common btn-effect">Yearly<br></a>
                     </div>
                 </div>
             </div>
@@ -243,8 +244,12 @@
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="img-thumb wow fadeInLeft" data-wow-delay="0.3s">
-                    <div id="transactionsOverTime-local"></div>
-                    line graph of transactions over time
+                    <div id="localTransactionsOverTime"></div>
+                    <div class="timeButtons">
+                        <a href="javascript:void(0);" onclick="localTransactionsOverTime.display('weekly')" class="timeButton btn btn-common btn-effect">Weekly<br></a>
+                        <a href="javascript:void(0);" onclick="localTransactionsOverTime.display('monthly')" class="timeButton btn btn-common btn-effect">Monthly<br></a>
+                        <a href="javascript:void(0);" onclick="localTransactionsOverTime.display('yearly')" class="timeButton btn btn-common btn-effect">Yearly<br></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -504,6 +509,7 @@
 <script src="js/d3.min.js"></script>
 <script src="js/cloud.js"></script>
 <script src="js/d3-tip.js"></script>
+<script src="js/jLouvain.js"></script>
 
 <!-- Visualization objects -->
 <script src="js/data-wrapper.js"></script>

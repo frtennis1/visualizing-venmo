@@ -2,8 +2,10 @@
 disableScrolling();
 
 // global objects
-var data, localNetwork, beeSwarm, globalTransactionBreakdown, localTransactionBreakdown, transactionsOverTime,
-    localTransactionsOverTime, globalBrushingTimeline, localBrushingTimeline;
+var data, localNetwork, largeNetwork, beeSwarm,
+    globalTransactionBreakdown, localTransactionBreakdown,
+    transactionsOverTime, localTransactionsOverTime,
+    globalBrushingTimeline, localBrushingTimeline;
 
 // for `labeledTransactions_small.csv`
 var parseTime = d3.timeParse("%m/%d/%y %H:%M");
@@ -58,14 +60,18 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount) {
     // Create local transaction breakdown pie chart
     localTransactionBreakdown = new PieChart("transaction-breakdown-local", _labeledTransactions);
 
-    //var transactionsOverTime = new StackedAreaChart("transactionsOverTime", _stackedTransactions);
+    // Track trends for transaction categories over time
     transactionsOverTime = new StackedAreaChart("transactionsOverTime", _labeledTransactions);
 
+    // Track trends for a user
     localTransactionsOverTime = new StackedAreaChart("transactionsOverTime-local", _labeledTransactions);
 
-    globalBrushingTimeline = new BrushingTimeline("brushing-timeline-global", _labeledTransactions, initialUser, brushedGlobal, "brush-global");
+    // Create Brushing Tools
+    globalBrushingTimeline = new BrushingTimeline("brushing-timeline-global",
+        _labeledTransactions, initialUser, brushedGlobal, "brush-global");
 
-    localBrushingTimeline = new BrushingTimeline("brushing-timeline-local", _labeledTransactions, initialUser, brushedLocal, "brush-local");
+    localBrushingTimeline = new BrushingTimeline("brushing-timeline-local",
+        _labeledTransactions, initialUser, brushedLocal, "brush-local");
 
     // Create word cloud
     _wordCount.forEach(d => {
@@ -73,10 +79,24 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount) {
     })
     var wordcloud = new WordCloud("word-cloud", _wordCount);
 
+    largeNetwork = new LocalNetwork(data, {
+      margin: {top: 40, bottom: 40, left: 40, right: 40},
+      width: 800,
+      height: 500,
+      divName: "large-graph",
+      user: initialUser,
+      radius: 2,
+      changeUserCallback: updateGlobalCenter
+    });
+
+    function updateGlobalCenter(u) {
+      largeNetwork.updateUser(u);
+    }
+
     localNetwork = new LocalNetwork(data, {
       margin: {top: 40, bottom: 40, left: 40, right: 40},
       width: 400,
-      height: 400,
+      height: 300,
       divName: "local-graph",
       user: initialUser,
       radius: 1,
@@ -123,7 +143,6 @@ function userFilter(chosenUserId) {
     localTransactionsOverTime.filterForUser(chosenUserId);
 
     localBrushingTimeline.filterForUser(chosenUserId);
-
 }
 
 // //React to 'brushedGlobal' event and update domain (x-scale; stacked area chart) if selection is not empty

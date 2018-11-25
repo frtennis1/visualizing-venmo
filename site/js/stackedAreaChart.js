@@ -9,10 +9,12 @@
 StackedAreaChart = function(_parentElement, _data){
 	this.parentElement = _parentElement;
     this.data = _data;
+    this.prefilteredData = this.data;
     this.filteredData = this.data;
     this.displayData = []; // see data wrangling
 
     this.timeScale = "yearly";
+    this.userId = null;
 
     this.initVis();
 }
@@ -38,7 +40,7 @@ StackedAreaChart.prototype.initVis = function(){
        .append("g")
 	    .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
-	// TO-DO: Overlay with path clipping
+	// Overlay with path clipping
     vis.svg.append("defs").append("clipPath")
         .attr("id", "clip")
         .append("rect")
@@ -46,12 +48,6 @@ StackedAreaChart.prototype.initVis = function(){
         .attr("height", vis.height);
 
     // Scales and axes
-    /*vis.x = d3.scaleTime()
-        .range([0, vis.width])
-        .domain(d3.extent(vis.data, function(d) {
-            return parseDate(d.created_week);
-        }));*/
-
     vis.x = d3.scaleLinear()
         .range([0, vis.width])
         .domain([1,53]);
@@ -109,6 +105,13 @@ StackedAreaChart.prototype.wrangleData = function(){
     var parseDate = d3.timeParse("%Y-%m-%d %H:%M:%S");
     var categories = ["Food", "Drinks", "Drugs", "Transportation", "Sex", "Other", "Events"];
 
+    // Filter by user
+    if (vis.userId) {
+        vis.filteredData = vis.data.filter(d => d.from == vis.userId || d.to == vis.userId);
+    } else {
+        vis.filteredData = vis.data;
+    }
+
     // Filter by keyword
     var keyword = d3.select("#keywordInput").node().value;
     if (keyword == "") {
@@ -127,6 +130,10 @@ StackedAreaChart.prototype.wrangleData = function(){
     else if (vis.timeScale == "weekly") {
         timeKey = d => +d3.timeFormat("%w")(d.created_time);
         domainLength = 7;
+    }
+    else if (vis.timeScale == "monthly") {
+        timeKey = d => +d3.timeFormat("%m")(d.created_time);
+        domainLength = 12;
     }
 
     // Nest the data by week and category
@@ -209,6 +216,19 @@ StackedAreaChart.prototype.updateVis = function(){
             vis.displayData[i].push(filler);
         }
     }
+    else if (vis.timeScale == 'monthly') {
+        var monthOfYear = ["January", "Febrary"]
+        vis.x.domain([1,13]);
+        vis.xAxis.ticks(12)
+            .tickFormat(d => d3.timeFormat("%b")(d3.timeParse("%m")(d)));
+        vis.area.curve(d3.curveStepAfter);
+        // Add a transactionless 13th day to let the curve render the 7th day correctly
+        for (var i = 0; i < vis.displayData.length; i++) {
+            var filler = [0,0];
+            filler.data = { week: 13 };
+            vis.displayData[i].push(filler);
+        }
+    }
 
     // Draw the layers
     var categories = vis.svg.selectAll(".area")
@@ -250,9 +270,6 @@ StackedAreaChart.prototype.updateVis = function(){
         .attr("transform", "rotate(-45) translate(-7,-5)")
         .attr("text-anchor", "end");
     vis.svg.select(".y-axis").transition().duration(800).call(vis.yAxis);
-
-    // Rotate the ticks
-    vis.svg.select(".tick")
 }
 
 StackedAreaChart.prototype.display = function(timeScale) {
@@ -264,14 +281,8 @@ StackedAreaChart.prototype.display = function(timeScale) {
     vis.wrangleData();
 }
 
-/*
-    Function for filtering for a certain user
- */
-
 StackedAreaChart.prototype.filterForUser = function(userId) {
     var vis = this;
-
-    vis.filteredData = vis.data.filter(d => d.from == userId || d.to == userId);
-
+    vis.userId = userId;
     vis.wrangleData();
 }
