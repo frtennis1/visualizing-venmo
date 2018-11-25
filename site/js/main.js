@@ -21,7 +21,7 @@ var initialUser = 8443572;
 
 queue()
     .defer(d3.csv, `${data_dir}/users.csv`)
-    .defer(d3.csv, `${data_dir}/labeledTransactions.csv`)
+    .defer(d3.csv, `${data_dir}/labeledTransactions_small.csv`)
     .defer(d3.csv, `${data_dir}/word_count.csv`)
     .await(dataLoaded);
 
@@ -82,12 +82,6 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount) {
     $('#preloader').fadeOut();
     enableScrolling();
 
-}
-
-// Function for filtering the transactions over time by a keyword
-function keywordFilter() {
-    var keyword = d3.select("#keywordInput").node().value;
-    transactionsOverTime.filterForKeyword(keyword);
 }
 
 function userFilterFromInput() {

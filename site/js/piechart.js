@@ -158,7 +158,7 @@ PieChart.prototype.updateVis = function(){
         .attr("class", "arc")
         .attr("transform", "translate("+ vis.width/2 +","+ vis.height/2 +")")
         .attr("d", vis.arc)
-        .style("fill", function(d, i) { return vis.color(i); })
+        .style("fill", function(d) { return categoriesColorScale(d.data.key); })
         .on("mouseover", function(d) {
             vis.tooltips.select(".title")
                 .text(d.data.key);
@@ -176,7 +176,8 @@ PieChart.prototype.updateVis = function(){
                 .attr("d", vis.arc);
         })
         .merge(vis.arcs)
-        .attr("d", vis.arc);
+        .attr("d", vis.arc)
+        .style("fill", function(d) { return categoriesColorScale(d.data.key); });
     vis.arcs.exit().remove();
 
 }
