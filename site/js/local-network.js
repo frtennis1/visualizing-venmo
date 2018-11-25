@@ -18,6 +18,14 @@ class LocalNetwork {
     var nodes = data.getUserNeighborhood(params.user, params.radius);
     
     this.graph = {links: data.getRelevantEdges(nodes), nodes: nodes}
+
+    var groups = jLouvain()
+      .nodes(nodes.map(n => n.Id))
+      .edges(this.graph.links)();
+
+    this.graph.nodes.forEach(d => {
+      d.group = groups[d.Id];
+    });
     
     this.updateVis();
   }
