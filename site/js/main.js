@@ -2,7 +2,8 @@
 disableScrolling();
 
 // global objects
-var data, localNetwork, timeline, localTransactionBreakdown, transactionsOverTime;
+var data, localNetwork, largeNetwork, timeline,
+    localTransactionBreakdown, transactionsOverTime;
 
 // for `labeledTransactions_small.csv`
 var parseTime = d3.timeParse("%m/%d/%y %H:%M");
@@ -64,6 +65,20 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount) {
         d.occurrences = +d.occurrences;
     })
     var wordcloud = new WordCloud("word-cloud", _wordCount);
+
+    largeNetwork = new LocalNetwork(data, {
+      margin: {top: 40, bottom: 40, left: 40, right: 40},
+      width: 800,
+      height: 500,
+      divName: "large-graph",
+      user: initialUser,
+      radius: 2,
+      changeUserCallback: updateGlobalCenter
+    });
+
+    function updateGlobalCenter(u) {
+      largeNetwork.updateUser(u);
+    }
 
     localNetwork = new LocalNetwork(data, {
       margin: {top: 40, bottom: 40, left: 40, right: 40},
