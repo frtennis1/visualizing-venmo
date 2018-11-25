@@ -73,7 +73,14 @@ class DataWrapper {
     }
     return nodes.values()
       .filter(d => data.userMap.get(d).is_crawled)
-      .map(d => data.userMap.get(d));
+      .map(d => {
+        var u = data.userMap.get(d);
+        if (d == user)
+          u.group = 1;
+        else
+          u.group = 0;
+        return u;
+      });
   }
 
   // return any edges between an iterable of users
