@@ -2,7 +2,8 @@
 disableScrolling();
 
 // global objects
-var data, localNetwork, timeline, localTransactionBreakdown, transactionsOverTime;
+var data, localNetwork, beeSwarm, globalTransactionBreakdown, localTransactionBreakdown, transactionsOverTime,
+    localTransactionsOverTime, globalBrushingTimeline, localBrushingTimeline;
 
 // for `labeledTransactions_small.csv`
 var parseTime = d3.timeParse("%m/%d/%y %H:%M");
@@ -18,10 +19,11 @@ const categoriesColorScale = d3.scaleOrdinal()
 
 // user to initialize charts with: Francisco
 var initialUser = 8443572;
+var chosenUserId_global = initialUser;
 
 queue()
     .defer(d3.csv, `${data_dir}/users.csv`)
-    .defer(d3.csv, `${data_dir}/labeledTransactions_small.csv`)
+    .defer(d3.csv, `${data_dir}/labeledTransactions.csv`)
     .defer(d3.csv, `${data_dir}/word_count.csv`)
     .await(dataLoaded);
 
@@ -33,8 +35,8 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount) {
       d.from = +d.from;
       d.to = +d.to;
       d.payment_id = +d.payment_id;
-      d.created_time = parseTime2(d.created_time);
-      d.updated_time = parseTime2(d.updated_time);
+      d.created_time = parseTime(d.created_time);
+      d.updated_time = parseTime(d.updated_time);
     });
 
     _users.forEach(d => {
@@ -51,13 +53,19 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount) {
     // Create the charts
 
     // Create global transaction breakdown pie chart
-    var globalTransactionBreakdown = new PieChart("transaction-breakdown", _labeledTransactions);
+    globalTransactionBreakdown = new PieChart("transaction-breakdown", _labeledTransactions);
 
     // Create local transaction breakdown pie chart
     localTransactionBreakdown = new PieChart("transaction-breakdown-local", _labeledTransactions);
 
     //var transactionsOverTime = new StackedAreaChart("transactionsOverTime", _stackedTransactions);
     transactionsOverTime = new StackedAreaChart("transactionsOverTime", _labeledTransactions);
+
+    localTransactionsOverTime = new StackedAreaChart("transactionsOverTime-local", _labeledTransactions);
+
+    globalBrushingTimeline = new BrushingTimeline("brushing-timeline-global", _labeledTransactions, initialUser, brushedGlobal, "brush-global");
+
+    localBrushingTimeline = new BrushingTimeline("brushing-timeline-local", _labeledTransactions, initialUser, brushedLocal, "brush-local");
 
     // Create word cloud
     _wordCount.forEach(d => {
@@ -75,7 +83,7 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount) {
       changeUserCallback: userFilter
     });
 
-    timeline = new BeeSwarm(data, initialUser, {
+    beeSwarm = new BeeSwarm(data, initialUser, {
       margin: {top: 40, bottom: 40, left: 100, right: 40},
       width: 800,
       height: 500,
@@ -94,7 +102,9 @@ function userFilterFromInput() {
 
 // Function called when the user inputs a new user's ID to filter the local section by
 function userFilter(chosenUserId) {
+    chosenUserId_global = chosenUserId;
     var chosenUser = data.userMap.get(chosenUserId);
+    var timerange = d3.brushSelection(d3.select(".brush-local").node()).map(localBrushingTimeline.x.invert);
 
     // Update html text to reflect new user
     d3.selectAll(".user-filter-name")
@@ -106,11 +116,31 @@ function userFilter(chosenUserId) {
     
     localNetwork.updateUser(chosenUserId);
 
-    timeline.updateData(chosenUserId);
+    beeSwarm.updateData(chosenUserId);
 
     localTransactionBreakdown.filterForUser(chosenUserId);
 
+    localTransactionsOverTime.filterForUser(chosenUserId);
+
+    localBrushingTimeline.filterForUser(chosenUserId);
+
 }
+
+// //React to 'brushedGlobal' event and update domain (x-scale; stacked area chart) if selection is not empty
+function brushedGlobal() {
+    var timerange = d3.brushSelection(d3.select(".brush-global").node()).map(globalBrushingTimeline.x.invert);
+    //globalTransactionBreakdown.filterForTimerange(timerange);
+    globalBrushingTimeline.updateTimerangeText(timerange);
+}
+
+// React to 'brushedLocal' event and update domain (x-scale; stacked area chart) if selection is not empty
+function brushedLocal() {
+    var timerange = d3.brushSelection(d3.select(".brush-local").node()).map(localBrushingTimeline.x.invert);
+    localTransactionBreakdown.filterForUserAndTimerange(chosenUserId_global, timerange);
+    beeSwarm.filterForTimerange(timerange);
+    localBrushingTimeline.updateTimerangeText(timerange);
+}
+
 
 /*
     Handling for How To Section

@@ -1,6 +1,7 @@
 class BeeSwarm {
   constructor(_data, _userId, _params) {
     this.data = _data;
+    this.filteredData = this.data;
     this.userId = _userId;
     this.params = _params;
 
@@ -86,7 +87,7 @@ class BeeSwarm {
     var vis = this;
 
     vis.userId = userId;
-    vis.transactions = vis.data.getUserTransactions(userId);;
+    vis.transactions = vis.filteredData.getUserTransactions(userId);
     vis.transactions.forEach(d => {
       if (d.from == userId)
         d.other_person = d.to;
@@ -149,5 +150,14 @@ class BeeSwarm {
     vis.svg.select(".x-axis").call(vis.xAxis);
     vis.svg.select(".y-axis").call(vis.yAxis);
 
+  }
+
+  filterForTimerange(timerange) {
+      var vis = this;
+
+      var filteredTransactions = vis.data.transactions.filter(d => d.created_time > timerange[0] && d.created_time < timerange[1]);
+      vis.filteredData = new DataWrapper(filteredTransactions, vis.data.users);
+
+      vis.updateData(vis.userId);
   }
 }

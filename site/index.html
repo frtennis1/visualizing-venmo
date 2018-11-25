@@ -117,6 +117,11 @@
 <div id="global" class="section">
     <div class="container">
         <div class="row">
+            <h3>Select a Time Range</h3>
+            <p>Use the brushing tool below to define a time range for the following visualizations</p>
+            <div id="brushing-timeline-global"></div>
+        </div>
+        <div class="row">
             <div class="col-lg-7 col-md-14 col-sm-14">
                 <div class="img-thumb wow fadeInLeft" data-wow-delay="0.3s">
                     <div id="transaction-breakdown"></div>
@@ -208,6 +213,11 @@
             </div>
         </div>
         <div class="row">
+            <h3>Select a Time Range</h3>
+            <p>Use the brushing tool below to define a time range for the following visualization</p>
+            <div id="brushing-timeline-local"></div>
+        </div>
+        <div class="row">
             <div class="col-lg-7 col-md-14 col-sm-14">
                 <div class="img-thumb wow fadeInLeft" data-wow-delay="0.3s">
                     <div id="transaction-breakdown-local"></div>
@@ -233,7 +243,7 @@
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="img-thumb wow fadeInLeft" data-wow-delay="0.3s">
-                    <img class="img-fluid" src="img/features/img2.png" alt="">
+                    <div id="transactionsOverTime-local"></div>
                     line graph of transactions over time
                 </div>
             </div>
@@ -501,6 +511,7 @@
 <script src="js/local-network.js"></script>
 <script src="js/wordcloud.js"></script>
 <script src="js/stackedAreaChart.js"></script>
+<script src="js/brushingTimeline.js"></script>
 <script src="js/BeeSwarm.js"></script>
 
 <!-- Load data, create visualizations -->

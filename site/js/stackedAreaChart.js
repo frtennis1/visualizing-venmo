@@ -112,9 +112,9 @@ StackedAreaChart.prototype.wrangleData = function(){
     // Filter by keyword
     var keyword = d3.select("#keywordInput").node().value;
     if (keyword == "") {
-        vis.filteredData = vis.data;
+        vis.filteredData = vis.filteredData;
     } else {
-        vis.filteredData = vis.data.filter(d => d.message.toLowerCase().includes(keyword.toLowerCase()));
+        vis.filteredData = vis.filteredData.filter(d => d.message.toLowerCase().includes(keyword.toLowerCase()));
     }
 
     // Choose weekly or yearly
@@ -261,5 +261,17 @@ StackedAreaChart.prototype.display = function(timeScale) {
         return;
     }
     vis.timeScale = timeScale;
+    vis.wrangleData();
+}
+
+/*
+    Function for filtering for a certain user
+ */
+
+StackedAreaChart.prototype.filterForUser = function(userId) {
+    var vis = this;
+
+    vis.filteredData = vis.data.filter(d => d.from == userId || d.to == userId);
+
     vis.wrangleData();
 }
