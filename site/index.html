@@ -138,13 +138,17 @@
                         <h3>What do people spend on and when?</h3>
                         Analysis of transactions over time
                         <p>Interested in tracking certain keywords over time? Enter a keyword into the box below to visualize the graph and filter for Venmo transactions that contain that keyword.</p>
-                        <input id="keywordInput" onchange="keywordFilter()">
+                        <input id="keywordInput" onchange="transactionsOverTime.wrangleData()">
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="img-thumb wow fadeInLeft" data-wow-delay="1.2s">
                     <div id="transactionsOverTime"></div>
+                    <div id="timeButtons">
+                        <a id="weeklyButton" href="javascript:void(0);" onclick="transactionsOverTime.display('weekly')" class="btn btn-common btn-effect">Weekly<br></a>
+                        <a id="yearlyButton" href="javascript:void(0);" onclick="transactionsOverTime.display('yearly')" class="btn btn-common btn-effect">Yearly<br></a>
+                    </div>
                 </div>
             </div>
         </div>

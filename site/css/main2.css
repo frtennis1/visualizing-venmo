@@ -22,6 +22,17 @@
     margin: auto;
 }
 
+#timeButtons {
+  display: flex;
+  justify-content: center;
+}
+
+#weeklyButton, #yearlyButton {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+
 /*
   Local
  */

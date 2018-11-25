@@ -12,6 +12,8 @@ StackedAreaChart = function(_parentElement, _data){
     this.filteredData = this.data;
     this.displayData = []; // see data wrangling
 
+    this.timeScale = "yearly";
+
     this.initVis();
 }
 
@@ -62,7 +64,7 @@ StackedAreaChart.prototype.initVis = function(){
 
     vis.xAxis = d3.axisBottom()
         .scale(vis.x)
-        .tickFormat(d => d3.timeFormat("%b")(d3.timeParse("%V")(d)))
+        .tickFormat(d => d3.timeFormat("%b")(d3.timeParse("%U")(d)))
         .ticks(4);
 
     vis.yAxis = d3.axisLeft()
@@ -105,19 +107,38 @@ StackedAreaChart.prototype.wrangleData = function(){
 
 	// Constants
     var parseDate = d3.timeParse("%Y-%m-%d %H:%M:%S");
-    var formatWeek = d3.timeFormat("%V");
     var categories = ["Food", "Drinks", "Drugs", "Transportation", "Sex", "Other", "Events"];
+
+    // Filter by keyword
+    var keyword = d3.select("#keywordInput").node().value;
+    if (keyword == "") {
+        vis.filteredData = vis.data;
+    } else {
+        vis.filteredData = vis.data.filter(d => d.message.toLowerCase().includes(keyword.toLowerCase()));
+    }
+
+    // Choose weekly or yearly
+    var timeKey;
+    var domainLength;
+    if (vis.timeScale == "yearly") {
+        timeKey = d => +d3.timeFormat("%U")(d.created_time);
+        domainLength = 54;
+    }
+    else if (vis.timeScale == "weekly") {
+        timeKey = d => +d3.timeFormat("%w")(d.created_time);
+        domainLength = 7;
+    }
 
     // Nest the data by week and category
 	vis.nestedData = d3.nest()
-	    .key(d => +formatWeek(d.created_time))
+	    .key(timeKey)
         .sortKeys(d3.ascending)
 	    .key(d => d.category)
 	    .rollup(d => d.length)
 	    .entries(vis.filteredData);
 
 	// Flatten the data
-    vis.flatData = new Array(52);
+    vis.flatData = new Array(domainLength);
     vis.nestedData.forEach(function (d) {
         var row = {};
         row.week = +d.key;
@@ -130,15 +151,15 @@ StackedAreaChart.prototype.wrangleData = function(){
                 row[categories[i]] = 0;
             }
         }
-        vis.flatData[d.key-1] = row;
+        vis.flatData[d.key] = row;
     });
 
     // Fill all gaps of the data
-    for (var i = 0; i < 52; i++) {
+    for (var i = 0; i < domainLength; i++) {
         if (typeof vis.flatData[i] != 'undefined') {
             continue;
         }
-        var entry = { week: 1+i };
+        var entry = { week: i };
         for (var j = 0; j < categories.length; j++) {
             entry[categories[j]] = 0;
         }
@@ -167,6 +188,28 @@ StackedAreaChart.prototype.updateVis = function(){
     var maxY = d3.max(vis.displayData, d => d3.max(d, f => f[1]));
     vis.y.domain([0, maxY]);
 
+    console.log(vis.displayData);
+
+    // Update the x axis
+    if (vis.timeScale == 'yearly') {
+        vis.x.domain([0,53]);
+        vis.xAxis.ticks(4)
+            .tickFormat(d => d3.timeFormat("%b")(d3.timeParse("%U")(d)));
+        vis.area.curve(d3.curveMonotoneX);
+    } else if (vis.timeScale == 'weekly') {
+        var dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        vis.x.domain([0,7]);
+        vis.xAxis.ticks(7)
+            .tickFormat(d => dayOfWeek[d % 7]);
+        vis.area.curve(d3.curveStepAfter);
+        // Add a transactionless 8th day to let the curve render the 7th day correctly
+        for (var i = 0; i < vis.displayData.length; i++) {
+            var filler = [0,0];
+            filler.data = { week: 7 };
+            vis.displayData[i].push(filler);
+        }
+    }
+
     // Draw the layers
     var categories = vis.svg.selectAll(".area")
         .data(vis.displayData);
@@ -176,14 +219,18 @@ StackedAreaChart.prototype.updateVis = function(){
         .on("mouseover", mouseOver)
         .on("mouseout", mouseOut)
         .merge(categories)
-        .transition().duration(800)
+        .transition().duration(400)
+        .attr("opacity", 0)
+        .transition().duration(0)
         .style("fill", function(d,i) {
-            return vis.color(i);
+            return categoriesColorScale(d.key);
         })
         .attr("d", function(d) {
             return vis.area(d);
         })
-        .attr("data-key", function(d) { return d.key; });
+        .attr("data-key", function(d) { return d.key; })
+        .transition().duration(400)
+        .attr("opacity", 1);
 
     function mouseOver() {
         vis.svg.select(".tool-tip")
@@ -198,17 +245,21 @@ StackedAreaChart.prototype.updateVis = function(){
 	categories.exit().remove();
 
 	// Call axis functions with the new domain
-	vis.svg.select(".x-axis").call(vis.xAxis);
+	vis.svg.select(".x-axis").call(vis.xAxis)
+        .selectAll("text")
+        .attr("transform", "rotate(-45) translate(-7,-5)")
+        .attr("text-anchor", "end");
     vis.svg.select(".y-axis").transition().duration(800).call(vis.yAxis);
+
+    // Rotate the ticks
+    vis.svg.select(".tick")
 }
 
-StackedAreaChart.prototype.filterForKeyword = function(keyword) {
+StackedAreaChart.prototype.display = function(timeScale) {
     var vis = this;
-    // Don't filter if there's no keyword (don't waste computation time)
-    if (keyword == "") {
-        vis.filteredData = vis.data;
-    } else {
-        vis.filteredData = vis.data.filter(d => d.message.toLowerCase().includes(keyword.toLowerCase()));
+    if (vis.timeScale == timeScale) {
+        return;
     }
+    vis.timeScale = timeScale;
     vis.wrangleData();
 }
