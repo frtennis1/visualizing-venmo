@@ -82,13 +82,11 @@
     </div>
 </header>
 <!-- Header Section End -->
-
 <!-- What's Venmo? -->
 <div id="whats-venmo" class="section">
     <div class="container">
         <div class="row">
-            word cloud
-            <!--<img class="img-fluid" src="img/features/img2.png" alt="">-->
+            Most commonly used words in Venmo transactions
             <div id="word-cloud"></div>
         </div>
         <div class="row mt">
@@ -109,8 +107,8 @@
 
         <div class="row">
             <h3>Explore the Venmo Network</h3>
-            <img class="img-fluid" src="img/features/img2.png" alt="">
-            <p>force directed network graph</p>
+            <div id="large-graph"></div>
+            <p>Force directed network graph</p>
         </div>
     </div>
 </div>
@@ -501,6 +499,7 @@
 <script src="js/d3.min.js"></script>
 <script src="js/cloud.js"></script>
 <script src="js/d3-tip.js"></script>
+<script src="js/jLouvain.js"></script>
 
 <!-- Visualization objects -->
 <script src="js/data-wrapper.js"></script>

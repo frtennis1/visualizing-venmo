@@ -92,10 +92,19 @@
   stroke-opacity: 0.6;
 }
 
+.links line:hover {
+  stroke-opacity: 1;
+}
+
 .nodes circle {
   stroke: #fff;
   stroke-width: 1.5px;
   r: 5px;
+}
+
+.nodes circle:hover {
+  stroke: #000000;
+  stroke-opacity: .3;
 }
 
 .beeswarm-circle {

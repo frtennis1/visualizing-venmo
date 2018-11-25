@@ -2,7 +2,9 @@
 disableScrolling();
 
 // global objects
-var data, localNetwork, timeline, localTransactionBreakdown, transactionsOverTime, localTransactionsOverTime;
+var data, localNetwork, largeNetwork, timeline,
+    localTransactionBreakdown, transactionsOverTime,
+    localTransactionsOverTime;
 
 // for `labeledTransactions_small.csv`
 var parseTime = d3.timeParse("%m/%d/%y %H:%M");
@@ -21,14 +23,14 @@ var initialUser = 8443572;
 
 queue()
     .defer(d3.csv, `${data_dir}/users.csv`)
-    .defer(d3.csv, `${data_dir}/labeledTransactions_small.csv`)
+    .defer(d3.csv, `${data_dir}/labeledTransactions.csv`)
     .defer(d3.csv, `${data_dir}/word_count.csv`)
     .await(dataLoaded);
 
 function dataLoaded(error, _users, _labeledTransactions, _wordCount) {
 
     // parse the data and create the global data object
-    
+
     _labeledTransactions.forEach(d => {
       d.from = +d.from;
       d.to = +d.to;
@@ -63,12 +65,29 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount) {
     localTransactionsOverTime = new StackedAreaChart("localTransactionsOverTime", _labeledTransactions);
 
     // Create word cloud
+    _wordCount.forEach(d => {
+        d.occurrences = +d.occurrences;
+    })
     var wordcloud = new WordCloud("word-cloud", _wordCount);
+
+    largeNetwork = new LocalNetwork(data, {
+      margin: {top: 40, bottom: 40, left: 40, right: 40},
+      width: 800,
+      height: 500,
+      divName: "large-graph",
+      user: initialUser,
+      radius: 2,
+      changeUserCallback: updateGlobalCenter
+    });
+
+    function updateGlobalCenter(u) {
+      largeNetwork.updateUser(u);
+    }
 
     localNetwork = new LocalNetwork(data, {
       margin: {top: 40, bottom: 40, left: 40, right: 40},
       width: 400,
-      height: 400,
+      height: 300,
       divName: "local-graph",
       user: initialUser,
       radius: 1,

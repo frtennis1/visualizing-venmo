@@ -18,6 +18,14 @@ class LocalNetwork {
     var nodes = data.getUserNeighborhood(params.user, params.radius);
     
     this.graph = {links: data.getRelevantEdges(nodes), nodes: nodes}
+
+    var groups = jLouvain()
+      .nodes(nodes.map(n => n.Id))
+      .edges(this.graph.links)();
+
+    this.graph.nodes.forEach(d => {
+      d.group = groups[d.Id];
+    });
     
     this.updateVis();
   }
@@ -34,7 +42,7 @@ class LocalNetwork {
       .append("g")
         .attr("transform", `translate(${margin.left},${margin.top})`);
 
-    vis.color = d3.scaleOrdinal(d3.schemeCategory20);
+    vis.color = d3.scaleOrdinal(d3.schemeCategory10);
 
     vis.simulation = d3.forceSimulation()
       .force("link", d3.forceLink().id(d => d.Id))
@@ -52,7 +60,35 @@ class LocalNetwork {
     vis.svg.append("g")
         .attr("class", "nodes");
 
+    vis.tip = d3.tip()
+      .attr("class", "g-tip")
+      .html(d => vis.userContent(d));
+
+    vis.svg.call(vis.tip);
+
     vis.wrangleData();
+  }
+
+  userContent(d) {
+    
+    var fmt = d3.timeFormat("%b '%y");
+
+    return `<div class="g-tip-shadow"></div>
+       <svg class="g-tip-box" width="150" height="87">
+         <path transform="translate(75,91)" d="M0.5,-6.5l5,-5H74.5v-79H-74.5v79H-5Z"/>
+       </svg>
+       <div class="g-tip-content">
+         <div class="g-tip-title">${d.name}</div>
+         <div class="g-tip-subtitle">(${d.username})</div>
+         <div class="g-tip-metric" data-name="created-at">
+             <span class="g-tip-metric-name">Created</span>
+             <span class="g-tip-metric-value">${fmt(d.date_created)}</span>
+         </div>
+         <div class="g-tip-metric" data-name="num-transactions">
+             <span class="g-tip-metric-name">Transactions</span>
+             <span class="g-tip-metric-value">${d.num_transactions}</span>
+         </div>
+       </div>`;
   }
 
   updateVis() {
@@ -73,9 +109,7 @@ class LocalNetwork {
       .append("line")
       .merge(vis.link)
       .attr("stroke-width", d => Math.sqrt(d.num_transactions))
-      .on("click", edgeclick)
-      .on("mouseover", edgemouseover)
-      .on("mouseout", edgemouseout);
+      .on("click", edgeclick);
 
     vis.node = vis.svg.select(".nodes")
       .selectAll("circle")
@@ -89,8 +123,8 @@ class LocalNetwork {
       .merge(vis.node)
       .attr("fill", d => vis.color(d.group))
       .attr("id", d => d.id)
-      .on("mouseover", mouseover)
-      .on("mouseout", mouseout)
+      .on("mouseover", vis.tip.show)
+      .on("mouseout", vis.tip.hide)
       .on("click", click)
       .call(d3.drag()
         .on("start", dragstarted)
@@ -123,46 +157,10 @@ class LocalNetwork {
         .attr("cy", function(d) { return d.y; });
     }
 
-    function mouseover(d) {
-      d3.select(this).style("stroke", "#000000")
-          .style("stroke-opacity", .3);
-
-
-      /*tip.select(".g-tip-title")
-          .text(d.name)
-
-      tip.select(".g-tip-subtitle")
-          .text("(" + d.username + ")")
-          .style("font-weight", null);
-
-      var tipMetric = tip.selectAll(".g-tip-metric")
-          .datum(function() {
-              return this.getAttribute("data-name");
-          });
-
-      tipMetric.select(".g-tip-metric-value").text(function(name) {
-        switch (name) {
-          case "created-at":
-            var fmt = d3.timeFormat("%b '%y");
-            return fmt(d.date_created);
-          case "num-transactions":
-            return d.num_transactions;
-        }
-      }); */
-    }
+    // node functions
 
     function click(d) {
       vis.params.changeUserCallback(d.Id);
-    }
-
-    function mouseout(d) {
-      d3.select(this)
-        .style("stroke", "#FFF")
-        .style("stroke-opacity", 1);
-    }
-
-    function edgemouseover(d) {
-      d3.select(this).style("stroke-opacity", 1);
     }
 
     function edgeclick(d) {
@@ -192,10 +190,6 @@ class LocalNetwork {
 
       transactions.exit().remove();
 
-    }
-
-    function edgemouseout(d) {
-      d3.select(this).style("stroke-opacity", null);
     }
 
     function dragstarted(d) {
