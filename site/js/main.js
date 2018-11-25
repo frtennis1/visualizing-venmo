@@ -64,7 +64,7 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount) {
     transactionsOverTime = new StackedAreaChart("transactionsOverTime", _labeledTransactions);
 
     // Track trends for a user
-    localTransactionsOverTime = new StackedAreaChart("transactionsOverTime-local", _labeledTransactions);
+    localTransactionsOverTime = new StackedAreaChart("localTransactionsOverTime", _labeledTransactions);
 
     // Create Brushing Tools
     globalBrushingTimeline = new BrushingTimeline("brushing-timeline-global",
@@ -148,7 +148,7 @@ function userFilter(chosenUserId) {
 // //React to 'brushedGlobal' event and update domain (x-scale; stacked area chart) if selection is not empty
 function brushedGlobal() {
     var timerange = d3.brushSelection(d3.select(".brush-global").node()).map(globalBrushingTimeline.x.invert);
-    //globalTransactionBreakdown.filterForTimerange(timerange);
+    globalTransactionBreakdown.filterForTimerange(timerange);
     globalBrushingTimeline.updateTimerangeText(timerange);
 }
 
@@ -156,7 +156,7 @@ function brushedGlobal() {
 function brushedLocal() {
     var timerange = d3.brushSelection(d3.select(".brush-local").node()).map(localBrushingTimeline.x.invert);
     localTransactionBreakdown.filterForUserAndTimerange(chosenUserId_global, timerange);
-    beeSwarm.filterForTimerange(timerange);
+    //beeSwarm.filterForTimerange(timerange);
     localBrushingTimeline.updateTimerangeText(timerange);
 }
 
