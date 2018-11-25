@@ -20,15 +20,15 @@ const categoriesColorScale = d3.scaleOrdinal()
 var initialUser = 8443572;
 
 queue()
-    .defer(d3.csv, `${data_dir}/users.csv`)
-    .defer(d3.csv, `${data_dir}/labeledTransactions.csv`)
-    .defer(d3.csv, `${data_dir}/word_count.csv`)
+    .defer(d3.csv, "data/users.csv")
+    .defer(d3.csv, "data/labeledTransactions.csv")
+    .defer(d3.csv, "data/word_count.csv")
     .await(dataLoaded);
 
 function dataLoaded(error, _users, _labeledTransactions, _wordCount) {
 
     // parse the data and create the global data object
-    
+
     _labeledTransactions.forEach(d => {
       d.from = +d.from;
       d.to = +d.to;
@@ -60,6 +60,9 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount) {
     transactionsOverTime = new StackedAreaChart("transactionsOverTime", _labeledTransactions);
 
     // Create word cloud
+    _wordCount.forEach(d => {
+        d.occurrences = +d.occurrences;
+    })
     var wordcloud = new WordCloud("word-cloud", _wordCount);
 
     localNetwork = new LocalNetwork(data, {

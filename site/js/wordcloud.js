@@ -19,10 +19,10 @@ WordCloud = function(_parentElement, _data){
 WordCloud.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { top: 20, right: 20, bottom: 20, left: 150 };
+    vis.margin = { top: 10, right: 10, bottom: 10, left: 10 };
 
-    vis.width = 500;
-    vis.height = 500;
+    vis.width = 700;
+    vis.height = 300;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -42,7 +42,6 @@ WordCloud.prototype.initVis = function(){
 
 WordCloud.prototype.wrangleData = function(){
     var vis = this;
-    console.log(vis.data);
 
     // Update the visualization
     vis.updateVis();
@@ -58,18 +57,21 @@ WordCloud.prototype.updateVis = function(){
     var vis = this;
 
     // var fill = d3.scale.category20();
-
     var xScale = d3.scaleLinear()
-        .domain([0, d3.max(vis.data, function(d) {
-            return d.value;
+        .domain([d3.min(vis.data, function(d) {
+            return d.occurrences;
+        }), d3.max(vis.data, function(d) {
+            return d.occurrences;
         })
         ])
-        .range([10,100]);
+        .range([20,100]);
 
-    var layout = d3.layout.cloud().size([vis.width, vis.height])
-        .words(d3.entries(vis.data))
-        .fontSize(function(d) { return xScale(+d.value) })
-        .text(function(d) {return d.key; })
+    var layout = d3.layout.cloud()
+        .size([vis.width, vis.height])
+        .words(vis.data)
+        .fontSize(function(d) {
+            return xScale(+d.occurrences) })
+        .text(function(d) {return d.word; })
         .rotate(function() { return ~~(Math.random() * 2) * 90; })
         .on("end", draw);
 
@@ -80,16 +82,17 @@ WordCloud.prototype.updateVis = function(){
             .selectAll("text")
             .data(words)
             .enter().append("text")
-            .style("font-size", function(d) { return xScale(d.value) + "px"; })
-            .style("fill", function(d, i) {
-                // return fill(i);
-                return "blue";
+            .attr('class', 'word-cloud-word')
+            .style("font-size", function(d) {
+                return xScale(+d.occurrences) + "px"; })
+            .style("fill", function(d) {
+                return categoriesColorScale(d.category);
             })
             .attr("text-anchor", "middle")
             .attr("transform", function(d) {
-                return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                return "translate(" + [d.x + vis.width/2, d.y + vis.height/2] + ")rotate(" + d.rotate + ")";
             })
-            .text(function(d) { return d.key; });
+            .text(function(d) { return d.word; });
     }
 
     d3.layout.cloud().stop();
