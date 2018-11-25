@@ -22,12 +22,12 @@
     margin: auto;
 }
 
-#timeButtons {
+.timeButtons {
   display: flex;
   justify-content: center;
 }
 
-#weeklyButton, #yearlyButton {
+.timeButton {
   margin-left: 5px;
   margin-right: 5px;
 }

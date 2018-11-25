@@ -2,7 +2,7 @@
 disableScrolling();
 
 // global objects
-var data, localNetwork, timeline, localTransactionBreakdown, transactionsOverTime;
+var data, localNetwork, timeline, localTransactionBreakdown, transactionsOverTime, localTransactionsOverTime;
 
 // for `labeledTransactions_small.csv`
 var parseTime = d3.timeParse("%m/%d/%y %H:%M");
@@ -56,8 +56,11 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount) {
     // Create local transaction breakdown pie chart
     localTransactionBreakdown = new PieChart("transaction-breakdown-local", _labeledTransactions);
 
-    //var transactionsOverTime = new StackedAreaChart("transactionsOverTime", _stackedTransactions);
+    // Track trends for transaction categories over time
     transactionsOverTime = new StackedAreaChart("transactionsOverTime", _labeledTransactions);
+
+    // Track trends for a user
+    localTransactionsOverTime = new StackedAreaChart("localTransactionsOverTime", _labeledTransactions);
 
     // Create word cloud
     var wordcloud = new WordCloud("word-cloud", _wordCount);
@@ -106,6 +109,8 @@ function userFilter(chosenUserId) {
     timeline.updateData(chosenUserId);
 
     localTransactionBreakdown.filterForUser(chosenUserId);
+
+    localTransactionsOverTime.filterForUser(chosenUserId);
 
 }
 
