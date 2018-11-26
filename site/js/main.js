@@ -25,7 +25,7 @@ var chosenUserId_global = initialUser;
 
 queue()
     .defer(d3.csv, `${data_dir}/users.csv`)
-    .defer(d3.csv, `${data_dir}/labeledTransactions_small.csv`)
+    .defer(d3.csv, `${data_dir}/labeledTransactions.csv`)
     .defer(d3.csv, `${data_dir}/word_count.csv`)
     .await(dataLoaded);
 
@@ -124,7 +124,6 @@ function userFilterFromInput() {
 function userFilter(chosenUserId) {
     chosenUserId_global = chosenUserId;
     var chosenUser = data.userMap.get(chosenUserId);
-    //var timerange = d3.brushSelection(d3.select(".brush-local").node()).map(localBrushingTimeline.x.invert);
 
     // Update html text to reflect new user
     d3.selectAll(".user-filter-name")
@@ -143,6 +142,9 @@ function userFilter(chosenUserId) {
     localTransactionsOverTime.filterForUser(chosenUserId);
 
     localBrushingTimeline.filterForUser(chosenUserId);
+
+    // remove brush selection
+    // d3.brushSelection(d3.select(".brush-local").node()).call(localBrushingTimeline.brush.move, null);
 }
 
 // //React to 'brushedGlobal' event and update domain (x-scale; stacked area chart) if selection is not empty

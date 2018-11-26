@@ -11,7 +11,6 @@ BrushingTimeline = function(_parentElement, _data, _initialUserId, _callback, _c
     this.data = _data;
     this.filteredData = this.data;
     this.initialUserId = _initialUserId;
-    this.brushSelection = d3.extent(this.filteredData, function(d) { return d.created_time; });
     this.callback =  _callback;
     this.class =  _class;
 
@@ -91,8 +90,7 @@ BrushingTimeline.prototype.initVis = function(){
 
 BrushingTimeline.prototype.updateVis = function() {
     var vis = this;
-    vis.brushSelection = d3.extent(vis.filteredData, function(d) { return d.created_time; });
-    vis.x.domain(vis.brushSelection);
+    vis.x.domain(d3.extent(vis.filteredData, function(d) { return d.created_time; }));
     vis.xAxis = d3.axisBottom()
         .scale(vis.x);
     vis.svg.select(".x-axis").call(vis.xAxis);
