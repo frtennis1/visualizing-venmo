@@ -23,7 +23,7 @@ var initialUser = 8443572;
 
 queue()
     .defer(d3.csv, `${data_dir}/users.csv`)
-    .defer(d3.csv, `${data_dir}/labeledTransactions.csv`)
+    .defer(d3.csv, `${data_dir}/labeledTransactions_small.csv`)
     .defer(d3.csv, `${data_dir}/word_count.csv`)
     .await(dataLoaded);
 
@@ -95,9 +95,9 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount) {
     });
 
     timeline = new BeeSwarm(data, initialUser, {
-      margin: {top: 40, bottom: 40, left: 100, right: 40},
-      width: 800,
-      height: 500,
+      margin: {top: 40, bottom: 40, left: 100, right: 0},
+      width: 600,
+      height: 400,
       parentDiv: "transaction-timeline"
     });
 

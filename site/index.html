@@ -82,11 +82,12 @@
     </div>
 </header>
 <!-- Header Section End -->
+
 <!-- What's Venmo? -->
 <div id="whats-venmo" class="section">
     <div class="container">
         <div class="row">
-            Most commonly used words in Venmo transactions
+            <h2 class="section-title">Most Commonly Used Words in Venmo Transactions</h2>
             <div id="word-cloud"></div>
         </div>
         <div class="row mt">
@@ -108,7 +109,7 @@
         <div class="row">
             <h3>Explore the Venmo Network</h3>
             <div id="large-graph"></div>
-            <p>Force directed network graph</p>
+            <p>See the above force-directed graph, representing the Venmo network of users and tranactions. Click on a user's node to center the graph around them. Note that not all nodes are displayed at once due to computational limitations.</p>
         </div>
     </div>
 </div>
@@ -126,7 +127,8 @@
                 <div class="text-wrapper wow fadeInRight" data-wow-delay="0.6s">
                     <div>
                         <h3>What do people use venmo for?</h3>
-                        <p>Analysis of the category breakdown...</p>
+                        <p>Each Venmo transaction can be categorized according to its purpose: what is being paid for. We categorized more than 350 of the most commonly used words and emojis in transactions captions. Transactions themselves are categorized based on which keywords they contain.</p>
+                        <p>As can be seen, many transactions can't be categorized. Venmo is used for so many reasons, that not all transactions can be captured by neat categories. However, significant numbers of transactions are used to pay for food, transportation (predominantly ridesharing apps like Uber and Lyft), and drinks.</p>
                     </div>
                 </div>
             </div>
@@ -136,8 +138,8 @@
                 <div class="text-wrapper wow fadeInRight" data-wow-delay="0.9s">
                     <div>
                         <h3>What do people spend on and when?</h3>
-                        Analysis of transactions over time
-                        <p>Interested in tracking certain keywords over time? Enter a keyword into the box below to visualize the graph and filter for Venmo transactions that contain that keyword.</p>
+                        <p>Venmo transactions vary over time. The most transactions are made during the school year when college students, one of Venmo's most active userbases, are together. More transactions are made during weekends too, likely due to friends paying each other for meals, rides, and drinks after going out together.</p>
+                        <p>Interested in tracking certain keywords over time? Enter a keyword into the box below to visualize the graph and filter for Venmo transactions whose captions contain that keyword.</p>
                         <input id="keywordInput" onchange="transactionsOverTime.wrangleData()">
                     </div>
                 </div>
@@ -176,35 +178,29 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-12 col-sm-12">
-                <div id="local-graph" class="img-thumb wow fadeInLeft" data-wow-delay="0.3s">
-                    local venmo network force directed graph
-                </div>
+                <div id="local-graph" class="img-thumb wow fadeInLeft" data-wow-delay="0.3s"></div>
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="text-wrapper wow fadeInRight" data-wow-delay="0.6s">
                     <div>
                         <h3><span class="user-filter-name">[User ID]</span>'s Venmo Network</h3>
-                        <p>Click on a node to see their local Venmo graph!</p>
+                        <p>Click on a node to see the user's local Venmo graph!</p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div id="transaction-timeline"></div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="col-lg-4 col-md-8 col-sm-8">
                 <div class="text-wrapper wow fadeInRight" data-wow-delay="0.9s">
                     <div>
                         <h3>Who does <span class="user-filter-name">[User ID]</span> transact with?</h3>
-                        <p>Explain the bar graph</p>
+                        <p>One can easily see which other users one transacts with the most. Are these the user's closest friends? What does this user pay their closest friends for? Does this user like going to the movies with their friends on weekends? Going out to eat during the week?</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="col-lg-8 col-md-16 col-sm-16">
                 <div class="img-thumb wow fadeInLeft" data-wow-delay="1.2s">
-                    <img class="img-fluid" src="img/features/img2.png" alt="">
-                    Bar graph of which other user's they transact with
+                    <div id="transaction-timeline"></div>
                 </div>
             </div>
         </div>
@@ -218,7 +214,7 @@
                 <div class="text-wrapper wow fadeInRight" data-wow-delay="0.6s">
                     <div>
                         <h3>What does <span class="user-filter-name">[User ID]</span> spend on?</h3>
-                        <p>What does this user spend the most on</p>
+                        <p>A user's transactions can easily be broken down into the aforementioned categories. From this, one could infer what the user does most with their friends. Is the user a foodie who mostly uses Venmo to split the check with friends? Or is the user a big drinker who picks up the bar tab?</p>
                     </div>
                 </div>
             </div>
@@ -228,7 +224,7 @@
                 <div class="text-wrapper wow fadeInRight" data-wow-delay="0.6s">
                     <div>
                         <h3><span class="user-filter-name">[User ID]</span>'s Transactions over Time</h3>
-                        <p>When does the user use venmo the most?</p>
+                        <p>We can similarly visualize a user's transactions over time. Does the user spend the most on weekends? Is the user a college student who spends the most when they're on campus with friends? Is the user a big summer spender?</p>
                     </div>
                 </div>
             </div>
@@ -325,7 +321,7 @@
                     <div class="team-details">
                         <div class="team-inner">
                             <h4 class="team-title">Francisco Rivera</h4>
-                            <p>UX Consultant</p>
+                            <p>Harvard '19</p>
                         </div>
                     </div>
                 </div>
@@ -343,7 +339,7 @@
                     <div class="team-details">
                         <div class="team-inner">
                             <h4 class="team-title">David Miller</h4>
-                            <p>Web Developer</p>
+                            <p>Harvard '19</p>
                         </div>
                     </div>
                 </div>
@@ -361,7 +357,7 @@
                     <div class="team-details">
                         <div class="team-inner">
                             <h4 class="team-title">Elana Shen</h4>
-                            <p>UI/UX Designer</p>
+                            <p>Harvard '19</p>
                         </div>
                     </div>
                 </div>
@@ -379,7 +375,7 @@
                     <div class="team-details">
                         <div class="team-inner">
                             <h4 class="team-title">Jack Obeng-Marnu</h4>
-                            <p>Digital Marketer</p>
+                            <p>Harvard '19</p>
                         </div>
                     </div>
                 </div>
