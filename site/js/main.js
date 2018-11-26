@@ -37,8 +37,8 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount) {
       d.from = +d.from;
       d.to = +d.to;
       d.payment_id = +d.payment_id;
-      d.created_time = parseTime(d.created_time);
-      d.updated_time = parseTime(d.updated_time);
+      d.created_time = parseTime2(d.created_time);
+      d.updated_time = parseTime2(d.updated_time);
     });
 
     _users.forEach(d => {
