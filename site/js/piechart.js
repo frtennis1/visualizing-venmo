@@ -198,3 +198,34 @@ PieChart.prototype.filterForUser = function(userId) {
 
     vis.wrangleData();
 }
+
+/*
+    Function for brushing for a certain time range
+ */
+
+PieChart.prototype.filterForTimerange = function(timerange) {
+    var vis = this;
+
+    vis.filteredData = vis.data.filter(d => d.created_time > timerange[0] && d.created_time < timerange[1]);
+
+    vis.svg.selectAll(".tool-tip .title").text("");
+    vis.svg.selectAll(".tool-tip .subtitle").text("");
+
+    vis.wrangleData();
+}
+
+/*
+    Function for brushing for a certain time range and user
+ */
+
+PieChart.prototype.filterForUserAndTimerange = function(userId, timerange) {
+    var vis = this;
+
+    vis.filteredData = vis.data.filter(d => d.from == userId || d.to == userId);
+    vis.filteredData = vis.filteredData.filter(d => d.created_time > timerange[0] && d.created_time < timerange[1]);
+
+    vis.svg.selectAll(".tool-tip .title").text("");
+    vis.svg.selectAll(".tool-tip .subtitle").text("");
+
+    vis.wrangleData();
+}
