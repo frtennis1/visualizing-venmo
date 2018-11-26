@@ -195,8 +195,6 @@ StackedAreaChart.prototype.updateVis = function(){
     var maxY = d3.max(vis.displayData, d => d3.max(d, f => f[1]));
     vis.y.domain([0, maxY]);
 
-    console.log(vis.displayData);
-
     // Update the x axis
     if (vis.timeScale == 'yearly') {
         vis.x.domain([0,53]);
