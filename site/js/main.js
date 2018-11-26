@@ -156,7 +156,8 @@ function brushedGlobal() {
 function brushedLocal() {
     var timerange = d3.brushSelection(d3.select(".brush-local").node()).map(localBrushingTimeline.x.invert);
     localTransactionBreakdown.filterForUserAndTimerange(chosenUserId_global, timerange);
-    //beeSwarm.filterForTimerange(timerange);
+    beeSwarm.x.domain(timerange);
+    beeSwarm.updateVis();
     localBrushingTimeline.updateTimerangeText(timerange);
 }
 

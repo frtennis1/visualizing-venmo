@@ -113,6 +113,8 @@ class BeeSwarm {
         d.other_person_safe = "Other";
     });
 
+    vis.x.domain(d3.extent(vis.transactions, d => d.created_time));
+
     this.updateVis();
   }
 
@@ -120,7 +122,7 @@ class BeeSwarm {
     var vis = this;
     var params = this.params;
 
-    vis.x.domain(d3.extent(vis.transactions, d => d.created_time));
+    //vis.x.domain(d3.extent(vis.transactions, d => d.created_time));
 
     vis.y.domain(vis.yDomain);
 
