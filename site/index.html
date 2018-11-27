@@ -147,7 +147,32 @@
                         <h3>What do people spend on and when?</h3>
                         <p>Venmo transactions vary over time. The most transactions are made during the school year when college students, one of Venmo's most active userbases, are together. More transactions are made during weekends too, likely due to friends paying each other for meals, rides, and drinks after going out together.</p>
                         <p>Interested in tracking certain keywords over time? Enter a keyword into the box below to visualize the graph and filter for Venmo transactions whose captions contain that keyword.</p>
-                        <input id="keywordInput" onchange="transactionsOverTime.wrangleData()">
+                        <form id="keywordInputForm">
+                            <input id="keywordInput" placeholder="Keyword">
+                            <button type="button" onclick="transactionsOverTime.wrangleData()"><i>Filter</i></button>
+                        </form>
+                        <p>Try clicking the buttons below to filter by keywords that exhibit cool trends!</p>
+                        <h4>Yearly Trends</h4>
+                        <div class="timeButtons">
+                            <a href="javascript:void(0);" onclick="transactionsOverTime.keyword('christmas','yearly')" class="timeButton btn btn-common btn-effect">Christmas<br></a>
+                            <!--<a href="javascript:void(0);" onclick="transactionsOverTime.keyword('yale','yearly')" class="timeButton btn btn-common btn-effect">Yale<br></a>-->
+                            <!--<a href="javascript:void(0);" onclick="transactionsOverTime.keyword('easter','yearly')" class="timeButton btn btn-common btn-effect">Easter<br></a>-->
+                            <a href="javascript:void(0);" onclick="transactionsOverTime.keyword('apple','yearly')" class="timeButton btn btn-common btn-effect">Apple<br></a>
+                            <a href="javascript:void(0);" onclick="transactionsOverTime.keyword('super bowl','yearly')" class="timeButton btn btn-common btn-effect">Super Bowl<br></a>
+                            <a href="javascript:void(0);" onclick="transactionsOverTime.keyword('🍦','yearly')" class="timeButton btn btn-common btn-effect">🍦<br></a>
+                        </div>
+                        <h4>Weekly Trends</h4>
+                        <div class="timeButtons">
+                            <a href="javascript:void(0);" onclick="transactionsOverTime.keyword('church','weekly')" class="timeButton btn btn-common btn-effect">Church<br></a>
+                            <a href="javascript:void(0);" onclick="transactionsOverTime.keyword('monday','weekly')" class="timeButton btn btn-common btn-effect">Monday<br></a>
+                            <a href="javascript:void(0);" onclick="transactionsOverTime.keyword('party','weekly')" class="timeButton btn btn-common btn-effect">Party<br></a>
+                            <a href="javascript:void(0);" onclick="transactionsOverTime.keyword('drinks','weekly')" class="timeButton btn btn-common btn-effect">Drinks<br></a>
+                        </div>
+                        <h4>Trends over All Time</h4>
+                        <div class="timeButtons">
+                            <a href="javascript:void(0);" onclick="transactionsOverTime.keyword('yeet','allTime')" class="timeButton btn btn-common btn-effect">Yeet<br></a>
+                            <a href="javascript:void(0);" onclick="transactionsOverTime.keyword('star wars','allTime')" class="timeButton btn btn-common btn-effect">Star Wars<br></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -156,9 +181,10 @@
                     <div id="transactionsOverTime"></div>
                     <div class="timeButtons">
                         <a href="javascript:void(0);" onclick="transactionsOverTime.display('weekly')" class="timeButton btn btn-common btn-effect">Weekly<br></a>
-                        <a href="javascript:void(0);" onclick="transactionsOverTime.display('monthly')" class="timeButton btn btn-common btn-effect">Monthly<br></a>
                         <a href="javascript:void(0);" onclick="transactionsOverTime.display('yearly')" class="timeButton btn btn-common btn-effect">Yearly<br></a>
+                        <a href="javascript:void(0);" onclick="transactionsOverTime.display('allTime')" class="timeButton btn btn-common btn-effect">All Time<br></a>
                     </div>
+                    <div id="trendAnalysis"></div>
                 </div>
             </div>
         </div>
@@ -247,8 +273,8 @@
                     <div id="localTransactionsOverTime"></div>
                     <div class="timeButtons">
                         <a href="javascript:void(0);" onclick="localTransactionsOverTime.display('weekly')" class="timeButton btn btn-common btn-effect">Weekly<br></a>
-                        <a href="javascript:void(0);" onclick="localTransactionsOverTime.display('monthly')" class="timeButton btn btn-common btn-effect">Monthly<br></a>
                         <a href="javascript:void(0);" onclick="localTransactionsOverTime.display('yearly')" class="timeButton btn btn-common btn-effect">Yearly<br></a>
+                        <a href="javascript:void(0);" onclick="localTransactionsOverTime.display('allTime')" class="timeButton btn btn-common btn-effect">All Time<br></a>
                     </div>
                 </div>
             </div>
@@ -480,7 +506,8 @@
 <!-- Preloader -->
 <div id="preloader">
     <h5>Please wait while the data is loading...</h5>
-    <div class="loader" id="loader-1"></div>
+    <h5 id="funFact"></h5>
+    <!--<div class="loader" id="loader-1"></div>-->
 </div>
 <!-- End Preloader -->
 

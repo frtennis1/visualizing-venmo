@@ -16,6 +16,8 @@ StackedAreaChart = function(_parentElement, _data){
     this.timeScale = "yearly";
     this.userId = null;
 
+    this.labelsAdded = false;
+
     this.initVis();
 }
 
@@ -52,6 +54,9 @@ StackedAreaChart.prototype.initVis = function(){
         .range([0, vis.width])
         .domain([1,53]);
 
+    vis.timeX = d3.scaleTime()
+        .range([0, vis.width]);
+
     vis.color = d3.scaleOrdinal()
         .range(["#809bce", "#c2a8d4", "#febd7e", "#f2f68f", "#3367b2", "#ff0079", "#cb4f00"]);
 
@@ -59,9 +64,7 @@ StackedAreaChart.prototype.initVis = function(){
         .range([vis.height, 0]);
 
     vis.xAxis = d3.axisBottom()
-        .scale(vis.x)
-        .tickFormat(d => d3.timeFormat("%b")(d3.timeParse("%U")(d)))
-        .ticks(4);
+        .scale(vis.x);
 
     vis.yAxis = d3.axisLeft()
         .scale(vis.y);
@@ -71,23 +74,24 @@ StackedAreaChart.prototype.initVis = function(){
         .attr("transform", "translate(0," + vis.height + ")");
 
     vis.svg.append("g")
-        .attr("class", "y-axis axis")
-        .append("text")
+        .attr("class", "y-axis axis");
+        /*.append("text")
         .text("Number of Transactions")
         .attr("transform", "rotate(90,0,0) translate(108,-3)")
-        .attr("fill", "black");
+        .attr("fill", "black");*/
 
     vis.area = d3.area()
         .curve(d3.curveMonotoneX)
-        .x(d => vis.x(d.data.week))
+        .x(function (d) {
+            if (vis.timeScale == 'allTime') {
+                var time = d3.timeParse("%Y/%m")(d.data.week);
+                return vis.timeX(time);
+            } else {
+                return vis.x(d.data.week);
+            }
+        })
         .y0(d => vis.y(d[0]))
         .y1(d => vis.y(d[1]));
-
-    vis.svg.append("text")
-        .attr("x", vis.width)
-        .attr("y", 15)
-        .attr("text-anchor", "end")
-        .attr("class", "tool-tip");
 
     vis.wrangleData();
 }
@@ -131,9 +135,13 @@ StackedAreaChart.prototype.wrangleData = function(){
         timeKey = d => +d3.timeFormat("%w")(d.created_time);
         domainLength = 7;
     }
-    else if (vis.timeScale == "monthly") {
+    else if (vis.timeScale == "byMonth") {
         timeKey = d => +d3.timeFormat("%m")(d.created_time);
         domainLength = 12;
+    }
+    else if (vis.timeScale == "allTime") {
+        timeKey = d => (d3.timeFormat("%Y/%m")(d.created_time));
+        domainLength = null;
     }
 
     // Nest the data by week and category
@@ -144,11 +152,13 @@ StackedAreaChart.prototype.wrangleData = function(){
 	    .rollup(d => d.length)
 	    .entries(vis.filteredData);
 
-	// Flatten the data
-    vis.flatData = new Array(domainLength);
+    vis.flatData = []; //new Array(domainLength);
     vis.nestedData.forEach(function (d) {
         var row = {};
         row.week = +d.key;
+        if (isNaN(row.week)) {
+            row.week = d.key;
+        }
         for (var i = 0; i < d.values.length; i++) {
             row[d.values[i].key] = d.values[i].value;
         }
@@ -158,19 +168,26 @@ StackedAreaChart.prototype.wrangleData = function(){
                 row[categories[i]] = 0;
             }
         }
-        vis.flatData[d.key] = row;
+        //vis.flatData[d.key]
+        if (vis.timeScale == 'allTime') {
+            vis.flatData.push(row);
+        } else {
+            vis.flatData[d.key] = row;
+        }
     });
 
     // Fill all gaps of the data
-    for (var i = 0; i < domainLength; i++) {
-        if (typeof vis.flatData[i] != 'undefined') {
-            continue;
+    if (vis.timeScale != 'allTime') {
+        for (var i = 0; i < domainLength; i++) {
+            if (typeof vis.flatData[i] != 'undefined') {
+                continue;
+            }
+            var entry = {week: i};
+            for (var j = 0; j < categories.length; j++) {
+                entry[categories[j]] = 0;
+            }
+            vis.flatData[i] = entry;
         }
-        var entry = { week: i };
-        for (var j = 0; j < categories.length; j++) {
-            entry[categories[j]] = 0;
-        }
-        vis.flatData[i] = entry;
     }
 
     // Stack the data
@@ -191,6 +208,13 @@ StackedAreaChart.prototype.wrangleData = function(){
 StackedAreaChart.prototype.updateVis = function(){
 	var vis = this;
 
+	// Change x axis scale
+    if (vis.timeScale == 'allTime') {
+        vis.xAxis = d3.axisBottom().scale(vis.timeX)
+    } else {
+        vis.xAxis = d3.axisBottom().scale(vis.x)
+    }
+
 	// Update the y axis
     var maxY = d3.max(vis.displayData, d => d3.max(d, f => f[1]));
     vis.y.domain([0, maxY]);
@@ -202,7 +226,7 @@ StackedAreaChart.prototype.updateVis = function(){
             .tickFormat(d => d3.timeFormat("%b")(d3.timeParse("%U")(d)));
         vis.area.curve(d3.curveMonotoneX);
     } else if (vis.timeScale == 'weekly') {
-        var dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var dayOfWeek = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
         vis.x.domain([0,7]);
         vis.xAxis.ticks(7)
             .tickFormat(d => dayOfWeek[d % 7]);
@@ -214,8 +238,7 @@ StackedAreaChart.prototype.updateVis = function(){
             vis.displayData[i].push(filler);
         }
     }
-    else if (vis.timeScale == 'monthly') {
-        var monthOfYear = ["January", "Febrary"]
+    else if (vis.timeScale == 'byMonth') {
         vis.x.domain([1,13]);
         vis.xAxis.ticks(12)
             .tickFormat(d => d3.timeFormat("%b")(d3.timeParse("%m")(d)));
@@ -226,6 +249,12 @@ StackedAreaChart.prototype.updateVis = function(){
             filler.data = { week: 13 };
             vis.displayData[i].push(filler);
         }
+    }
+    else if (vis.timeScale == 'allTime') {
+        vis.timeX.domain(d3.extent(vis.displayData[0], d => d3.timeParse("%Y/%m")(d.data.week)));
+        vis.xAxis.ticks(5)
+            .tickFormat(d3.timeFormat("%b '%y"));
+        vis.area.curve(d3.curveMonotoneX);
     }
 
     // Draw the layers
@@ -262,11 +291,35 @@ StackedAreaChart.prototype.updateVis = function(){
 
 	categories.exit().remove();
 
+    if (!vis.labelsAdded) {
+        vis.svg.append("text")
+            .attr("x", vis.width)
+            .attr("y", 15)
+            .attr("text-anchor", "end")
+            .attr("class", "tool-tip");
+
+        vis.svg.append("g")
+            .attr("class", "y-axis axis")
+            .append("text")
+            .text("Number of Transactions")
+            .attr("transform", "rotate(90,0,0) translate(2,-5)")
+            .attr("fill", "black")
+            .style("font-size", "12px");
+
+        vis.labelsAdded = true;
+    }
+
 	// Call axis functions with the new domain
-	vis.svg.select(".x-axis").call(vis.xAxis)
+	var xAxis = vis.svg.select(".x-axis").call(vis.xAxis)
         .selectAll("text")
-        .attr("transform", "rotate(-45) translate(-7,-5)")
-        .attr("text-anchor", "end");
+    if (vis.timeScale == "weekly") {
+        var barWidth = vis.x(2) - vis.x(1);
+        xAxis.attr("transform", "translate("+ barWidth/2 +",0)")
+            .attr("text-anchor", "center")
+    } else {
+        xAxis.attr("transform", "rotate(-45) translate(-7,-5)")
+            .attr("text-anchor", "end")
+    }
     vis.svg.select(".y-axis").transition().duration(800).call(vis.yAxis);
 }
 
@@ -283,4 +336,35 @@ StackedAreaChart.prototype.filterForUser = function(userId) {
     var vis = this;
     vis.userId = userId;
     vis.wrangleData();
+}
+
+StackedAreaChart.prototype.keyword = function(keyword, timeScale) {
+    var vis = this;
+    vis.timeScale = "";
+    d3.select("#keywordInput").node().setAttribute("value", keyword);
+
+    var analysis = {
+        "christmas": "<p>Christmas transactions spike in December when users are buying gifts for friends and family.</p>",
+        "apple": "<p>Apple spikes in October when the company tends to announce their new products.</p>",
+        "super bowl": "<p>Super Bowl transactions spike in February around when the game is played.</p>",
+        "🍦": "<p>Users tend to pay each other for Ice Cream more often in the hot summer than in the cold winter.</p>",
+        "church": "<p>Church transactions spike right after users go to church on Sunday.</p>",
+        "monday": '<p>Users mention "monday" the most early in the week.</p>',
+        "party": "<p>Party transactions spike on the weekends after users go out with their friends.</p>",
+        "drinks": "<p>Drink transactions spike on the weekends after users go out with their friends.</p>",
+        "yeet": '<p>"Yeet" is a new slang word whose popularity can be seen to rise in late 2017.</p>',
+        "star wars": "<p>Stars Wars sees a big spike around December 2017 when The Last Jedi came out.</p>"
+    };
+
+    d3.select("#trendAnalysis")
+        .transition().duration(400)
+        .style("opacity", 0)
+        .on("end", function() {
+            d3.select("#trendAnalysis")
+                .html(analysis[keyword])
+                .transition().duration(400)
+                .style("opacity", 1);
+        });
+
+    vis.display(timeScale);
 }

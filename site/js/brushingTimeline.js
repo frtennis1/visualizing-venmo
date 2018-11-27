@@ -55,10 +55,14 @@ BrushingTimeline.prototype.initVis = function(){
 			.y0(vis.height)
 			.y1(0);
 
+	// Create a cool gradient fill
+	vis.svg.append("defs")
+		.html("<linearGradient id=\"grad1\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"0%\"><stop offset=\"0%\" style=\"stop-color:rgb(60,150,255);stop-opacity:1\" /><stop offset=\"100%\" style=\"stop-color:rgb(45,251,255);stop-opacity:1\" /></linearGradient>");
+
 	// Draw area by using the path generator
 	vis.svg.append("path")
       .datum(vis.filteredData)
-      .attr("fill", "#30baff")
+      .attr("fill", "url(#grad1)")
       .attr("d", vis.area);
 
 

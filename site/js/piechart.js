@@ -134,6 +134,7 @@ PieChart.prototype.wrangleData = function(){
 
     vis.nested_data = d3.nest()
         .key(function(d) { return d.category })
+        .sortKeys(d3.ascending)
         .rollup(function (v) { return v.length })
         .entries(vis.filteredData);
 

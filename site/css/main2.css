@@ -18,18 +18,64 @@
     Global
  */
 
-#keywordInput {
-    margin: auto;
+.text-wrapper h4 {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+#keywordInputForm {
+  margin: auto;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+#keywordInputForm input {
+  margin: auto;
+  margin-right: 0px;
+  width: 370px;
+  font-size: 30px;
+  border-radius: 2px;
+  letter-spacing: 0.3px;
+  padding-left: 13px;
+  border-radius: 100px;
+}
+
+#keywordInputForm button {
+  margin: auto;
+  margin-left: -73px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  width: 70px;
+  background-image: -webkit-linear-gradient(bottom right, #3c96ff, #2dfbff);
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  letter-spacing: 0.7px;
+  border-radius: 100px;
 }
 
 .timeButtons {
   display: flex;
   justify-content: center;
+  margin-bottom: 10px;
 }
 
 .timeButton {
   margin-left: 5px;
   margin-right: 5px;
+}
+
+#trendAnalysis {
+  display: flex;
+  justify-content: center;
+}
+
+#trendAnalysis p {
+  font-size: 25px;
+  margin-top: 20px;
+  width: 75%;
+  line-height: 30px;
 }
 
 
