@@ -21,7 +21,7 @@ WordCloud.prototype.initVis = function(){
 
     vis.margin = { top: 10, right: 10, bottom: 10, left: 10 };
 
-    vis.width = 700;
+    vis.width = 600;
     vis.height = 300;
 
     // SVG drawing area
@@ -56,7 +56,6 @@ WordCloud.prototype.wrangleData = function(){
 WordCloud.prototype.updateVis = function(){
     var vis = this;
 
-    // var fill = d3.scale.category20();
     var xScale = d3.scaleLinear()
         .domain([d3.min(vis.data, function(d) {
             return d.occurrences;

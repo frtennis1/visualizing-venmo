@@ -75,7 +75,7 @@
             </div>
             <div class="col-lg-5 col-md-12 col-xs-12">
                 <div class="intro-img">
-                    <img src="img/header.jpeg" alt="https://www.pexels.com/photo/adolescent-adult-beautiful-blur-618544/">
+                    <img class="img-fluid" src="img/venmo.jpg" alt="https://pixabay.com/en/texting-mobile-phones-hands-two-1490691/">
                 </div>
             </div>
         </div>
@@ -86,22 +86,28 @@
 <!-- What's Venmo? -->
 <div id="whats-venmo" class="section">
     <div class="container">
-        <div class="row">
-            <h2 class="section-title">Most Commonly Used Words in Venmo Transactions</h2>
-            <div id="word-cloud"></div>
-        </div>
         <div class="row mt">
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="text-wrapper wow fadeInRight" data-wow-delay="0.9s">
                     <div>
                         <h3>What is Venmo?</h3>
-                        <p>Venmo is a mobile application that allows users to easily pay their friends and authorized retailers. With just a few taps, users can connect their bank information and start paying their friends back for food, taxis, drinks, and more. Venmo has become especially popular on college campuses where students use it to split bills and pay each other back. Controversially, Venmo by default reveals all transactions via their public API. However, users often don't notice, exposing their transactions to the general public.</p>
+                        <p>Venmo is a mobile application that allows users to easily pay their friends and authorized retailers.
+                            With just a few taps, users can connect their bank information and start paying their friends back for food, taxis, drinks, and more.
+                            Venmo has become especially popular on college campuses where students use it to split bills and pay each other back.
+                            Controversially, Venmo by default reveals all transactions via their public API.
+                            However, users often don't notice, exposing their transactions to the general public.
+                        </p>
+                        <p>
+                            For our project, we explored what types of insights one can glean from this public data by visualizing the transactions
+                            within our network of friends on Venmo.
+                        </p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-12 col-sm-12">
-                <div class="img-thumb wow fadeInLeft" data-wow-delay="1.2s">
-                    <img class="img-fluid" src="img/venmo.jpg" alt="https://pixabay.com/en/texting-mobile-phones-hands-two-1490691/">
+                <div class="img-thumb wow fadeInRight" data-wow-delay="0.3s">
+                    <div id="word-cloud"></div>
+                    <center><p>Top 100 most frequently used words in transaction memos</p></center>
                 </div>
             </div>
         </div>
@@ -117,13 +123,7 @@
 <!-- Global Section Start -->
 <div id="global" class="section">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-7 col-md-14 col-sm-14">
-                <h3>Select a Time Range</h3>
-                <p>Use the brushing tool below to define a time range for the visualization below</p>
-                <div id="brushing-timeline-global"></div>
-            </div>
-        </div>
+        <h3>Global Insights</h3>
         <div class="row">
             <div class="col-lg-7 col-md-14 col-sm-14">
                 <div class="img-thumb wow fadeInLeft" data-wow-delay="0.3s">
@@ -137,6 +137,26 @@
                         <p>Each Venmo transaction can be categorized according to its purpose: what is being paid for. We categorized more than 350 of the most commonly used words and emojis in transactions captions. Transactions themselves are categorized based on which keywords they contain.</p>
                         <p>As can be seen, many transactions can't be categorized. Venmo is used for so many reasons, that not all transactions can be captured by neat categories. However, significant numbers of transactions are used to pay for food, transportation (predominantly ridesharing apps like Uber and Lyft), and drinks.</p>
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-7 col-md-14 col-sm-14">
+                <h4>Select a Time Range</h4>
+                <p>Use the brushing tool below to define a time range for the visualizations above and below</p>
+                <div id="brushing-timeline-global"></div>
+            </div>
+        </div>
+        <div class="row mt">
+            <div class="col-lg-7 col-md-14 col-sm-14">
+                <div class="img-thumb wow fadeInLeft" data-wow-delay="0.3s">
+                    <h3>Timeline of hangouts</h3>
+                    <div id="hangouts-timeline"></div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-10 col-sm-10">
+                <div class="text-wrapper wow fadeInRight" id="hangouts-details" data-wow-delay="0.6s">
+                    <p>Click on a hangout to see details</p>
                 </div>
             </div>
         </div>
@@ -239,7 +259,7 @@
         </div>
         <div class="row">
             <div class="col-lg-7 col-md-14 col-sm-14">
-                <h3>Select a Time Range</h3>
+                <h4>Select a Time Range</h4>
                 <p>Use the brushing tool below to define a time range for the visualizations above and below</p>
                 <div id="brushing-timeline-local"></div>
             </div>
@@ -557,6 +577,7 @@
 <script src="js/stackedAreaChart.js"></script>
 <script src="js/brushingTimeline.js"></script>
 <script src="js/BeeSwarm.js"></script>
+<script src="js/hangoutsTimeline.js"></script>
 
 <!-- Load data, create visualizations -->
 <script src="js/main.js"></script>

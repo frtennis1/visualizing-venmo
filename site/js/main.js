@@ -5,13 +5,15 @@ disableScrolling();
 var data, localNetwork, largeNetwork, beeSwarm,
     globalTransactionBreakdown, localTransactionBreakdown,
     transactionsOverTime, localTransactionsOverTime,
-    globalBrushingTimeline, localBrushingTimeline;
+    globalBrushingTimeline, localBrushingTimeline, wordCloud, hangoutsTimeline;
 
 // for `labeledTransactions_small.csv`
 var parseTime = d3.timeParse("%m/%d/%y %H:%M");
 
 // for `transactions.csv` and `labeledTransactions.csv`
 var parseTime2 = d3.timeParse("%Y-%m-%d %H:%M:%S");
+
+var parseDateSecs = d3.timeParse("%s");
 
 const data_dir = 'data';
 
@@ -31,9 +33,10 @@ queue()
     .defer(d3.csv, `${data_dir}/users.csv`)
     .defer(d3.csv, `${data_dir}/labeledTransactions.csv`)
     .defer(d3.csv, `${data_dir}/word_count.csv`)
-    .await(dataLoaded)
+    .defer(d3.json, `${data_dir}/hangouts_timeline.json`)
+    .await(dataLoaded);
 
-function dataLoaded(error, _users, _labeledTransactions, _wordCount) {
+function dataLoaded(error, _users, _labeledTransactions, _wordCount, _hangouts) {
 
     // parse the data and create the global data object
 
@@ -81,7 +84,19 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount) {
     _wordCount.forEach(d => {
         d.occurrences = +d.occurrences;
     })
-    var wordcloud = new WordCloud("word-cloud", _wordCount);
+    wordCloud = new WordCloud("word-cloud", _wordCount);
+
+    _hangouts.forEach(function(hangout) {
+        hangout.forEach(function(d) {
+            d.created_time = parseDateSecs(d.created_time);
+            d.updated_time = parseDateSecs(d.updated_time);
+            d.from = +d.from;
+            d.payment_id = +d.payment_id;
+            d.to = +d.to;
+        });
+    });
+
+    hangoutsTimeline = new HangoutsTimeline("hangouts-timeline", _hangouts, _users);
 
     largeNetwork = new LocalNetwork(data, {
       margin: {top: 40, bottom: 40, left: 40, right: 40},
@@ -155,6 +170,7 @@ function brushedGlobal() {
     var timerange = d3.brushSelection(d3.select(".brush-global").node()).map(globalBrushingTimeline.x.invert);
     globalTransactionBreakdown.filterForTimerange(timerange);
     globalBrushingTimeline.updateTimerangeText(timerange);
+    hangoutsTimeline.filterForTimerange(timerange);
 }
 
 // React to 'brushedLocal' event and update domain (x-scale; stacked area chart) if selection is not empty
