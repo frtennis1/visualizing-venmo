@@ -147,9 +147,9 @@
                         <h3>What do people spend on and when?</h3>
                         <p>Venmo transactions vary over time. The most transactions are made during the school year when college students, one of Venmo's most active userbases, are together. More transactions are made during weekends too, likely due to friends paying each other for meals, rides, and drinks after going out together.</p>
                         <p>Interested in tracking certain keywords over time? Enter a keyword into the box below to visualize the graph and filter for Venmo transactions whose captions contain that keyword.</p>
-                        <form id="keywordInputForm">
+                        <form id="keywordInputForm" onsubmit="transactionsOverTime.wrangleData(); return false;">
                             <input id="keywordInput" placeholder="Keyword">
-                            <button type="button" onclick="transactionsOverTime.wrangleData()"><i>Filter</i></button>
+                            <button type="submit"><i>Filter</i></button>
                         </form>
                         <p>Try clicking the buttons below to filter by keywords that exhibit cool trends!</p>
                         <h4>Yearly Trends</h4>
@@ -505,9 +505,20 @@
 
 <!-- Preloader -->
 <div id="preloader">
-    <h5>Please wait while the data is loading...</h5>
-    <h5 id="funFact"></h5>
-    <!--<div class="loader" id="loader-1"></div>-->
+    <h5 id="preloaderMessage">Please wait while the data is loading... (this may take a while)</h5>
+    <div id="funFactContainer">
+        <div class="fun-fact"><h5>Venmo has over 22.9 million users.</h5></div>
+        <div class="fun-fact"><h5>66% of young Americans that use mobile payments use Venmo.</h5></div>
+        <div class="fun-fact"><h5>Almost 2 million US retailers accept Venmo.</h5></div>
+        <div class="fun-fact"><h5>Venmo processed $17.6 billion in payments in 2016.</h5></div>
+        <div class="fun-fact"><h5>6 million Uber-related transactions were made on Venmo in 2017.</h5></div>
+    </div>
+    <!--
+    Fun fact source
+    https://expandedramblings.com/index.php/venmo-statistics-facts/
+    -->
+    <h5 class="hidden-fun-fact">Hidden fun fact</h5>
+    <div class="loader" id="loader-1"></div>
 </div>
 <!-- End Preloader -->
 

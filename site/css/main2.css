@@ -15,6 +15,65 @@
 }
 
 /*
+    Preloader animation
+ */
+
+#funFactContainer {
+  width: 100%;
+  top: 50%;
+  align-items: center;
+  position: relative;
+}
+
+.fun-fact {
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+}
+
+.hidden-fun-fact {
+  visibility: hidden;
+}
+
+@-webkit-keyframes "factshift" {
+  0% {
+    opacity: 0;
+  }
+  2% {
+    opacity: 1;
+  }
+  18% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.fun-fact:nth-child(1) {
+  animation: factshift 50s 0s infinite linear;
+}
+
+.fun-fact:nth-child(2) {
+  animation: factshift 50s 10s infinite linear;
+}
+
+.fun-fact:nth-child(3) {
+  animation: factshift 50s 20s infinite linear;
+}
+
+.fun-fact:nth-child(4) {
+  animation: factshift 50s 30s infinite linear;
+}
+
+.fun-fact:nth-child(5) {
+  animation: factshift 50s 40s infinite linear;
+}
+
+/*
     Global
  */
 
