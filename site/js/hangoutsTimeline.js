@@ -12,7 +12,16 @@ function findOverlap(a, b) {
     return findOverlap(a, b.substring(0, b.length - 1));
 }
 
-var formatDate = d3.timeFormat("%B %e, %Y");
+function trunc(str) {
+    if (str.length < 7) {
+        return str;
+    }
+    else {
+        return str.substring(0, 7) + " ...";
+    }
+}
+
+var formatDate = d3.timeFormat("%b %e, %Y");
 /*
  * Timeline - Object constructor function
  * @param _parentElement 	-- the HTML element in which to draw the visualization
@@ -34,7 +43,7 @@ HangoutsTimeline = function(_parentElement, _data, _users){
 HangoutsTimeline.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { top: 20, right: 20, bottom: 20, left: 20 };
+    vis.margin = { top: 10, right: 20, bottom: 20, left: 20 };
 
     vis.width = 600;
     vis.height = 300;
@@ -65,12 +74,6 @@ HangoutsTimeline.prototype.initVis = function(){
         .attr("text-anchor", "middle")
         .attr("class", "x-axis-label")
         .text("Date");
-
-    vis.svgWords = d3.select("#hangouts-details").append("svg")
-        .attr("width", vis.width + vis.margin.left + vis.margin.right)
-        .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
-        .append("g")
-        .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
     vis.wrangleData();
 }
@@ -109,10 +112,16 @@ HangoutsTimeline.prototype.updateVis = function(){
         d3.max(vis.filtered_data, function(d) { return d.length; })]);
 
     vis.tip = d3.tip()
-        .attr("class", "tooltip")
+        .attr("class", "h-tip")
+        .style('pointer-events', 'none')
         .html(
             function(d) {
-                return d[0].message;
+                return `<div class="h-tip-shadow"></div>
+                <svg class="h-tip-box" width="80" height="30">
+                    <path transform="translate(75,91)" d="M0.5,-6.5l5,-5H74.5v-79H-74.5v79H-5Z"/>
+                </svg>
+                <div class="h-tip-content">
+                <div class="h-tip-title">${trunc(d[0].message)}</div></div>`;
             });
     vis.svgTimeline.call(vis.tip);
 
@@ -151,15 +160,15 @@ HangoutsTimeline.prototype.updateVis = function(){
 function showEvent(d) {
     vis = this;
 
-    var str = "<div>" + d.length +
-        " people paid " + d[0].to + " on "
+    var str = "<div><div id='hangouts-details-title'><span class='bolded'>" + d.length +
+        "</span> people paid " + d[0].to + " on <span class='bolded'>"
         + formatDate(d[0].created_time)
-    + " for <ul class='list-group'>";
+    + "</span> for </div><div><ul class='list-group'>";
     d.forEach(function(trans) {
         str +=
             "<li class='list-group-item'>" + trans.message + "</li>";
     });
-    str += "</ul></div>";
+    str += "</ul></div></div>";
     d3.select("#hangouts-details").html(str);
 
 
