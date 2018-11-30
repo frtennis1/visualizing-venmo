@@ -5,7 +5,8 @@ disableScrolling();
 var data, localNetwork, largeNetwork, beeSwarm,
     globalTransactionBreakdown, localTransactionBreakdown,
     transactionsOverTime, localTransactionsOverTime,
-    globalBrushingTimeline, localBrushingTimeline, wordCloud, hangoutsTimeline;
+    globalBrushingTimeline, localBrushingTimeline, wordCloud, hangoutsTimeline,
+    legend;
 
 // for `labeledTransactions_small.csv`
 var parseTime = d3.timeParse("%m/%d/%y %H:%M");
@@ -60,7 +61,7 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount, _hangouts) 
     data = new DataWrapper(_labeledTransactions, _users);
 
     // Add the legend
-    var legend = new Legend("legend");
+    legend = new Legend("legend");
 
     // Create the charts
 
@@ -134,6 +135,8 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount, _hangouts) 
 
     $('#preloader').fadeOut();
     enableScrolling();
+
+    userFilter(initialUser);
 }
 
 function userFilterFromInput() {
@@ -236,12 +239,12 @@ function librariesPopper() {
 }
 
 /*
- Sticky Sidebar Legend
- ========================================================================== */
-var sidebarHidden = false;
+    Sticky Sidebar Legend
+*/
+var sidebarHidden = true;
 $(window).on('scroll', function() {
     var loc = $(window).scrollTop();
-    if ((loc > 1700 && loc < 3470) || (loc > 4210 && loc < 6030)) {
+    if ((loc > 1400 && loc < 3470) || (loc > 4300 && loc < 6030)) {
         if (sidebarHidden) {
             d3.select(".sidenav").transition().duration(300).style("opacity", 1);
             sidebarHidden = false;
@@ -254,7 +257,6 @@ $(window).on('scroll', function() {
     }
 });
 $(window).scroll();
-
 
 
 

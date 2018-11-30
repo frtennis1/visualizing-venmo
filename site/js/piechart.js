@@ -25,7 +25,7 @@ PieChart = function(_parentElement, _data){
 PieChart.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { top: 20, right: 20, bottom: 20, left: 130 };
+    vis.margin = { top: 20, right: 20, bottom: 20, left: 20 };
 
     //vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
     //    vis.height = 500 - vis.margin.top - vis.margin.bottom;
@@ -82,6 +82,7 @@ PieChart.prototype.initVis = function(){
         .style("text-anchor", "middle")
         .style("alignment-baseline", "hanging");
 
+    /*
     // Legend
     vis.legend = vis.svg.append("g")
         .attr("class", "legend")
@@ -119,6 +120,7 @@ PieChart.prototype.initVis = function(){
         .merge(vis.legendLabels)
         .attr("y", function(d, i) { return i * (boxSize + boxPadding) + (boxSize/2) - (boxSize + boxPadding) * vis.nested_data.length / 2 });
     vis.legendLabels.exit().remove();
+    */
 
     vis.wrangleData();
 }
@@ -161,6 +163,7 @@ PieChart.prototype.updateVis = function(){
         .attr("d", vis.arc)
         .style("fill", function(d) { return categoriesColorScale(d.data.key); })
         .on("mouseover", function(d) {
+            legend.highlight(d.data.key);
             vis.tooltips.select(".title")
                 .text(d.data.key);
             vis.tooltips.select(".subtitle")
@@ -171,6 +174,7 @@ PieChart.prototype.updateVis = function(){
                 .attr("d", vis.largeArc);
         })
         .on("mouseout", function(d) {
+            legend.dehighlight();
             d3.select(this)
                 .transition()
                 .duration(500)

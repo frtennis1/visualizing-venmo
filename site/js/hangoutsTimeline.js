@@ -138,8 +138,14 @@ HangoutsTimeline.prototype.updateVis = function(){
 
     vis.points.enter()
         .append("circle")
-        .on("mouseover", vis.tip.show)
-        .on("mouseout", vis.tip.hide)
+        .on("mouseover", function(d) {
+            legend.highlight(d[0].category);
+            vis.tip.show;
+        })
+        .on("mouseout", function() {
+            legend.dehighlight();
+            vis.tip.hide;
+        })
         .on("click", showEvent)
         .attr("class", "hangout")
         .merge(vis.points)

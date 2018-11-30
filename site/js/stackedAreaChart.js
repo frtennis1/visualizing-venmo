@@ -188,6 +188,30 @@ StackedAreaChart.prototype.wrangleData = function(){
             }
             vis.flatData[i] = entry;
         }
+    } else {
+        var firstMonth = d3.timeParse("%Y/%m")(d3.min(vis.flatData, d => d.week));
+        var lastMonth = d3.timeParse("%Y/%m")(d3.max(vis.flatData, d => d.week));
+        var presentMonths = vis.flatData.map(d => d.week);
+        for (var i = firstMonth; i < lastMonth; i.setDate(i.getDate() + 1)) {
+            if (i.getDate() != 1) {
+                continue;
+            }
+            var monthString = d3.timeFormat("%Y/%m")(i);
+            if (!(presentMonths.includes(monthString))) {
+                var filler = {
+                    week: monthString,
+                    Food: 0,
+                    Other: 0,
+                    Sex: 0,
+                    Drugs: 0,
+                    Transportation: 0,
+                    Events: 0,
+                    Drinks: 0,
+                };
+                vis.flatData.push(filler);
+            }
+        }
+        vis.flatData.sort((a, b) => d3.timeParse("%Y/%m")(a.week) - d3.timeParse("%Y/%m")(b.week));
     }
 
     // Stack the data
@@ -280,24 +304,18 @@ StackedAreaChart.prototype.updateVis = function(){
         .attr("opacity", 1);
 
     function mouseOver() {
-        vis.svg.select(".tool-tip")
-            .text(this.getAttribute("data-key"));
+        legend.highlight(this.getAttribute("data-key"));
         vis.svg.selectAll(".area").attr("opacity", 0.5);
         d3.select(this).attr("opacity", 1);
     }
     function mouseOut() {
+        legend.dehighlight();
         vis.svg.selectAll(".area").attr("opacity", 1);
     }
 
 	categories.exit().remove();
 
     if (!vis.labelsAdded) {
-        vis.svg.append("text")
-            .attr("x", vis.width)
-            .attr("y", 15)
-            .attr("text-anchor", "end")
-            .attr("class", "tool-tip");
-
         vis.svg.append("g")
             .attr("class", "y-axis axis")
             .append("text")

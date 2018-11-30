@@ -144,8 +144,14 @@ class BeeSwarm {
       .attr("cx", d => d.x)
       .attr("cy", d => d.y)
       .attr("fill", d => categoriesColorScale(d.category))
-      .on('mouseover', vis.tip.show)
-      .on('mouseout', vis.tip.hide);
+      .on('mouseover', function(d) {
+          legend.highlight(d.category);
+          vis.tip.show;
+      })
+      .on('mouseout', function() {
+        legend.dehighlight();
+          vis.tip.hide;
+      });
 
     vis.points.exit().remove();
 

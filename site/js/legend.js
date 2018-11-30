@@ -10,6 +10,8 @@ Legend = function(_parentElement){
     this.parentElement = _parentElement;
     this.data = ["Other", "Food", "Sex", "Events", "Transportation", "Drinks", "Drugs"];
 
+    this.category = "";
+
     this.initVis();
 }
 
@@ -51,7 +53,8 @@ Legend.prototype.initVis = function(){
     vis.color = categoriesColorScale;
 
     // Squares to show category colors
-    vis.cells.enter().append("rect")
+    vis.cells2 = vis.cells.enter().append("rect")
+        .attr("class", "cell")
         .attr("width", boxSize).attr("height", boxSize)
         .attr("y", function(d, i) { return i * (boxSize + boxPadding) })
         .attr("fill", function(d, i) { return vis.color(i); });
@@ -65,4 +68,31 @@ Legend.prototype.initVis = function(){
         .attr("x", -boxPadding)
         .text(function(d, i) { return d });
 
+    vis.updateVis();
+}
+
+Legend.prototype.updateVis = function() {
+    var vis = this;
+
+    vis.cells2.merge(vis.cells)
+        .transition().duration(300)
+        .attr("opacity", function(d) {
+            if (vis.category == "" || d == vis.category) {
+                return "1";
+            } else {
+                return "0.3";
+            }
+        });
+}
+
+Legend.prototype.highlight = function(category) {
+    var vis = this;
+    vis.category = category;
+    vis.updateVis();
+}
+
+Legend.prototype.dehighlight = function() {
+    var vis = this;
+    vis.category = "";
+    vis.updateVis();
 }
