@@ -174,7 +174,7 @@
                         <h3>What do people spend on and when?</h3>
                         <p>Venmo transactions vary over time. The most transactions are made during the school year when college students, one of Venmo's most active userbases, are together. More transactions are made during weekends too, likely due to friends paying each other for meals, rides, and drinks after going out together.</p>
                         <p>Interested in tracking certain keywords over time? Enter a keyword into the box below to visualize the graph and filter for Venmo transactions whose captions contain that keyword.</p>
-                        <form id="keywordInputForm" onsubmit="transactionsOverTime.wrangleData(); return false;">
+                        <form id="keywordInputForm" onsubmit="transactionsOverTime.filterKeyword(); return false;">
                             <input id="keywordInput" placeholder="Keyword">
                             <button type="submit"><i>Filter</i></button>
                         </form>
@@ -452,6 +452,12 @@
 </section>
 <!-- Team section End -->
 
+<!-- Side Navigation -->
+<div class="sidenav">
+    <div id="legend"></div>
+</div>
+<!-- Side Navigation End -->
+
 <!-- Footer Section Start -->
 <footer>
     <!-- Footer Area Start -->
@@ -585,6 +591,7 @@
 <script src="js/brushingTimeline.js"></script>
 <script src="js/BeeSwarm.js"></script>
 <script src="js/hangoutsTimeline.js"></script>
+<script src="js/legend.js"></script>
 
 <!-- Load data, create visualizations -->
 <script src="js/main.js"></script>

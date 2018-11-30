@@ -31,7 +31,7 @@ var chosenUserId_global = initialUser;
 
 queue()
     .defer(d3.csv, `${data_dir}/users.csv`)
-    .defer(d3.csv, `${data_dir}/labeledTransactions.csv`)
+    .defer(d3.csv, `${data_dir}/labeledTransactions_small.csv`)
     .defer(d3.csv, `${data_dir}/word_count.csv`)
     .defer(d3.json, `${data_dir}/hangouts_timeline.json`)
     .await(dataLoaded);
@@ -58,6 +58,9 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount, _hangouts) 
     });
 
     data = new DataWrapper(_labeledTransactions, _users);
+
+    // Add the legend
+    var legend = new Legend("legend");
 
     // Create the charts
 
@@ -232,6 +235,25 @@ function librariesPopper() {
 
 }
 
+/*
+ Sticky Sidebar Legend
+ ========================================================================== */
+var sidebarHidden = false;
+$(window).on('scroll', function() {
+    var loc = $(window).scrollTop();
+    if ((loc > 1700 && loc < 3470) || (loc > 4210 && loc < 6030)) {
+        if (sidebarHidden) {
+            d3.select(".sidenav").transition().duration(300).style("opacity", 1);
+            sidebarHidden = false;
+        }
+    } else {
+        if (!sidebarHidden) {
+            d3.select(".sidenav").transition().duration(300).style("opacity", 0);
+            sidebarHidden = true;
+        }
+    }
+});
+$(window).scroll();
 
 
 

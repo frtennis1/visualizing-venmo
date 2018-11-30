@@ -15,6 +15,7 @@ StackedAreaChart = function(_parentElement, _data){
 
     this.timeScale = "yearly";
     this.userId = null;
+    this.memokeyword = "";
 
     this.labelsAdded = false;
 
@@ -117,11 +118,10 @@ StackedAreaChart.prototype.wrangleData = function(){
     }
 
     // Filter by keyword
-    var keyword = d3.select("#keywordInput").node().value;
-    if (keyword == "") {
+    if (vis.memokeyword == "") {
         vis.filteredData = vis.filteredData;
     } else {
-        vis.filteredData = vis.filteredData.filter(d => d.message.toLowerCase().includes(keyword.toLowerCase()));
+        vis.filteredData = vis.filteredData.filter(d => d.message.toLowerCase().includes(vis.memokeyword.toLowerCase()));
     }
 
     // Choose weekly or yearly
@@ -338,10 +338,17 @@ StackedAreaChart.prototype.filterForUser = function(userId) {
     vis.wrangleData();
 }
 
+StackedAreaChart.prototype.filterKeyword = function() {
+    var vis = this;
+    vis.memokeyword = d3.select("#keywordInput").node().value;
+    vis.wrangleData();
+}
+
 StackedAreaChart.prototype.keyword = function(keyword, timeScale) {
     var vis = this;
     vis.timeScale = "";
     d3.select("#keywordInput").node().setAttribute("value", keyword);
+    vis.memokeyword = keyword;
 
     var analysis = {
         "christmas": "<p>Christmas transactions spike in December when users are buying gifts for friends and family.</p>",
