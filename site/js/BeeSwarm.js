@@ -60,7 +60,6 @@ class BeeSwarm {
   }
 
   transactionContent(d) {
-    console.log("this ran");
     var fromUser = this.data.userMap.get(d.from);
     var toUser = this.data.userMap.get(d.to);
     var transactionVerb;

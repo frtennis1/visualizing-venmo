@@ -23,7 +23,7 @@ const categoriesColorScale = d3.scaleOrdinal()
   .range(["#809bce", "#c2a8d4", "#febd7e", "#f2f68f", "#3367b2", "#ff0079", "#cb4f00"]);
 
 // user to initialize charts with: Francisco
-var initialUser = 52612;
+var initialUser = 25379;
 var chosenUserId_global = initialUser;
 
 /*
@@ -148,6 +148,10 @@ function userFilterFromInput() {
 // Function called when the user inputs a new user's ID to filter the local section by
 function userFilter(chosenUserId) {
     chosenUserId_global = chosenUserId;
+
+    if (!data.userMap.has(chosenUserId))
+      return false;
+
     var chosenUser = data.userMap.get(chosenUserId);
 
     // Update html text to reflect new user
