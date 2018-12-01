@@ -172,13 +172,14 @@ class LocalNetwork {
       var transactions = d3.select("#transactions")
           .select("tbody")
           .selectAll("tr")
-          .data(d.transactions, function (d) { return d.id} );
+          .data(d.transactions, d => d.Id);
 
       var rows = transactions
           .enter()
           .append("tr");
 
       var fmt = d3.timeFormat("%b %d, %Y")
+
       rows
           .append("td")
           .text(d => fmt(d.created_time));
