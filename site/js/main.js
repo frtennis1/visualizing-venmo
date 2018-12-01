@@ -32,7 +32,7 @@ var chosenUserId_global = initialUser;
 
 queue()
     .defer(d3.csv, `${data_dir}/users.csv`)
-    .defer(d3.csv, `${data_dir}/labeledTransactions_small.csv`)
+    .defer(d3.csv, `${data_dir}/labeledTransactions.csv`)
     .defer(d3.csv, `${data_dir}/word_count.csv`)
     .defer(d3.json, `${data_dir}/hangouts_timeline.json`)
     .await(dataLoaded);
@@ -170,9 +170,8 @@ function userFilter(chosenUserId) {
     localTransactionsOverTime.filterForUser(chosenUserId);
 
     localBrushingTimeline.filterForUser(chosenUserId);
+    localBrushingTimeline.removeBrush();
 
-    // remove brush selection
-    // d3.brushSelection(d3.select(".brush-local").node()).call(localBrushingTimeline.brush.move, null);
 }
 
 // //React to 'brushedGlobal' event and update domain (x-scale; stacked area chart) if selection is not empty

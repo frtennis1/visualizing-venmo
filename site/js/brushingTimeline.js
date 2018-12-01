@@ -115,3 +115,13 @@ BrushingTimeline.prototype.updateTimerangeText = function(timerange) {
     vis.svg.select(".tool-tip")
         .text("Selected Range: " + d3.timeFormat("%b %d, %Y")(timerange[0]) + " - " + d3.timeFormat("%b %d, %Y")(timerange[1]));
 }
+
+BrushingTimeline.prototype.removeBrush = function() {
+    var vis = this;
+
+    var timerange = [0,vis.width].map(vis.x.invert);
+    vis.svg.select(".selection")
+        .attr("width", 0);
+    vis.svg.select(".tool-tip")
+        .text("Selected Range: " + d3.timeFormat("%b %d, %Y")(timerange[0]) + " - " + d3.timeFormat("%b %d, %Y")(timerange[1]));
+}
