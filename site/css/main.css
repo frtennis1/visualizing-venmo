@@ -159,6 +159,7 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
 .btn:active {
   box-shadow: none;
   outline: none;
+  color: white;
 }
 
 .btn-common {
@@ -167,6 +168,7 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
   background-image: -ms-linear-gradient(0deg, #3c96ff 0%, #2dfbff 100%);
   position: relative;
   z-index: 1;
+  color: white;
 }
 
 .btn-common:hover {
@@ -528,6 +530,7 @@ button:focus {
 /* ==========================================================================
    Navbar Style
    ========================================================================== */
+
 .logo-menu a {
   font-size: 20px;
   color: #fff;

@@ -74,6 +74,31 @@
 }
 
 /*
+    Navbar Corrections
+ */
+
+.navbar {
+  background: -webkit-linear-gradient(left, #3c96ff 0%, #2dfbff 100%) !important;
+  background: linear-gradient(to right, #3c96ff 0%, #2dfbff 100%) !important;
+}
+
+.nav-link:hover {
+  background-color: transparent;
+}
+
+.social-list {
+  margin-bottom: -1px;
+}
+
+.btn.btn-border.page-scroll {
+  height: auto;
+}
+
+#navbarCollapse {
+  line-height: normal;
+}
+
+/*
     Sidebar
  */
 
@@ -188,14 +213,8 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#howToButtons {
-  margin: auto;
-}
-
 #howToNext, #howToPrev {
-  margin-top: 10px;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin: auto;
 }
 
 .disabled {

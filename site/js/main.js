@@ -32,7 +32,7 @@ var chosenUserId_global = initialUser;
 
 queue()
     .defer(d3.csv, `${data_dir}/users.csv`)
-    .defer(d3.csv, `${data_dir}/labeledTransactions.csv`)
+    .defer(d3.csv, `${data_dir}/labeledTransactions_small.csv`)
     .defer(d3.csv, `${data_dir}/word_count.csv`)
     .defer(d3.json, `${data_dir}/hangouts_timeline.json`)
     .await(dataLoaded);
@@ -232,18 +232,6 @@ function howToButtonPress() {
     d3.select("#howToText").html(slides[currentHowTo]);
 }
 howToButtonPress();
-
-/*
-    Footer Poppers
- */
-
-function imagesPopper() {
-    var popover = new Popper(ref, popper, options);
-}
-
-function librariesPopper() {
-
-}
 
 /*
     Sticky Sidebar Legend
