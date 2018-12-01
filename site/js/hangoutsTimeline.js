@@ -167,7 +167,7 @@ function showEvent(d) {
     vis = this;
 
     var str = "<div><div id='hangouts-details-title'><span class='bolded'>" + d.length +
-        "</span> people paid " + d[0].to + " on <span class='bolded'>"
+        "</span> people paid <span class='bolded'>" + d[0].to + "</span> on <span class='bolded'>"
         + formatDate(d[0].created_time)
     + "</span> for </div><div><ul class='list-group'>";
     d.forEach(function(trans) {

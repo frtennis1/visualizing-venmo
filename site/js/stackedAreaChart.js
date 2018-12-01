@@ -370,15 +370,16 @@ StackedAreaChart.prototype.keyword = function(keyword, timeScale) {
 
     var analysis = {
         "christmas": "<p>Christmas transactions spike in December when users are buying gifts for friends and family.</p>",
-        "apple": "<p>Apple spikes in October when the company tends to announce their new products.</p>",
+        "apple": "<p>Apple spikes in October when friends tend to go apple picking.</p>",
         "super bowl": "<p>Super Bowl transactions spike in February around when the game is played.</p>",
-        "🍦": "<p>Users tend to pay each other for Ice Cream more often in the hot summer than in the cold winter.</p>",
+        "🍦": "<p>Users tend to pay each other for ice cream more often in the hot summer than in the cold winter.</p>",
         "church": "<p>Church transactions spike right after users go to church on Sunday.</p>",
-        "monday": '<p>Users mention "monday" the most early in the week.</p>',
+        "monday": '<p>Users mention "Monday" the most early in the week.</p>',
         "party": "<p>Party transactions spike on the weekends after users go out with their friends.</p>",
         "drinks": "<p>Drink transactions spike on the weekends after users go out with their friends.</p>",
         "yeet": '<p>"Yeet" is a new slang word whose popularity can be seen to rise in late 2017.</p>',
-        "star wars": "<p>Stars Wars sees a big spike around December 2017 when The Last Jedi came out.</p>"
+        "star wars": "<p>Stars Wars sees a big spike around December 2017 when The Last Jedi came out.</p>",
+        "formal": '<p>"Formal" has seen increasingly dramatic spikes every May and December in the past few years, when houses host their Spring and Winter formals.</p>'
     };
 
     d3.select("#trendAnalysis")

@@ -94,9 +94,6 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount, _hangouts) 
         hangout.forEach(function(d) {
             d.created_time = parseDateSecs(d.created_time);
             d.updated_time = parseDateSecs(d.updated_time);
-            d.from = +d.from;
-            d.payment_id = +d.payment_id;
-            d.to = +d.to;
         });
     });
 
