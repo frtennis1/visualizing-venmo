@@ -165,8 +165,6 @@ class LocalNetwork {
 
     function edgeclick(d) {
 
-      console.log(d);
-
       d3.select("#transactions").selectAll("h4")
         .data([d.source, d.target])
         .text(function (d) {return d.name });

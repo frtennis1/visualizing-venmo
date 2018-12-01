@@ -136,11 +136,18 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount, _hangouts) 
     $('#preloader').fadeOut();
     enableScrolling();
 
+    $('.autocomplete').autocomplete({
+      data: data.userPics,
+      limit: 5,
+      sortFunction: false,
+    });
+
     userFilter(initialUser);
 }
 
 function userFilterFromInput() {
-    var chosenUserId = +d3.select("#userIdInput").node().value;
+    var readableString = d3.select("#userIdInput").node().value;
+    var chosenUserId = +data.readableUserMap[readableString];
     userFilter(chosenUserId);
 }
 
@@ -151,9 +158,9 @@ function userFilter(chosenUserId) {
 
     // Update html text to reflect new user
     d3.selectAll(".user-filter-name")
-      .text(chosenUser.name);
+      .text(chosenUser.name + ' (' + chosenUser.username + ')');
 
-    $('#userIdInput').val(chosenUserId);
+    $('#userIdInput').val(chosenUser.name);
 
     // Update charts to filter for this user
     

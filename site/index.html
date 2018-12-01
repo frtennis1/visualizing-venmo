@@ -10,6 +10,7 @@
     <title>Visualizing Venmo</title>
 
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/materialize.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/line-icons.css">
     <link rel="stylesheet" href="css/owl.carousel.css">
@@ -227,7 +228,10 @@
             <div class="col-md-12 col-sm-12">
                 <div class="video-promo-content text-center">
                     <h2 class="mt-3 wow zoomIn" data-wow-duration="1000ms" data-wow-delay="100ms">
-                        Visualizing <input id="userIdInput" type="text" name="userId" onchange="userFilterFromInput()">'s Venmo
+                        Visualizing
+                        <span class="input-field">
+                          <input id="userIdInput" type="text" name="userId" class="autocomplete" onchange="userFilterFromInput()">
+                        </span>'s Venmo
                     </h2>
                 </div>
             </div>
@@ -577,6 +581,7 @@
 
 <!-- Template scripts -->
 <script src="js/jquery-min.js"></script>
+<script src="js/materialize.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/owl.carousel.js"></script>

@@ -44,6 +44,16 @@ class DataWrapper {
       .rollup(arr => arr[0])
       .map(this.users);
 
+    this.readableUserMap = d3.nest()
+      .key(d => `${d.name} (${d.username})`)
+      .rollup(arr => arr[0].Id)
+      .object(data.users)
+
+    this.userPics = d3.nest()
+      .key(d => `${d.name} (${d.username})`)
+      .rollup(arr => arr[0].picture)
+      .object(data.users.filter(d => d.is_crawled))
+
     this.edges = d3.nest()
       .key(d => d3.min([d.to, d.from]) + "," + d3.max([d.to, d.from]))
       .rollup(transacts => ( {

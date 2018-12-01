@@ -372,3 +372,8 @@
   overflow: scroll;
   display: block;
 }
+
+.autocomplete {
+  font-size: 30px;
+  width: 300px !important;
+}
