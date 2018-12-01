@@ -23,7 +23,7 @@ const categoriesColorScale = d3.scaleOrdinal()
   .range(["#809bce", "#c2a8d4", "#febd7e", "#f2f68f", "#3367b2", "#ff0079", "#cb4f00"]);
 
 // user to initialize charts with: Francisco
-var initialUser = 8443572;
+var initialUser = 25379;
 var chosenUserId_global = initialUser;
 
 /*
@@ -32,7 +32,7 @@ var chosenUserId_global = initialUser;
 
 queue()
     .defer(d3.csv, `${data_dir}/users.csv`)
-    .defer(d3.csv, `${data_dir}/labeledTransactions.csv`)
+    .defer(d3.csv, `${data_dir}/transactions.csv`)
     .defer(d3.csv, `${data_dir}/word_count.csv`)
     .defer(d3.json, `${data_dir}/hangouts_timeline.json`)
     .await(dataLoaded);
@@ -52,9 +52,6 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount, _hangouts) 
     _users.forEach(d => {
       d.Id = +d.Id;
       d.date_created = parseTime2(d.date_created);
-      d.external_id = +d.external_id;
-      d.cancelled = d.cancelled == 'True';
-      d.is_business = d.is_business == 'True';
       d.is_crawled = d.is_crawled == 'True';
     });
 
@@ -124,7 +121,7 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount, _hangouts) 
     });
 
     beeSwarm = new BeeSwarm(data, initialUser, {
-      margin: {top: 40, bottom: 40, left: 100, right: 40},
+      margin: {top: 40, bottom: 40, left: 150, right: 40},
       width: 600,
       height: 500,
       parentDiv: "transaction-timeline"
@@ -151,6 +148,10 @@ function userFilterFromInput() {
 // Function called when the user inputs a new user's ID to filter the local section by
 function userFilter(chosenUserId) {
     chosenUserId_global = chosenUserId;
+
+    if (!data.userMap.has(chosenUserId))
+      return false;
+
     var chosenUser = data.userMap.get(chosenUserId);
 
     // Update html text to reflect new user
