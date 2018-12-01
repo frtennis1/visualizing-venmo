@@ -61,7 +61,7 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount, _hangouts) 
     data = new DataWrapper(_labeledTransactions, _users);
 
     // Add the legend
-    legend = new Legend("legend");
+    legend = new Legend("legend-key");
 
     // Create the charts
 
@@ -236,18 +236,18 @@ howToButtonPress();
 /*
     Sticky Sidebar Legend
 */
-var sidebarHidden = true;
+var legendHidden = true;
 $(window).on('scroll', function() {
     var loc = $(window).scrollTop();
-    if ((loc > 400 && loc < 3470) || (loc > 4300 && loc < 6030)) {
-        if (sidebarHidden) {
-            d3.select(".sidenav").transition().duration(300).style("opacity", 1);
-            sidebarHidden = false;
+    if ((loc > 400 && loc < 3470) || (loc > 4300 && loc < 6300)) {
+        if (legendHidden) {
+            d3.select(".sidebar").transition().duration(300).style("opacity", 1);
+            legendHidden = false;
         }
     } else {
-        if (!sidebarHidden) {
-            d3.select(".sidenav").transition().duration(300).style("opacity", 0);
-            sidebarHidden = true;
+        if (!legendHidden) {
+            d3.select(".sidebar").transition().duration(300).style("opacity", 0);
+            legendHidden = true;
         }
     }
 });

@@ -102,7 +102,7 @@
     Sidebar
  */
 
-.sidenav {
+.sidebar {
    height: 100%; /* Full-height: remove this if you want "auto" height */
    width: 230px; /* Set the width of the sidebar */
    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
@@ -115,7 +115,7 @@
    opacity: 0;
 }
 
-.sidenav div {
+.sidebar div {
   top: 50%;
   overflow-x: hidden;
   overflow-y: hidden;

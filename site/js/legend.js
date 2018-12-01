@@ -32,7 +32,7 @@ Legend.prototype.initVis = function(){
 
     // Legend
     vis.legend = vis.svg.append("g")
-        .attr("class", "legend")
+        .attr("class", "legend-key")
         .attr("transform", "translate(90,150)");
 
     // Legend squares
@@ -54,7 +54,7 @@ Legend.prototype.initVis = function(){
 
     // Squares to show category colors
     vis.cells2 = vis.cells.enter().append("rect")
-        .attr("class", "cell")
+        .attr("class", "legend-cell")
         .attr("width", boxSize).attr("height", boxSize)
         .attr("y", function(d, i) { return i * (boxSize + boxPadding) })
         .attr("fill", function(d, i) { return vis.color(i); });
