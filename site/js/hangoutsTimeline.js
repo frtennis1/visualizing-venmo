@@ -140,11 +140,11 @@ HangoutsTimeline.prototype.updateVis = function(){
         .append("circle")
         .on("mouseover", function(d) {
             legend.highlight(d[0].category);
-            vis.tip.show;
+            vis.tip.show(d);
         })
         .on("mouseout", function() {
             legend.dehighlight();
-            vis.tip.hide;
+            vis.tip.hide();
         })
         .on("click", showEvent)
         .attr("class", "hangout")
