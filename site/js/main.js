@@ -244,7 +244,7 @@ function librariesPopper() {
 var sidebarHidden = true;
 $(window).on('scroll', function() {
     var loc = $(window).scrollTop();
-    if ((loc > 1400 && loc < 3470) || (loc > 4300 && loc < 6030)) {
+    if ((loc > 400 && loc < 3470) || (loc > 4300 && loc < 6030)) {
         if (sidebarHidden) {
             d3.select(".sidenav").transition().duration(300).style("opacity", 1);
             sidebarHidden = false;
