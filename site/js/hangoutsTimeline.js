@@ -46,7 +46,7 @@ HangoutsTimeline.prototype.initVis = function(){
     vis.margin = { top: 10, right: 20, bottom: 20, left: 20 };
 
     vis.width = 600;
-    vis.height = 400;
+    vis.height = 300;
 
     // SVG drawing area
     vis.svgTimeline = d3.select("#" + vis.parentElement).append("svg")
