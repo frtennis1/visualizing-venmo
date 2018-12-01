@@ -60,6 +60,7 @@ class BeeSwarm {
   }
 
   transactionContent(d) {
+    console.log("this ran");
     var fromUser = this.data.userMap.get(d.from);
     var toUser = this.data.userMap.get(d.to);
     var transactionVerb;
@@ -80,11 +81,11 @@ class BeeSwarm {
          <div class="g-tip-subtitle"> ${dateFmt(d.created_time)}</div>
          <div class="g-tip-metric" data-name="created-at">
              <span class="g-tip-metric-name">From</span>
-             <span class="g-tip-metric-value">${fromUser.name}</span>
+             <span class="g-tip-metric-value">${fromUser.username}</span>
          </div>
          <div class="g-tip-metric" data-name="num-transactions">
              <span class="g-tip-metric-name">To</span>
-             <span class="g-tip-metric-value">${toUser.name}</span>
+             <span class="g-tip-metric-value">${toUser.username}</span>
          </div>
        </div>`;
   }
@@ -152,12 +153,12 @@ class BeeSwarm {
       .attr("clip-path", `url(#clip-${params.parentDiv})`)
       .attr("fill", d => categoriesColorScale(d.category))
       .on('mouseover', function(d) {
+          vis.tip.show(d);
           legend.highlight(d.category);
-          vis.tip.show;
       })
       .on('mouseout', function() {
+        vis.tip.hide();
         legend.dehighlight();
-          vis.tip.hide;
       });
 
     vis.points.exit().remove();

@@ -23,7 +23,7 @@ const categoriesColorScale = d3.scaleOrdinal()
   .range(["#809bce", "#c2a8d4", "#febd7e", "#f2f68f", "#3367b2", "#ff0079", "#cb4f00"]);
 
 // user to initialize charts with: Francisco
-var initialUser = 20;
+var initialUser = 52612;
 var chosenUserId_global = initialUser;
 
 /*
@@ -121,7 +121,7 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount, _hangouts) 
     });
 
     beeSwarm = new BeeSwarm(data, initialUser, {
-      margin: {top: 40, bottom: 40, left: 100, right: 40},
+      margin: {top: 40, bottom: 40, left: 150, right: 40},
       width: 600,
       height: 500,
       parentDiv: "transaction-timeline"
