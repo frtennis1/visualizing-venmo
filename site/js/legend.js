@@ -18,9 +18,9 @@ Legend = function(_parentElement){
 Legend.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { top: 20, right: 0, bottom: 20, left: 180 };
+    vis.margin = { top: 100, right: 0, bottom: 20, left: 30 };
 
-    vis.width = 500;
+    vis.width = 200;
     vis.height = 500;
 
     // SVG drawing area
