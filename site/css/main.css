@@ -1833,6 +1833,11 @@ button:focus {
   line-height: 50px;
 }
 
+p {
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+
 .contents .header-button .btn i {
   margin-left: 10px;
 }
