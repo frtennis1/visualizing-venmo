@@ -63,6 +63,7 @@ class DataWrapper {
   }
 
   // get all users within a radius of the base user
+  // don't return more than 200 nodes
   getUserNeighborhood(user, radius) {
     var nodes = d3.set().add(user);
     for (var i = 0; i < radius; i++) {
@@ -80,7 +81,8 @@ class DataWrapper {
         else
           u.group = 0;
         return u;
-      });
+      })
+      .slice(0,200);
   }
 
   // return any edges between an iterable of users
