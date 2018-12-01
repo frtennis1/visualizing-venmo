@@ -199,7 +199,8 @@
 }
 
 .disabled {
-  background-image: -webkit-linear-gradient(0deg, #555555 0%, #aaaaaa 100%)
+  background-image: -webkit-linear-gradient(0deg, #555555 0%, #aaaaaa 100%);
+  color: white;
 }
 
 .highlight {
