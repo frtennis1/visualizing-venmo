@@ -83,7 +83,12 @@ class DataWrapper {
       });
     }
     return nodes.values()
-      .filter(d => data.userMap.get(d).is_crawled)
+      .filter(d => {
+        if (data.userMap.has(d))
+          return data.userMap.get(d).is_crawled
+        else
+          return false;
+      })
       .map(d => {
         var u = data.userMap.get(d);
         if (d == user)
