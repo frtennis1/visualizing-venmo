@@ -119,7 +119,7 @@ function dataLoaded(error, _users, _labeledTransactions, _wordCount, _hangouts) 
     localNetwork = new LocalNetwork(data, {
       margin: {top: 40, bottom: 40, left: 40, right: 40},
       width: 400,
-      height: 300,
+      height: 450,
       divName: "local-graph",
       user: initialUser,
       radius: 1,

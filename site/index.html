@@ -240,11 +240,31 @@
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div id="local-graph" class="img-thumb wow fadeInLeft" data-wow-delay="0.3s"></div>
             </div>
-            <div class="col-lg-6 col-md-12 col-sm-12">
+            <div class="col-lg-3 col-md-12 col-sm-12">
                 <div class="text-wrapper wow fadeInRight" data-wow-delay="0.6s">
                     <div>
                         <h3><span class="user-filter-name">[User ID]</span>'s Venmo Network</h3>
-                        <p>Click on a node to see the user's local Venmo graph!</p>
+                        <p>Click on a node to see that user's local Venmo graph.</p>
+                        <br />
+                        <p> Click on an edge to see the list of transactions between those two users.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-12 col-sm-12">
+                <div class="text-wrapper wow fadeInRight" data-wow-delay="0.6s">
+                    <div id="transactions">
+                      <h4> Transaction list </h4>
+                      <h4> </h4>
+                      <table class="transaction-table">
+                        <thead>
+                          <tr>
+                            <th> Date </th>
+                            <th> Caption </th>
+                          </tr>
+                        </thead>
+                      <tbody>
+                      </tbody>
+                      </table>
                     </div>
                 </div>
             </div>

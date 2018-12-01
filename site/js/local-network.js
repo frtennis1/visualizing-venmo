@@ -183,7 +183,7 @@ class LocalNetwork {
       var fmt = d3.timeFormat("%b %d, %Y")
       rows
           .append("td")
-          .text(d => fmt(new Date(d.created_time)));
+          .text(d => fmt(d.created_time));
 
       rows.append("td")
           .text(function (d) {return d.message });

@@ -93,8 +93,8 @@ class DataWrapper {
 
     edges.forEach(e => {
       e.transactions.forEach(t => {
-        t.created_time = Date(t.created_time);
-        t.updated_time = Date(t.created_time);
+        t.created_time = new Date(t.created_time);
+        t.updated_time = new Date(t.created_time);
       });
     });
 
