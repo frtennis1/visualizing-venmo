@@ -20,6 +20,12 @@ class BeeSwarm {
       .append("g")
       .attr("transform", `translate(${margin.left},${margin.top})`);
 
+    vis.svg.append("defs").append("clipPath")
+       .attr("id", "clip-" + params.parentDiv)
+     .append("rect")
+       .attr("width", params.width)
+       .attr("height", params.height);
+
     vis.x = d3.scaleTime()
       .range([0, params.width]);
 
@@ -143,6 +149,7 @@ class BeeSwarm {
       .merge(vis.points)
       .attr("cx", d => d.x)
       .attr("cy", d => d.y)
+      .attr("clip-path", `url(#clip-${params.parentDiv})`)
       .attr("fill", d => categoriesColorScale(d.category))
       .on('mouseover', function(d) {
           legend.highlight(d.category);
