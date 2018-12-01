@@ -393,6 +393,6 @@
 }
 
 .autocomplete {
-  font-size: 30px;
+  font-size: 30px !important;
   width: 300px !important;
 }

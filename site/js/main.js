@@ -158,7 +158,7 @@ function userFilter(chosenUserId) {
 
     // Update html text to reflect new user
     d3.selectAll(".user-filter-name")
-      .text(chosenUser.name + ' (' + chosenUser.username + ')');
+      .text(chosenUser.name);
 
     $('#userIdInput').val(chosenUser.name);
 
