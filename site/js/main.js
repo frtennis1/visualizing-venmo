@@ -192,6 +192,25 @@ function brushedLocal() {
     localBrushingTimeline.updateTimerangeText(timerange);
 }
 
+// clear global timeline selection
+function resetGlobalBrush() {
+    globalBrushingTimeline.removeBrush();
+    var timerange = [0,970].map(globalBrushingTimeline.x.invert);
+    globalTransactionBreakdown.filterForTimerange(timerange);
+    globalBrushingTimeline.updateTimerangeText(timerange);
+    hangoutsTimeline.filterForTimerange(timerange);
+}
+
+// clear local timeline selection
+function resetLocalBrush() {
+    localBrushingTimeline.removeBrush();
+    var timerange = [0,970].map(localBrushingTimeline.x.invert);
+    localTransactionBreakdown.filterForUserAndTimerange(chosenUserId_global, timerange);
+    beeSwarm.x.domain(timerange);
+    beeSwarm.updateVis();
+    localBrushingTimeline.updateTimerangeText(timerange);
+}
+
 
 /*
     Handling for How To Section
