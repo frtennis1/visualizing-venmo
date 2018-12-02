@@ -124,4 +124,6 @@ BrushingTimeline.prototype.removeBrush = function() {
         .attr("width", 0);
     vis.svg.select(".tool-tip")
         .text("Selected Range: " + d3.timeFormat("%b %d, %Y")(timerange[0]) + " - " + d3.timeFormat("%b %d, %Y")(timerange[1]));
+
+    vis.callback();
 }
