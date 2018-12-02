@@ -238,7 +238,7 @@ function howToButtonPrev() {
 }
 
 function howToButtonPress() {
-    d3.select("#howToImage").style("opacity", 0).attr("src", "img/howto/howto"+currentHowTo+".PNG");
+    d3.select("#howToImage").style("opacity", 0).attr("src", "img/howto/howto"+currentHowTo+".png");
     d3.select("#howToImage").transition().duration(700).ease(d3.easeLinear).style("opacity", 1);
     // Disable the previous button if on the first page
     d3.select("#howToPrev").classed("disabled", (currentHowTo == 0));
