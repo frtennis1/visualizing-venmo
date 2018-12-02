@@ -188,6 +188,18 @@ PieChart.prototype.updateVis = function(){
         .style("fill", function(d) { return categoriesColorScale(d.data.key); });
     vis.arcs.exit().remove();
 
+    // Show if data isn't available
+    vis.tooltips.select(".title").text("");
+    if (!d3.sum(vis.nested_data, d => d.value)) {
+        vis.tooltips.select(".subtitle")
+            .attr("textLength", 400)
+            .text("No Data Available");
+    } else {
+        vis.tooltips.select(".subtitle")
+            .attr("textLength", 100)
+            .text("");
+    }
+
 }
 
 

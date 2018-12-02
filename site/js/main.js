@@ -255,7 +255,7 @@ howToButtonPress();
 var legendHidden = true;
 $(window).on('scroll', function() {
     var loc = $(window).scrollTop();
-    if ((loc > 400 && loc < 3470) || (loc > 4300 && loc < 6300)) {
+    if ((loc > 350 && loc < 800) ||(loc > 1950 && loc < 3800) || (loc > 5000 && loc < 7000)) {
         if (legendHidden) {
             d3.select(".sidebar").transition().duration(300).style("opacity", 1);
             legendHidden = false;
