@@ -22,7 +22,7 @@ WordCloud.prototype.initVis = function(){
     vis.margin = { top: 10, right: 10, bottom: 10, left: 10 };
 
     vis.width = 600;
-    vis.height = 300;
+    vis.height = 400;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")

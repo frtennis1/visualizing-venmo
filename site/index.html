@@ -95,7 +95,7 @@
 <!-- What's Venmo? -->
 <div id="whats-venmo" class="section">
     <div class="container">
-        <div class="row mt">
+        <div class="row">
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="text-wrapper wow fadeInRight" data-wow-delay="0.9s">
                     <div>
@@ -108,7 +108,8 @@
                         </p>
                         <p>
                             For our project, we explored what types of insights one can glean from this public data by visualizing the transactions
-                            within our network of friends on Venmo.
+                            within our network of friends on Venmo. As you will see, transaction data is a rich source of information
+                            on not only people's spending habits, but their friendships, lifestyle, and general trends in their community.
                         </p>
                     </div>
                 </div>
@@ -123,16 +124,38 @@
 
         <div class="row">
             <h3>Explore the Venmo Network</h3>
+            <p> We crawled thousands of Venmo users, many of them Harvard
+            students, as well as all their transactions. All the data being
+            visualized comes from real Venmo transactions, but to respect
+            people's privacy, we've anonymized it by changing people's names to
+            adjective-animal pairs.</p>
+            
+            <p>If we draw edges between any two users who have transacted each
+            other on Venmo, we can get a graph such as the one depicted below.
+            Hover over a node to see that person's anonymized name, or click on
+            a node to render the graph centered around that node. </p>
             <div id="large-graph"></div>
-            <p>See the above force-directed graph, representing the Venmo network of users and tranactions. Click on a user's node to center the graph around them. Note that not all nodes are displayed at once due to computational limitations.</p>
         </div>
     </div>
 </div>
 
 <!-- Global Section Start -->
+<section class="video-promo section">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="video-promo-content text-center">
+                    <h2 class="mt-3 wow zoomIn" data-wow-duration="1000ms" data-wow-delay="100ms">
+                        Global Insights
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <div id="global" class="section">
     <div class="container">
-        <h3>Global Insights</h3>
         <div class="row">
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="img-thumb wow fadeInLeft" data-wow-delay="0.3s">
@@ -237,7 +260,7 @@
             <div class="col-md-12 col-sm-12">
                 <div class="video-promo-content text-center">
                     <h2 class="mt-3 wow zoomIn" data-wow-duration="1000ms" data-wow-delay="100ms">
-                        Visualizing
+                        Local Insights: Visualizing
                         <span class="input-field">
                           <input id="userIdInput" type="text" name="userId" class="autocomplete" onchange="userFilterFromInput()">
                         </span>'s Venmo
@@ -249,6 +272,10 @@
 </section>
 <section class="section">
     <div class="container">
+        <p>In addition to general insights on our network of users, we drew local insights on particular users -- who they transact
+            with, when they spend money, how their habits have changed over time, etc.</p>
+        <p>Try entering different animal names in the header above to see what kinds of information Venmo reveals about specific users. </p>
+        <br>
         <div class="row">
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div id="local-graph" class="img-thumb wow fadeInLeft" data-wow-delay="0.3s"></div>
@@ -388,7 +415,7 @@
         <div class="row">
             <div class="col-md-12 col-sm-12">
                 <div class="video-promo-content text-center">
-                    <a href="https://www.youtube.com/watch?v=yP6kdOZHids" class="video-popup"><i class="lni-film-play"></i></a>
+                    <a href="https://www.youtube.com/watch?v=9dya0sNQ_wA" class="video-popup"><i class="lni-film-play"></i></a>
                     <h2 class="mt-3 wow zoomIn" data-wow-duration="1000ms" data-wow-delay="100ms">Watch Video</h2>
                 </div>
             </div>
