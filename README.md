@@ -21,6 +21,25 @@ Our project consists of several directories:
 - stacking: code we previously used to stack data for the stacked area chart before we started doing it in D3 (can be ignored)
 - All other files are intuitive and/or are insignificant and can be ignored
 
+We wrote the following JS and CSS files:
+
+- main2.css
+- style.css
+- BeeSwarm.js
+- brushingTimeline.js
+- data-wrapper.js
+- hangoutsTimeline.js
+- legend.js
+- local-network.js
+- main.js
+- piechart.js
+- scrolling.js
+- stackedAreaChart.js
+- wordcloud.js
+- index.html (came with template but was heavily modified by us)
+
+And modified small portions of the other files that came with the HTML template.
+
 Libraries
 ---------
 We used the following libraries in our site implementation:
