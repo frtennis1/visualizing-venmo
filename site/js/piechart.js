@@ -1,5 +1,8 @@
 
 var percentFormatter = function(p) {
+    if (p < 0.01) {
+        return (100*p).toFixed(2) + "%";
+    }
     return d3.format(".2s")(100 * p) + "%";
 }
 
