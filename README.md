@@ -47,7 +47,7 @@ We used the following libraries in our site implementation:
 - Cloud.js
 - Materialize.js
 - jLouvain.js
-- HTML Template "Proton" by Uldeck
+- HTML Template "Proton" by UIdeck
 
 We used the following libraries in our data scraping/cleaning:
 
